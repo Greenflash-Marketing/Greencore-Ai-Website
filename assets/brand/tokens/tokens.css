@@ -1,0 +1,81 @@
+/* Greencore AI — tokens from live mockup theme (pack-q)
+   Source: greencore-ai-mockup/src/theme.css */
+
+:root {
+  --ultra: #00211E;
+  --dark: #073D2B;
+  --dark-flash: #037045;
+  --soft: #67D645;
+  --flash: #9FF55D;
+  --silver: #EBF1F5;
+  --silver-card: #DCE6ED;
+  --silver-base: #BACAD4;
+  --silver-dark: #566470;
+  --lilac: #5A6BD6;
+  --lilac-soft: #AFC5FA;
+
+  --color-bg: var(--ultra);
+  --color-bg-silver: var(--silver);
+  --color-surface: var(--dark);
+  --color-surface-silver: var(--silver-card);
+  --color-text: var(--silver);
+  --color-text-on-silver: var(--ultra);
+  --color-muted: var(--silver-base);
+  --color-muted-on-silver: var(--silver-dark);
+  --color-accent: var(--flash);
+  --color-border: var(--dark-flash);
+  --color-border-silver: var(--silver-base);
+  --color-lilac: var(--lilac);
+  --color-lilac-soft: var(--lilac-soft);
+  --color-soft: var(--soft);
+
+  --gf-green-ultra-dark: #00211E;
+  --gf-green-dark: #073D2B;
+  --gf-green-dark-flash: #037045;
+  --gf-green-soft-flash: #67D645;
+  --gf-green-flash: #9FF55D;
+  --gf-silver-ultra-light: #EBF1F5;
+  --gf-silver-light: #DCE6ED;
+  --gf-silver-base: #BACAD4;
+  --gf-silver-medium: #9AA9B7;
+  --gf-silver-dark: #566470;
+
+  --logo-on-dark: #9FF55D;
+  --logo-on-silver: #00211E;
+
+  --radius-card: 12px;
+  --radius-btn: 10px;
+  --radius-panel: 14px;
+  --radius-control: 10px;
+  --motion-enter: 380ms;
+  --ease-out-expressive: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --font-display: "DM Sans", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+
+  /* Type tracking tokens (match live page) */
+  --tracking-display: -0.03em;
+  --tracking-nav-brand: -0.02em;
+  --tracking-btn: -0.01em;
+  --tracking-metric: -0.02em;
+  --tracking-kicker: 0.1em;
+  --kicker-size: 13px;
+  --kicker-opacity: 0.65;
+  --kicker-margin-bottom: 20px;
+  --leading-display: 1.05;
+  --leading-body: 1.5;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+}
+
+/* Forbidden on Greencore marketing chrome: #FFFFFF, #009E4F */

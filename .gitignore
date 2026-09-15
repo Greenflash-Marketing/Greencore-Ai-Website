@@ -1,0 +1,22 @@
+# Abhängigkeiten & Build
+node_modules/
+.next/
+out/
+build/
+dist/
+.vercel/
+.sanity/
+*.tsbuildinfo
+next-env.d.ts
+
+# Zugangsschlüssel – niemals committen
+.env
+.env.*
+!.env.example
+
+# Vertrauliche Projekt-Leitplanken (nur lokal, von CLAUDE.md importiert)
+CLAUDE.intern.md
+
+# System & Logs
+.DS_Store
+*.log
