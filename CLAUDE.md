@@ -182,7 +182,7 @@ die Presse-Unterseite und als externes Trust-Element.
 |---|---|
 | Frontend | Next.js (App Router), TypeScript, Tailwind CSS |
 | UI-Basiskomponenten | 21st.dev-Registry, motion.dev für Scroll-/Section-Animationen (Komponenten vs. Animations-Engine — beides einsetzen, nicht entweder/oder) |
-| CMS | Sanity (Free Tier), Schema-as-Code im Repo (`/sanity-schema`) |
+| CMS | Sanity (Free Tier), Schema-as-Code im Repo: Standalone-Studio in `studio/` — Projekt-ID `9xpdwcge`, Dataset `production` (public) |
 | i18n | next-intl, Locales `de` (Default) + `en` |
 | Hosting | Vercel |
 | Domain | greencore-ai.com (IONOS, DNS-Cutover bei Launch) |
@@ -197,7 +197,8 @@ die Presse-Unterseite und als externes Trust-Element.
   Gradient-Hintergründe — durch dieses Brand-Bundle stilistisch überholt, vor Weiterverwendung
   auf DM Sans + das Gradient-Verbot anpassen): `greencore-ai-hero-konzept.html`,
   `greencore-ai-bausteine-konzept.html`
-- Sanity-Schema: `/sanity-schema`
+- Sanity Studio: `studio/` — Schema in `studio/schemaTypes/`, Einzelseiten-Struktur in
+  `studio/structure.ts`; lokal starten mit `npm run dev` im Ordner `studio/` → http://localhost:3333
 - Next.js-Grundgerüst: `/nextjs-scaffold`
 - Brand-Bundle (Originalquelle): `greencore-ai-brand-bundle.zip`
 - Mockup-Referenz (Live-Styles): `greencore-mockup-present.zip`

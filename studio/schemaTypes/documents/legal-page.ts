@@ -1,9 +1,16 @@
 import {defineType, defineField} from 'sanity'
+import {LockIcon} from '@sanity/icons/Lock'
+
+const PAGE_TYPE_TITLES: Record<string, string> = {
+  imprint: 'Impressum',
+  privacy: 'Datenschutzerklärung',
+}
 
 export const legalPage = defineType({
   name: 'legalPage',
   title: 'Rechtliche Seite (Impressum/Datenschutz)',
   type: 'document',
+  icon: LockIcon,
   fields: [
     defineField({
       name: 'pageType',
@@ -26,4 +33,11 @@ export const legalPage = defineType({
       type: 'date',
     }),
   ],
+  preview: {
+    select: {pageType: 'pageType', lastReviewed: 'lastReviewed'},
+    prepare: ({pageType, lastReviewed}) => ({
+      title: PAGE_TYPE_TITLES[pageType] ?? 'Rechtliche Seite',
+      subtitle: lastReviewed ? `Geprüft am ${lastReviewed}` : 'Noch nicht rechtlich geprüft',
+    }),
+  },
 })

@@ -1,9 +1,11 @@
 import {defineType, defineField} from 'sanity'
+import {CaseIcon} from '@sanity/icons/Case'
 
 export const caseStudy = defineType({
   name: 'caseStudy',
   title: 'Referenz / Case Study',
   type: 'document',
+  icon: CaseIcon,
   fields: [
     defineField({name: 'title', title: 'Titel', type: 'localeString'}),
     defineField({
@@ -40,4 +42,5 @@ export const caseStudy = defineType({
     defineField({name: 'body', title: 'Inhalt', type: 'localeBlockContent'}),
     defineField({name: 'seo', title: 'SEO', type: 'seo'}),
   ],
+  preview: {select: {title: 'title.de', subtitle: 'customerName', media: 'coverImage'}},
 })

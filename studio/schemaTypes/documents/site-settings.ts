@@ -1,11 +1,13 @@
-import {defineType, defineField} from 'sanity'
+import {defineType, defineField, defineArrayMember} from 'sanity'
+import {CogIcon} from '@sanity/icons/Cog'
+import {LinkIcon} from '@sanity/icons/Link'
 
-// Singleton – in der Sanity Studio-Konfiguration auf ein Dokument beschränken
-// (structure builder: S.listItem().id('siteSettings').child(...))
+// Singleton – in der Studio-Struktur (structure.ts) auf ein Dokument beschränkt
 export const siteSettings = defineType({
   name: 'siteSettings',
   title: 'Website-Einstellungen',
   type: 'document',
+  icon: CogIcon,
   fields: [
     defineField({name: 'siteName', title: 'Seitenname', type: 'string', initialValue: 'Greencore AI'}),
     defineField({name: 'logo', title: 'Logo', type: 'image'}),
@@ -21,13 +23,16 @@ export const siteSettings = defineType({
       title: 'Social-Media-Links',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
+          name: 'socialLink',
           type: 'object',
+          icon: LinkIcon,
           fields: [
-            {name: 'platform', type: 'string', title: 'Plattform'},
-            {name: 'url', type: 'url', title: 'URL'},
+            defineField({name: 'platform', title: 'Plattform', type: 'string'}),
+            defineField({name: 'url', title: 'URL', type: 'url'}),
           ],
-        },
+          preview: {select: {title: 'platform', subtitle: 'url'}},
+        }),
       ],
     }),
   ],
