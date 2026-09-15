@@ -1,9 +1,11 @@
 import {defineType, defineField} from 'sanity'
+import {DocumentTextIcon} from '@sanity/icons/DocumentText'
 
 export const post = defineType({
   name: 'post',
   title: 'Blog-Beitrag',
   type: 'document',
+  icon: DocumentTextIcon,
   fields: [
     defineField({name: 'title', title: 'Titel', type: 'localeString'}),
     defineField({
@@ -19,4 +21,5 @@ export const post = defineType({
     defineField({name: 'body', title: 'Inhalt', type: 'localeBlockContent'}),
     defineField({name: 'seo', title: 'SEO', type: 'seo'}),
   ],
+  preview: {select: {title: 'title.de', subtitle: 'publishedAt', media: 'coverImage'}},
 })
