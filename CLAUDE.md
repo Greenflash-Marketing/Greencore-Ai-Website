@@ -55,6 +55,15 @@ sind Bewegungskonzept und Brand-Bundle vereinbar.
 - Fallback für sehr schwache Geräte/Verbindungen erwägen (z. B. über `navigator.deviceMemory`
   oder Connection-Type): statischer Hintergrund statt Animation
 
+**Ergänzung 16.09. (unverbindlich, Feinschliff bis 20.09.):** Die Linien sollen nicht nur
+strukturell wirken, sondern **gesteuerte Energieströme/-flüsse** visualisieren (heller Grünton,
+der durch die Linien "fließt") — scroll-ausgelöst oder dauerhaft laufend, technische Empfehlung
+liegt bei Claude Code. Muss auf **hellem und dunklem** Hintergrund gleichermaßen gut
+erkennbar/funktionsfähig sein (Liniendichte ergibt sich aus dieser Anforderung). Botschaft:
+intelligente Vernetzung/Steuerung/Orchestrierung von Energie über eine Plattform — technische,
+innovative IT-Exzellenz zur KI-Steuerung. Stil beim ersten Klickdummy: freie Gestaltung durch
+Claude Code als Diskussionsgrundlage für die finale Entscheidung.
+
 ## Referenzen: Freigabe bereits erfolgt
 
 Die im Projektplan/Schema vorgesehene Freigabe-Prüfung ist für die aktuellen Referenzkunden
@@ -100,10 +109,24 @@ oder als primärer CTA.
 - Radius: Card 12px, Panel 14px, Button/Control 10px
 - Spacing-Basis 4px, Skala 4/8/12/16/24/32/48/64/96/128
 - Buttons primär: `bg flash / color ultra / padding 10×20 / radius 10 / tracking -0.01em / weight 600`
-- Floating, inset Navigation (~20px Abstand, radius ~14)
-- Layout-Pattern "50/50": links Farbfläche + Text, rechts Bilder — für die 3 Lösungs-Module (Plan/Operate/Flex) vorgesehen
-- Nach dem Hero: ein "ultra-dark band" (eine große Kernaussage, dunkler Hintergrund)
-- Motion: **motion.dev** (`motion/react`), budgetiert eingesetzt, `prefers-reduced-motion` zwingend zu respektieren
+- Floating, inset Navigation (~20px Abstand, radius ~14), sticky. Zukünftig (nicht Go-Live):
+  Login-Button in die Software — intern noch in Abstimmung, aber strukturell beim
+  Navigationsaufbau mitdenken. Zukünftig außerdem eine **aufklappbare Halobar** über der
+  Navigation für Neuigkeiten von Greencore AI — muss **aktivier-/deaktivierbar** sein und nur
+  bei Aktivierung sichtbar; Platz/Struktur dafür jetzt schon vorsehen (Stand 16.09.)
+- Layout-Pattern "50/50": links Farbfläche + Text, rechts Bilder — für die 3 Lösungs-Module
+  (Plan/Operate/Flex) vorgesehen, soll auch als wiederverwendbare Komponente auf Unterseiten
+  funktionieren; mobile Darstellung von Anfang an mitdenken (Stand 16.09.)
+- Nach dem Hero: ein "ultra-dark band" (eine große Kernaussage, dunkler Hintergrund) — Platzierung
+  im Zusammenspiel mit der aktualisierten Homepage-Storyline (siehe unten) noch zu prüfen
+- Motion: **motion.dev** (`motion/react`), budgetiert eingesetzt, `prefers-reduced-motion`
+  zwingend zu respektieren. Sections bewusst mit einfachen Effekten animieren, nicht überladen
+  — der vollflächig animierte Hintergrund liefert bereits Bewegung (Stand 16.09.)
+- Glass-Optik (Stand 16.09., final bis 20.09.): Navigation, Kennzahlen-Kacheln, Tab-Menü,
+  CTA-Banner, Cookie-Banner, einzelne Panels
+- Hero-Schriftzug-Gradient auf Touch-Geräten (Stand 16.09.): falls ohne Performance-Einbußen
+  möglich, einmaliger automatischer Sweep-Effekt (links nach rechts über die H1) direkt nach
+  dem ersten Laden; sonst entfällt der Effekt auf Touch-Geräten ersatzlos
 
 ### Logo — bereits geliefert (v1)
 Anders als zuvor angekündigt liegt bereits eine erste Logo-Version vor (`logo-v1/` im
@@ -147,28 +170,77 @@ Verbrauchs-/Komponenten-Detailwerte. **Freigabe zur öffentlichen Nennung liegt 
 (Stand 15.09.)** — das `caseStudy`-Schema hat weiterhin ein Freigabe-Feld für künftige neue
 Referenzen, blockiert die Veröffentlichung aber nicht mehr standardmäßig.
 
-## Homepage-Storyline (final, 10 Abschnitte)
+## Homepage-Storyline (Stand 16.09., unverbindlich — final bis 20.09.)
 
-1. Header: Nutzenbotschaft + Kurzerklärung + CTAs. Geplanter Effekt: Scroll-Zoom von der
-   Bildmarke hinein in einen vollflächigen, interaktiven Software-Screenshot (Umsetzung über
-   motion.dev, ggf. 21st.dev für Bausteine)
-2. Kundenlogos als Referenz-Slider (PNG, automatische Einfärbung je nach Hintergrund) —
-   ggf. direkt im Header integriert, damit der Scroll-Effekt funktioniert; alternativ Tausch
-   mit Punkt 3
-3. Einblicke in die Software
-4. 3–4 Kennzahlen-Kacheln (Glasoptik + Animation)
-5. Lösungen im Tab-Menü: Tab 1 Simulation, Tab 2 Optimierung, Tab 3 Energiehandel — interaktive/
+**Ersetzt die vorherige 10-Abschnitte-Reihenfolge.** Erste Abstimmung mit dem Designer am
+16.09. war nicht erschöpfend — die folgende Struktur ist Arbeitsgrundlage für den ersten
+HTML-Klickdummy, keine endgültige Freigabe. Reihenfolge inkl. FAQ jetzt vor dem Footer statt
+davor der Abschluss-CTA:
+
+1. Header: H1 + Kurzerklärung + CTAs, rechts neben der H1 ein **Tablet-Mockup** mit
+   Software-Screenshot. Scroll-Zoom-Effekt siehe eigener Abschnitt unten (ersetzt die frühere
+   Idee "Zoom aus der Bildmarke heraus").
+   - 1.2 Kundenlogos: bevorzugt **im Header integriert** (unterer Header-Rand), nur falls
+     technisch/performant/responsiv unproblematisch — sonst direkt nach Abschnitt 2.
+2. Software-Einblicke: vollflächiger, interaktiver Screenshot (Fortsetzung des Scroll-Zooms
+   aus dem Header). Alternative nur falls UX unsauber: interaktiver Screenshot bleibt im
+   Tablet statt vollflächig.
+3. Kennzahlen-Kacheln (Glasoptik + Animation)
+4. Lösungen im Tab-Menü: Tab 1 Simulation, Tab 2 Optimierung, Tab 3 Energiehandel — interaktive/
    Autoplay-Screenshots
-6. Funktionen/Anwendungsfälle (Orientierung an furoenergy.com) — animierte Visualisierungen
+5. Funktionen/Anwendungsfälle (Orientierung an furoenergy.com) — animierte Visualisierungen
    oder Autoplay-Videos aus der Software
-7. 1–2 fixe Referenz-Testimonials mit Personenbild (Kachel) oder Slider
-8. "Warum Greencore AI" / Energieplattform vs. Energiemanagement (Abgrenzungsargument)
+6. 1–2 fixe Referenz-Testimonials mit Personenbild (Kachel) oder Slider
+7. "Warum Greencore AI" / Energieplattform vs. Energiemanagement (Abgrenzungsargument)
+8. Abschluss-CTA: gläserner Banner vor Keyvisual mit Bildmarke, "Jetzt Demo anfragen" /
+   Lastgang hochladen für kostenlose Demo-Version
 9. FAQ-Bereich
-10. Abschluss-CTA: "Jetzt Demo anfragen" / Lastgang hochladen für kostenlose Demo-Version
+10. Footer (allgemein, inkl. Impressum/Datenschutz/dezente Greenflash-Erwähnung)
 
-Bild-/Screenshot-Assets für Abschnitt 1/3/5/6 folgen Ende dieser/Anfang nächster Woche;
-bis dahin Platzhalter setzen. Fallback falls interaktive Screenshots technisch nicht machbar:
-Autoplay-Videos, Referenzbeispiele dafür: furoenergy.com und trawa.de (Startseiten).
+Hell/Dunkel-Rhythmus als Beispiel (wechselnd, keine feste Regel, wird mit Designer weiter
+entwickelt): 1 Header dunkel · 2 Software-Einblicke (Hintergrund ergibt sich aus Screenshot) ·
+3 Kennzahlen hell · 4 Tab-Menü hell · 5 Anwendungsfälle dunkel · 6 Testimonials hell ·
+7 Warum Greencore AI dunkel · 8 Abschluss-CTA passend zum Keyvisual · 9 FAQ dunkel. Die
+animierte Netzwerk-Visualisierung im Hintergrund muss sich **durchgehend und sauber über alle
+Abschnitte** ziehen, unabhängig vom Hell/Dunkel-Wechsel der jeweiligen Section.
+
+Bild-/Screenshot-Assets für Abschnitt 1/2/4/5 folgen Ende dieser/Anfang nächster Woche;
+bis dahin Platzhalter setzen. Interaktive (klick-/navigierbare) Screenshots sind Stand heute
+bis 20.09. realistisch angepeilt; falls nicht erreichbar, Umstellung auf Autoplay-Video-Fallback
+(Referenzbeispiele: furoenergy.com und trawa.de, Startseiten).
+
+### Header-Scroll-Konzept (Tablet-Zoom) — geändert am 16.09.
+
+Ursprüngliche Idee (Scroll-Zoom von der Bildmarke direkt in die Software-Einblicke) ist
+**ersetzt**:
+
+1. Tablet-Mockup mit Software-Screenshot liegt rechts neben der H1.
+2. Beim Scrollen wird in das Tablet **hineingezoomt**, bis der Screenshot vollflächig den
+   Bildschirm ausfüllt — an diesem Punkt wird die Interaktivität ausgelöst (Nutzer kann sich
+   durchklicken; technisch nicht machbar → Fallback Autoplay-Video). Das ist der Übergang zu
+   Abschnitt 2 "Software-Einblicke".
+3. Bei weiterem Scrollen wird wieder **herausgezoomt**: Tablet mit weiterhin interaktivem
+   Screenshot vor dunklem Hintergrund.
+4. Sobald das Tablet eine sinnvoll festzulegende Zielgröße relativ zur Bildschirmbreite
+   erreicht, scrollt die Seite regulär in Abschnitt 3 (Kennzahlen-Kacheln) weiter.
+
+**Technische Mechanik geklärt (16.09.):**
+- **Pinning:** EIN gepinnter Bereich, die Scroll-Position steuert den Zoom-Fortschritt 1:1
+  (scrubbed) — kein hartes Scroll-Hijacking, Zurückscrollen spult den Effekt zurück.
+- **Mobile:** kein Pinning (Performance/Robustheit). Vereinfacht: Tablet skaliert/fadet beim
+  Ins-Viewport-Scrollen ein, Tap öffnet den interaktiven Screenshot als Vollbild-Overlay.
+- **Scroll vs. Klick:** Scroll steuert ausschließlich den Zoom; Klicks im Screenshot
+  (Demo-Navigation der Software) laufen unabhängig davon.
+
+## Erster Klickdummy (Stand 16.09.)
+
+- Format: **HTML-Klickdummy** (nicht Figma) für interaktive Stakeholder-Vorschau.
+- Ablage **nicht im Produktiv-Repo**, sondern separater `design-reference`-Ordner.
+- Desktop UND Mobile von Anfang an mitdenken; Performance-Leitplanken (siehe
+  Animationskonzept) gelten auch hier — nichts zeigen, was am Ende technisch/performant/
+  responsiv nicht sauber umsetzbar wäre.
+- Finale Optik-/Stil-Entscheidung (inkl. Glass-Elemente, Animationskonzept-Feinschliff,
+  Style-Quelle) fällt spätestens **20.09.2026**, zusammen mit dem Start des technischen Aufbaus.
 
 ## Trust-Elemente / Presse
 
@@ -190,6 +262,13 @@ die Presse-Unterseite und als externes Trust-Element.
 | Tracking | Eigener GTM-Container + eigene GA4-Property, Consent Mode v2 |
 | CRM | Kontaktformular → Dynamics 365 (Greenflash) |
 
+**Update 16.09.:** `nextjs-scaffold/` wird **verworfen** — frisches Next.js-Projekt wird
+aufgesetzt, Ideen aus dem Scaffold fließen ein (Designer ist informiert). Styles/Komponenten
+aus dem React-Mockup (`greencore-mockup-present.zip`) werden **nicht 1:1 übernommen**, sondern
+auf Basis aller gesammelten Infos neu gebaut. Slugs, Meta-Descriptions u. ä. werden weiterhin
+aus dem deutschen Text generiert, müssen aber im Sanity-Schema **bearbeitbar** bleiben —
+insbesondere für saubere englische URLs/Metadaten.
+
 ## Weitere Dokumente
 
 - Projektplan: `greencore-ai-website-projektplan.md`
@@ -205,10 +284,22 @@ die Presse-Unterseite und als externes Trust-Element.
 
 ## Offene Punkte
 
-- [ ] Interaktive Screenshot-Assets (Abschnitt 1/3/5/6 der Startseite) — Lieferung Ende
+**Deadline für alle Optik-/Stil-Themen: spätestens 20.09.2026 (= Start technischer Aufbau).**
+
+- [ ] Interaktive Screenshot-Assets (Abschnitt 1/2/4/5 der Startseite) — Lieferung Ende
       dieser/Anfang nächster Woche
-- [ ] Icon-Integrationsformat vom Designer noch offen
-- [ ] Finale Freigabe Logo v1 durch Designer noch ausstehend
-- [ ] Feinabstimmung Animationskonzept mit dem Designer läuft parallel weiter (Grundrichtung
-      und Performance-Leitplanken bereits entschieden, siehe oben)
+- [ ] Icon-Integrationsformat vom Designer noch offen — bis dahin SVGs + ergänzend Google
+      Material Symbols
+- [ ] Finale Freigabe Logo v1 durch Designer noch ausstehend — bis dahin v1 nutzen
+- [ ] Feinabstimmung Animationskonzept inkl. Energiefluss-Visualisierung mit dem Designer läuft
+      parallel weiter (Grundrichtung, Performance-Leitplanken und Konzept-Ergänzung 16.09.
+      bereits entschieden, siehe oben)
+- [ ] Style-Quelle final bestätigen: `css-extract/` als Ground Truth vs. Versionsbezeichnung
+      `tokens.css`-Kopf "pack-q" vs. Doku "pack-t"
+- [ ] Offene technische Fragen zum Header-Scroll-Zoom-Konzept (Tablet) klären, bevor es im
+      Klickdummy umgesetzt wird
+- [ ] Bild-/Video-Zuschnittgrößen je Section festlegen (Claude Code), PNG→WebP-Konvertierung
+      automatisieren
+- [ ] Login-Bereich/-Button und aufklappbare Halobar über der Navigation — intern noch zu
+      klären, nicht Teil des Go-Live, aber strukturell in Navigation/Klickdummy mitdenken
 - [ ] Rechtlicher Mini-Review Datenschutz/Impressum weiterhin offen (siehe Projektplan)
