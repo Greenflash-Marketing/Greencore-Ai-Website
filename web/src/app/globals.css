@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Greencore AI – Marken-Tokens (Quelle: assets/brand/tokens/tokens.css).
+   Verboten laut Brand-Bundle: reines Weiss #FFFFFF und Greenflash-Gruen #009E4F. */
+:root {
+  --ultra: #00211e;
+  --dark: #073d2b;
+  --dark-flash: #037045;
+  --soft: #67d645;
+  --flash: #9ff55d;
+  --silver: #ebf1f5;
+  --silver-card: #dce6ed;
+  --silver-base: #bacad4;
+  --silver-dark: #566470;
+  --lilac: #5a6bd6;
+  --lilac-soft: #afc5fa;
+
+  --radius-card: 12px;
+  --radius-btn: 10px;
+  --radius-panel: 14px;
+
+  --tracking-display: -0.03em;
+  --tracking-kicker: 0.1em;
+  --leading-display: 1.05;
+  --leading-body: 1.5;
+
+  /* Silber ist die Standardflaeche, Ultra die Schriftfarbe darauf. */
+  --background: var(--silver);
+  --foreground: var(--ultra);
+}
+
+@theme inline {
+  --color-ultra: var(--ultra);
+  --color-dark: var(--dark);
+  --color-dark-flash: var(--dark-flash);
+  --color-soft: var(--soft);
+  --color-flash: var(--flash);
+  --color-silver: var(--silver);
+  --color-silver-card: var(--silver-card);
+  --color-silver-base: var(--silver-base);
+  --color-silver-dark: var(--silver-dark);
+  --color-lilac: var(--lilac);
+  --color-lilac-soft: var(--lilac-soft);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-dm-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  line-height: var(--leading-body);
+}
