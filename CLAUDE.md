@@ -203,6 +203,26 @@ werden statisch vorgerendert.
 > schlicht nicht. Next.js legt dazu eine eigene `web/AGENTS.md` an, die auf die mitgelieferten
 > Handbücher unter `web/node_modules/next/dist/docs/` verweist; die sind bei Zweifeln maßgeblich.
 
+### Komponenten & Animation (Stand 22.09.)
+
+- **shadcn** ist in `web/` eingerichtet (Basis Radix, `web/components.json`). Die shadcn-Farbrollen
+  (`--background`, `--primary` …) sind in `globals.css` auf die **Marken-Tokens** abgebildet –
+  nie die shadcn-Standardpalette übernehmen, die hat weiße Flächen. `.dark` auf einem Abschnitt
+  = Ultra-dunkles Band; Komponenten darin schalten automatisch um. Kein seitenweiter Dark Mode.
+- **21st.dev** läuft über die shadcn-CLI und **verlangt ein Konto mit API-Schlüssel**
+  (`API_KEY_21ST` in `web/.env.local`, nie committen). Einbinden:
+  `npx shadcn@latest add @21st/<autor>/<komponente>` im Ordner `web/`. Kostenlos 2 Kopien pro
+  Tag, unbegrenzt ab Builder-Plan. Übernommene Komponenten **immer an die Marke anpassen**
+  (Farben über die Rollen-Tokens, Radius, DM Sans) und Imports von `framer-motion` auf
+  `motion/react` umstellen.
+- **motion.dev** ist zentral über `web/src/components/motion/motion-provider.tsx` eingebunden:
+  `reducedMotion="user"` und `LazyMotion` mit nachgeladenem Funktionsumfang. Eigener Code nutzt
+  `m` aus `motion/react-m`; `LazyMotion` bewusst **ohne** `strict`, weil 21st.dev-Komponenten
+  meist `motion.div` verwenden. Für einfache Abschnitts-Effekte `Reveal` verwenden – nicht im
+  Hero (LCP).
+- Klassen zusammenführen mit `cn` (Paket `cn` von shadcn, Ersatz für clsx + tailwind-merge;
+  mit den eigenen Markenfarben getestet).
+
 ## Weitere Dokumente
 
 - Projektplan: `greencore-ai-website-projektplan.md`

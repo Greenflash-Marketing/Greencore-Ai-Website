@@ -9,6 +9,8 @@
     "subline": "Technisches Grundgerüst steht. Inhalte und finale Optik folgen.",
     "statusTitle": "Stand der Einrichtung",
     "localeLabel": "Aktive Sprache",
-    "sanityLabel": "Sanity-Projekt"
+    "sanityLabel": "Sanity-Projekt",
+    "ctaPrimary": "Demo anfragen",
+    "ctaSecondary": "Lastgang hochladen"
   }
 }
