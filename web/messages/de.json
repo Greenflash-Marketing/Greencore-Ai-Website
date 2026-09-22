@@ -11,6 +11,65 @@
     "localeLabel": "Aktive Sprache",
     "sanityLabel": "Sanity-Projekt",
     "ctaPrimary": "Demo anfragen",
-    "ctaSecondary": "Lastgang hochladen"
+    "ctaSecondary": "Lastgang hochladen",
+    "bandKicker": "Kernaussage",
+    "bandText": "Keine andere Plattform steuert die Kilowattstunde wirtschaftlicher."
+  },
+  "Nav": {
+    "label": "Hauptnavigation",
+    "platform": "Plattform",
+    "useCases": "Anwendungsfälle",
+    "references": "Referenzen",
+    "resources": "Ressourcen",
+    "about": "Über uns",
+    "cta": "Demo anfragen",
+    "login": "Login",
+    "language": "Sprache wählen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen"
+  },
+  "Halobar": {
+    "tag": "Neu",
+    "text": "Handelsblatt über Greencore AI: Wie Energiesysteme wirklich intelligent werden.",
+    "close": "Hinweis schließen"
+  },
+  "Footer": {
+    "claim": "Das Betriebssystem für die industrielle Energieversorgung in Europa.",
+    "columns": {
+      "platform": "Plattform",
+      "resources": "Ressourcen",
+      "company": "Unternehmen"
+    },
+    "links": {
+      "simulation": "Simulation",
+      "optimization": "Optimierung",
+      "trading": "Energiehandel",
+      "blog": "Blog",
+      "press": "Presse",
+      "references": "Referenzen",
+      "about": "Über Greencore AI",
+      "demo": "Demo buchen",
+      "contact": "Kontakt"
+    },
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "whisper": "Ein Produkt der Greenflash GmbH"
+  },
+  "Pages": {
+    "inProgress": "Diese Seite ist im Aufbau.",
+    "backHome": "Zur Startseite",
+    "platform": "Plattform",
+    "simulation": "Simulation",
+    "optimization": "Optimierung",
+    "trading": "Energiehandel",
+    "references": "Referenzen",
+    "resources": "Ressourcen",
+    "blog": "Blog",
+    "press": "Presse",
+    "about": "Über Greencore AI",
+    "demo": "Demo buchen",
+    "contact": "Kontakt",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz"
   }
 }
