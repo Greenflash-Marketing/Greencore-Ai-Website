@@ -9,6 +9,8 @@
     "subline": "Technical foundation is in place. Content and final design to follow.",
     "statusTitle": "Setup status",
     "localeLabel": "Active locale",
-    "sanityLabel": "Sanity project"
+    "sanityLabel": "Sanity project",
+    "ctaPrimary": "Request a demo",
+    "ctaSecondary": "Upload load profile"
   }
 }
