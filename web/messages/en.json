@@ -1,0 +1,14 @@
+{
+  "Meta": {
+    "title": "Greencore AI",
+    "description": "The operating system for industrial energy."
+  },
+  "Home": {
+    "kicker": "Foundation",
+    "headline": "The operating system for industrial energy",
+    "subline": "Technical foundation is in place. Content and final design to follow.",
+    "statusTitle": "Setup status",
+    "localeLabel": "Active locale",
+    "sanityLabel": "Sanity project"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "Meta": {
+    "title": "Greencore AI",
+    "description": "Das Betriebssystem für industrielle Energie."
+  },
+  "Home": {
+    "kicker": "Grundgerüst",
+    "headline": "Das Betriebssystem für industrielle Energie",
+    "subline": "Technisches Grundgerüst steht. Inhalte und finale Optik folgen.",
+    "statusTitle": "Stand der Einrichtung",
+    "localeLabel": "Aktive Sprache",
+    "sanityLabel": "Sanity-Projekt"
+  }
+}
