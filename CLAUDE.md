@@ -190,6 +190,19 @@ die Presse-Unterseite und als externes Trust-Element.
 | Tracking | Eigener GTM-Container + eigene GA4-Property, Consent Mode v2 |
 | CRM | Kontaktformular → Dynamics 365 (Greenflash) |
 
+### Stand 21.09.: Grundgerüst steht
+
+`nextjs-scaffold/` ist entfernt, das frische Projekt liegt in `web/` (Next.js 16.3.5, React 19,
+Tailwind v4, next-intl 4.14, next-sanity, motion). Produktions-Build läuft grün, `/de` und `/en`
+werden statisch vorgerendert.
+
+> **Stolperstein Next.js 16 — unbedingt beachten:** Die Datei `middleware.ts` ist in Next 16
+> **abgekündigt und in `proxy.ts` umbenannt** (die Funktion heißt `proxy` statt `middleware`).
+> Die Sprachweiche von next-intl liegt deshalb in `web/src/proxy.ts`. Wer hier nach älterem
+> Wissensstand `middleware.ts` anlegt, bekommt **keine Fehlermeldung** — die Weiche greift
+> schlicht nicht. Next.js legt dazu eine eigene `web/AGENTS.md` an, die auf die mitgelieferten
+> Handbücher unter `web/node_modules/next/dist/docs/` verweist; die sind bei Zweifeln maßgeblich.
+
 ## Weitere Dokumente
 
 - Projektplan: `greencore-ai-website-projektplan.md`
@@ -199,7 +212,8 @@ die Presse-Unterseite und als externes Trust-Element.
   `greencore-ai-bausteine-konzept.html`
 - Sanity Studio: `studio/` — Schema in `studio/schemaTypes/`, Einzelseiten-Struktur in
   `studio/structure.ts`; lokal starten mit `npm run dev` im Ordner `studio/` → http://localhost:3333
-- Next.js-Grundgerüst: `/nextjs-scaffold`
+- Next.js-Grundgerüst: `web/` — Next.js 16 (App Router), TypeScript, Tailwind v4,
+  next-intl (de/en), Sanity-Client. Lokal starten mit `npm run dev` im Ordner `web/`
 - Brand-Bundle (Originalquelle): `greencore-ai-brand-bundle.zip`
 - Mockup-Referenz (Live-Styles): `greencore-mockup-present.zip`
 
