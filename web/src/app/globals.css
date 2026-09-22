@@ -284,10 +284,11 @@
     gap: 24px;
     padding: 12px 12px 12px 20px;
     color: var(--ultra);
-    /* Glas nur auf diesem einen Panel – nicht flächig über dem Canvas */
+    /* Glas nur auf diesem einen Panel – nicht flächig über dem Canvas.
+       Nur die Standard-Schreibweise: -webkit- ergänzt der Build selbst. Beide
+       von Hand notiert, behält der Optimierer nur -webkit- (fehlt dann in Chrome). */
     background: rgb(235 241 245 / 0.86);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgb(0 33 30 / 0.08);
     border-radius: var(--radius-panel);
     transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
@@ -788,22 +789,59 @@
 }
 
 /* ==========================================================================
-   Startseite – Ultra-Band und Software-Einblick mit Zoom (Entwurf A, V8)
+   Startseite – Kennzahlen-Band und Software-Einblick mit Zoom (Entwurf A, V8)
    ========================================================================== */
 @layer components {
   .kicker--flash {
     color: var(--flash);
     opacity: 1;
   }
-  .slab__claim {
-    max-width: 16ch;
-    font-size: clamp(32px, 4.8vw, 56px);
-    font-weight: 600;
-    line-height: var(--leading-display);
-    letter-spacing: var(--tracking-display);
-    text-wrap: balance;
+  /* Dunkelgrünes Band (Dark Green) – das Netz scheint wie beim Ultra-Band durch */
+  .band--dark {
+    background: color-mix(in srgb, var(--dark) 85%, transparent);
+    color: var(--silver);
   }
-  .slab__lede,
+
+  /* Kennzahlen: Glaskacheln (Glas laut CLAUDE.md für Kennzahlen vorgesehen,
+     Weichzeichner bewusst nur auf diesen Kacheln, nicht flächig) */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .stat {
+    padding: 32px;
+    border-radius: var(--radius-card);
+    background: rgb(0 33 30 / 0.35);
+    border: 1px solid rgb(159 245 93 / 0.18);
+    backdrop-filter: blur(8px);
+    transition: border-color 0.35s ease;
+  }
+  .stat:hover {
+    border-color: rgb(159 245 93 / 0.42);
+  }
+  .stat__value {
+    font-family: var(--font-mono);
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--flash);
+  }
+  .stat__label {
+    margin-top: 12px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--silver-base);
+  }
+  @media (max-width: 800px) {
+    .stats {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
   .band__lede {
     max-width: 38ch;
     margin-top: 18px;
@@ -811,8 +849,8 @@
     line-height: 1.45;
     color: var(--silver-dark);
   }
-  .slab__lede,
-  .band--ultra .band__lede {
+  .band--ultra .band__lede,
+  .band--dark .band__lede {
     color: color-mix(in srgb, var(--silver) 78%, transparent);
   }
   .band__title {

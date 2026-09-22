@@ -13,14 +13,17 @@ export type HomeHero = {
 
 export type CustomerLogo = { name: string; url: string; width: number; height: number };
 
-export type ClaimBand = { kicker?: string; claim?: string; lede?: string };
+export type StatsBand = { kicker?: string; headline?: string };
+
+export type StatTile = { value: string; unit?: string; label?: string };
 
 export type SoftwareInsights = { kicker?: string; headline?: string; lede?: string };
 
 export type HomePage = {
   hero?: HomeHero;
   logos?: CustomerLogo[];
-  claimBand?: ClaimBand;
+  statsBand?: StatsBand;
+  statTiles?: StatTile[];
   softwareInsights?: SoftwareInsights;
   /** Vollflächiger Software-Screenshot als Zoom-Ziel (optional) */
   zoomScreenshot?: string;
@@ -36,7 +39,8 @@ const homeQuery = `*[_id == "homePage"][0]{
     ${t("ctaSecondaryLabel")}, ctaSecondaryHref,
     ${t("logosLabel")}
   },
-  "claimBand": claimBand{ ${t("kicker")}, ${t("claim")}, ${t("lede")} },
+  "statsBand": statsBand{ ${t("kicker")}, ${t("headline")} },
+  "statTiles": statTiles[defined(value)]{ value, unit, ${t("label")} },
   "softwareInsights": softwareInsights{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },
   "zoomScreenshot": hero.softwareScreenshotEntry.asset->url,
   "logos": logoSlider[defined(logo.asset)]{

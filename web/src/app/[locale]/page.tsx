@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { getHomePage } from "@/lib/sanity/home";
 import { Hero } from "@/components/home/hero";
-import { ClaimBand } from "@/components/home/claim-band";
+import { StatsBand } from "@/components/home/stats-band";
 import { SoftwareZoom } from "@/components/home/software-zoom";
 
 // Inhalte kommen aus Sanity; Änderungen im Studio sind nach spätestens 60 s live.
@@ -17,7 +17,7 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
   return (
     <>
       {home.hero && <Hero hero={home.hero} logos={home.logos ?? []} />}
-      {home.claimBand && <ClaimBand {...home.claimBand} />}
+      <StatsBand band={home.statsBand} tiles={home.statTiles ?? []} />
       <SoftwareZoom intro={home.softwareInsights} screenshot={home.zoomScreenshot} />
     </>
   );
