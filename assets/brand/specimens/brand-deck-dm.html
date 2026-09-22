@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Greencore AI — Brand (dm)</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<style>:root{--font:"DM Sans",system-ui,sans-serif;--mono:"DM Mono",ui-monospace,monospace}</style>
+<style>
+:root{
+  --ultra:#00211E;--dark:#073D2B;--dark-flash:#037045;
+  --soft:#67D645;--flash:#9FF55D;
+  --silver:#EBF1F5;--silver-card:#DCE6ED;--silver-base:#BACAD4;--silver-dark:#566470;
+  --lilac:#5A6BD6;--lilac-soft:#AFC5FA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--silver);color:var(--ultra);font-family:var(--font);overflow:hidden}
+.deck{height:100%;width:100%;position:relative}
+.slide{position:absolute;inset:0;display:none;padding:clamp(48px,7vw,96px);flex-direction:column;justify-content:space-between;opacity:0;transition:opacity .35s cubic-bezier(.22,1,.36,1)}
+.slide.on{display:flex;opacity:1}
+.slide.silver{background:var(--silver);color:var(--ultra)}
+.slide.flash{background:var(--flash);color:var(--ultra)}
+.slide.lilac{background:var(--lilac);color:var(--silver)}
+.slide.dark{background:var(--ultra);color:var(--silver)}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.65;margin-bottom:20px}
+.slide.dark .kicker{color:var(--flash)}
+.slide.lilac .kicker{color:var(--lilac-soft)}
+h1{font-size:clamp(48px,8vw,104px);font-weight:700;letter-spacing:-.03em;line-height:.98;max-width:11ch}
+h2{font-size:clamp(40px,6vw,72px);font-weight:700;letter-spacing:-.03em;line-height:1.02;max-width:14ch}
+.lede{font-size:clamp(18px,2.1vw,26px);line-height:1.4;max-width:32ch;margin-top:28px;opacity:.72;font-weight:500}
+.foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:13px;opacity:.5}
+.strip{display:flex;height:14px;margin-top:40px;max-width:420px}
+.strip i{flex:1;display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:48px;max-width:980px}
+.card{
+  position:relative;overflow:hidden;min-height:200px;padding:28px;border-radius:12px;
+  background:var(--silver-card);border:1px solid rgba(0,33,30,.12);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  --mx:50%;--my:50%;
+  --rx:0deg;--ry:0deg;
+  transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .35s ease;
+  box-shadow:0 1px 0 rgba(255,255,255,.4) inset;
+}
+.card:hover{
+  border-color:rgba(90,107,214,.28);
+  box-shadow:0 12px 40px rgba(0,33,30,.06), 0 1px 0 rgba(255,255,255,.5) inset;
+}
+/* holo foil — subtle iridescent sweep under pointer */
+.card::before{
+  content:"";position:absolute;inset:-1px;opacity:0;transition:opacity .4s ease;
+  background:
+    radial-gradient(circle 140px at var(--mx) var(--my),
+      rgba(255,255,255,.55) 0%,
+      rgba(175,197,250,.22) 28%,
+      rgba(159,245,93,.12) 48%,
+      transparent 68%),
+    linear-gradient(125deg,
+      transparent 30%,
+      rgba(90,107,214,.14) 42%,
+      rgba(159,245,93,.16) 50%,
+      rgba(175,197,250,.14) 58%,
+      transparent 70%);
+  background-size:100% 100%, 220% 220%;
+  background-position:center, var(--mx) var(--my);
+  mix-blend-mode:soft-light;pointer-events:none;z-index:0;
+}
+.card:hover::before,.card:focus-within::before{opacity:1}
+/* thin specular glint */
+.card::after{
+  content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s ease;
+  background:radial-gradient(circle 70px at var(--mx) var(--my),
+    rgba(255,255,255,.7) 0%,
+    rgba(255,255,255,.15) 35%,
+    transparent 60%);
+  mix-blend-mode:overlay;pointer-events:none;z-index:0;
+}
+.card:hover::after,.card:focus-within::after{opacity:.85}
+.card .t{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;position:relative;z-index:1}
+.card .h{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.15;position:relative;z-index:1}
+.card.dark{background:var(--ultra);color:var(--silver);border-color:rgba(159,245,93,.2);box-shadow:none}
+.card.dark:hover{border-color:rgba(175,197,250,.35);box-shadow:0 16px 48px rgba(0,0,0,.25)}
+.card.dark::before{
+  mix-blend-mode:screen;
+  background:
+    radial-gradient(circle 140px at var(--mx) var(--my),
+      rgba(255,255,255,.2) 0%,
+      rgba(175,197,250,.18) 30%,
+      rgba(159,245,93,.14) 50%,
+      transparent 70%),
+    linear-gradient(125deg,
+      transparent 32%,
+      rgba(90,107,214,.2) 45%,
+      rgba(159,245,93,.18) 52%,
+      rgba(175,197,250,.16) 60%,
+      transparent 72%);
+  background-size:100% 100%, 220% 220%;
+  background-position:center, var(--mx) var(--my);
+}
+.card.dark::after{
+  background:radial-gradient(circle 60px at var(--mx) var(--my),
+    rgba(159,245,93,.35) 0%,
+    transparent 55%);
+  mix-blend-mode:screen;
+}
+.swatch-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:56px;border:2px solid var(--ultra)}
+.sw{min-height:150px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end}
+.sw span{font-family:var(--mono);font-size:12px}
+.sw b{font-size:15px;font-weight:700;margin-bottom:6px}
+.type-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:64px;margin-top:48px;align-items:end}
+.big{font-size:clamp(64px,9vw,120px);font-weight:700;letter-spacing:-.04em;line-height:.9}
+.metric{font-family:var(--mono);font-size:clamp(48px,6vw,72px);font-weight:500;color:var(--lilac);letter-spacing:-.02em}
+.metric-label{font-size:16px;font-weight:600;margin-bottom:8px}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;max-width:960px;border:2px solid var(--ultra)}
+.rule{padding:36px;min-height:220px}
+.rule.do{background:var(--flash);color:var(--ultra)}
+.rule.dont{background:var(--lilac);color:var(--silver)}
+.rule h3{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+.rule ul{list-style:none;font-size:18px;font-weight:600;line-height:1.45}
+.rule li+li{margin-top:10px}
+.hint{font-family:var(--mono);font-size:12px;margin-top:16px;opacity:.55}
+.hero-grad{
+  --hx:50%;--hy:40%;
+  background:radial-gradient(circle 40% at var(--hx) var(--hy),#9FF55D 0%,#67D645 28%,#5A6BD6 62%,#00211E 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:160% 160%;
+}
+.btn-slim{display:inline-block;margin-top:28px;padding:10px 20px;border-radius:999px;background:var(--flash);color:var(--ultra);font-weight:600;font-size:14px;letter-spacing:-.01em;border:0}
+.nav-float{position:absolute;top:20px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:rgba(235,241,245,.86);backdrop-filter:blur(12px);border:1px solid rgba(0,33,30,.08);border-radius:14px;font-size:14px;font-weight:500;z-index:5}
+.nav-float nav{display:flex;gap:22px}
+.nav-float a{color:inherit;text-decoration:none;opacity:.55}
+.nav-float a:hover{opacity:1}
+.nav-demo{display:none}
+.nav-demo b{font-weight:700;opacity:1}
+.nav-demo a{color:inherit;text-decoration:none;opacity:.65}
+.nav-demo a:hover{opacity:1}
+
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide silver on">
+  <div>
+    <p class="kicker">Greencore AI · variant · DM</p>
+    <div class="nav-float"><b>Greencore</b><nav><a href="#">Produkt</a><a href="#">Funktionen</a><a href="#">Kontakt</a></nav><a class="btn-slim" style="margin:0;padding:8px 16px;font-size:13px;border-radius:10px" href="#">Demo</a></div>
+    <h1 id="heroTitle" >Voltage for European industry.</h1>
+    <a class="btn-slim" href="#">Demo anfordern</a>
+    <p class="lede">Silver air. Dark type. Solid color fields. Solid fields. Holo only on card hover.</p>
+    <div class="strip">
+      <i style="background:#9FF55D"></i>
+      <i style="background:#5A6BD6"></i>
+      <i style="background:#00211E"></i>
+      <i style="background:#67D645"></i>
+    </div>
+  </div>
+  <div class="foot"><span>greencore-ai.com</span><span>→</span></div>
+</section>
+
+<section class="slide flash">
+  <div>
+    <p class="kicker">01 · Stance</p>
+    <h2>Class over mass. Color over chrome.</h2>
+    <p class="lede">No gradient page washes. Charge lives in hover — flash into lilac under the cursor.</p>
+  </div>
+  <div class="foot"><span>be brave</span><span>2 / 6</span></div>
+</section>
+
+<section class="slide silver">
+  <div>
+    <p class="kicker">02 · Color</p>
+    <h2>Flash × lilac.</h2>
+    <div class="swatch-row">
+      <div class="sw" style="background:#EBF1F5;color:#00211E"><b>Silver field</b><span>#EBF1F5</span></div>
+      <div class="sw" style="background:#00211E;color:#9FF55D"><b>Ultra</b><span>#00211E</span></div>
+      <div class="sw" style="background:#9FF55D;color:#00211E"><b>Flash</b><span>#9FF55D</span></div>
+      <div class="sw" style="background:#5A6BD6;color:#EBF1F5"><b>Lilac</b><span>#5A6BD6</span></div>
+      <div class="sw" style="background:#67D645;color:#00211E"><b>Soft</b><span>#67D645</span></div>
+    </div>
+    <p class="lede" style="margin-top:28px">No balanced mid-green. CTA = solid flash. Gradient = pointer reaction on cards.</p>
+  </div>
+  <div class="foot"><span>solid fields</span><span>3 / 6</span></div>
+</section>
+
+<section class="slide silver">
+  <div>
+    <p class="kicker">03 · Type</p>
+    <h2>DM Sans + DM Mono.</h2>
+    <div class="type-grid">
+      <div>
+        <div class="big">Greencore</div>
+        <p class="lede">Interim / fallback pairing.</p>
+      </div>
+      <div>
+        <div class="metric-label">Eigenverbrauch</div>
+        <div class="metric">128.4</div>
+        <div class="metric-label" style="margin-top:8px;opacity:.55">kW · mono</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>variant · DM</span><span>4 / 6</span></div>
+</section>
+
+<section class="slide silver">
+  <div>
+    <p class="kicker">04 · Cards · move pointer</p>
+    <h2>Holo sheen. Quiet foil.</h2>
+    <p class="hint">subtle iridescent foil + specular — like a playing card (site should match)</p>
+    <div class="grid" id="cards">
+      <article class="card" data-react>
+        <span class="t">module</span>
+        <span class="h">Plan</span>
+      </article>
+      <article class="card dark" data-react>
+        <span class="t">module</span>
+        <span class="h">Operate</span>
+      </article>
+      <article class="card" data-react>
+        <span class="t">module</span>
+        <span class="h">Flex</span>
+      </article>
+    </div>
+  </div>
+  <div class="foot"><span>no page gradient · reactive card hover</span><span>5 / 6</span></div>
+</section>
+
+<section class="slide silver">
+  <div>
+    <p class="kicker">05 · Do / Don’t</p>
+    <h2>Keep the charge.</h2>
+    <div class="rules">
+      <div class="rule do">
+        <h3>Do</h3>
+        <ul>
+          <li>Silver air + dark type</li>
+          <li>Solid flash / lilac fields</li>
+          <li>Subtle holo-card hover</li>
+          <li>Flash CTA only</li>
+          <li>Mono for numbers</li>
+        </ul>
+      </div>
+      <div class="rule dont">
+        <h3>Don’t</h3>
+        <ul>
+          <li>Gradient page backgrounds</li>
+          <li>Glass card stacks</li>
+          <li>Balanced mid-green</li>
+          <li>Loud spotlight / page gradients</li>
+          <li>Leaf kitsch</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>variant · DM</span><span>6 / 6</span></div>
+</section>
+
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let i=0;
+function show(n){i=(n+slides.length)%slides.length;slides.forEach((s,idx)=>s.classList.toggle('on',idx===i))}
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();show(i+1)}
+  if(e.key==='ArrowLeft'){e.preventDefault();show(i-1)}
+});
+document.body.addEventListener('click',e=>{
+  if(e.target.closest('[data-react]')) return;
+  if(e.clientX>innerWidth*.55)show(i+1);else show(i-1);
+});
+const hero=document.getElementById('heroTitle');
+if(hero){
+  const slide=hero.closest('.slide');
+  slide.addEventListener('pointermove',e=>{
+    const r=slide.getBoundingClientRect();
+    hero.style.setProperty('--hx',((e.clientX-r.left)/r.width*100)+'%');
+    hero.style.setProperty('--hy',((e.clientY-r.top)/r.height*100)+'%');
+  });
+}
+document.querySelectorAll('[data-react]').forEach(card=>{
+  card.addEventListener('pointermove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width;
+    const y=(e.clientY-r.top)/r.height;
+    card.style.setProperty('--mx',(x*100)+'%');
+    card.style.setProperty('--my',(y*100)+'%');
+    card.style.setProperty('--ry',((x-0.5)*6)+'deg');
+    card.style.setProperty('--rx',((0.5-y)*5)+'deg');
+  });
+  card.addEventListener('pointerleave',()=>{
+    card.style.setProperty('--rx','0deg');
+    card.style.setProperty('--ry','0deg');
+  });
+});
+</script>
+</body>
+</html>
