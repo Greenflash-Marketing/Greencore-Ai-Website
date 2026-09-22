@@ -30,6 +30,13 @@
   --leading-display: 1.05;
   --leading-body: 1.5;
 
+  /* Layout (aus Entwurf A) */
+  --band-pad: clamp(72px, 10vw, 120px);
+  --band-side: clamp(20px, 4vw, 48px);
+  --inner: 1080px;
+  --inner-wide: 1120px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
   /* Farbrollen fuer shadcn/21st.dev-Komponenten, abgebildet auf die Marke.
      Silber ist die Standardflaeche, Ultra die Schrift darauf. */
   --background: var(--silver);
@@ -168,5 +175,335 @@
   body {
     @apply bg-background text-foreground;
     line-height: var(--leading-body);
+  }
+}
+
+/* ==========================================================================
+   Seitenhülle: Hintergrund, Bänder, Navigation, Halobar, Footer
+   ========================================================================== */
+@layer components {
+  /* Netz liegt fest HINTER der Seite. Wie stark es durchscheint, steuert die
+     Deckkraft der Bänder: auf Silber nur eine Ahnung, auf Dunkel klar. */
+  .network-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Bänder: jede Section trägt data-surface="silver|dark" (für Netz + Nav) */
+  .band {
+    position: relative;
+    padding: var(--band-pad) var(--band-side);
+  }
+  .band__inner {
+    max-width: var(--inner);
+    margin-inline: auto;
+  }
+  .band--silver {
+    background: color-mix(in srgb, var(--silver) 90%, transparent);
+  }
+  .band--silver-card {
+    background: color-mix(in srgb, var(--silver-card) 90%, transparent);
+  }
+  /* Ultra-dunkles Band: zusätzlich Klasse .dark, damit Komponenten umschalten */
+  .band--ultra {
+    background: color-mix(in srgb, var(--ultra) 80%, transparent);
+    color: var(--silver);
+  }
+
+  /* Kicker = Section-Eyebrow laut Brand-Bundle */
+  .kicker {
+    display: block;
+    margin-bottom: 20px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: var(--tracking-kicker);
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+
+  /* --- Halobar ----------------------------------------------------------- */
+  .halobar {
+    position: relative;
+    z-index: 101;
+    width: min(100% - 40px, var(--inner-wide));
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.9rem;
+    background: var(--silver-card);
+    border: 1px solid rgb(0 33 30 / 0.08);
+    border-radius: var(--radius-panel);
+  }
+  .halobar__tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dark-flash);
+  }
+  .halobar__text:hover {
+    color: var(--dark-flash);
+  }
+  .halobar__close {
+    margin-left: auto;
+    font-size: 1.1rem;
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  /* --- Navigation -------------------------------------------------------- */
+  .nav-wrap {
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    padding-top: 20px;
+    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  }
+  /* Tritt zurück, solange html[data-nav-hidden] gesetzt ist (Hero-Zoom) */
+  html[data-nav-hidden] .nav-wrap {
+    opacity: 0;
+    transform: translateY(-16px);
+    pointer-events: none;
+  }
+
+  .nav {
+    position: relative;
+    width: min(100% - 40px, var(--inner-wide));
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 12px 12px 20px;
+    color: var(--ultra);
+    /* Glas nur auf diesem einen Panel – nicht flächig über dem Canvas */
+    background: rgb(235 241 245 / 0.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgb(0 33 30 / 0.08);
+    border-radius: var(--radius-panel);
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+  }
+  .nav.is-on-dark {
+    background: rgb(0 33 30 / 0.72);
+    border-color: rgb(159 245 93 / 0.22);
+    color: var(--silver);
+  }
+
+  .nav__brand {
+    display: flex;
+    align-items: center;
+  }
+  .nav__logo {
+    height: 24px;
+    width: auto;
+  }
+  .nav__logo--dark,
+  .nav.is-on-dark .nav__logo--silver {
+    display: none;
+  }
+  .nav.is-on-dark .nav__logo--dark {
+    display: block;
+  }
+
+  .nav__links {
+    display: flex;
+    gap: 24px;
+    margin-left: auto;
+  }
+  .nav__links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--silver-dark);
+    transition: color 0.25s ease;
+  }
+  .nav__links a:hover,
+  .nav__links a[aria-current="page"] {
+    color: var(--ultra);
+  }
+  .nav.is-on-dark .nav__links a {
+    color: var(--silver-base);
+  }
+  .nav.is-on-dark .nav__links a:hover,
+  .nav.is-on-dark .nav__links a[aria-current="page"] {
+    color: var(--flash);
+  }
+  .nav__links-extra {
+    display: none;
+  }
+
+  .nav__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .locale-switch {
+    display: inline-flex;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    border: 1px solid rgb(0 33 30 / 0.16);
+    border-radius: var(--radius-btn);
+  }
+  .locale-switch a {
+    padding: 6px 10px;
+    color: var(--silver-dark);
+  }
+  .locale-switch a[aria-current="true"] {
+    background: rgb(3 112 69 / 0.12);
+    color: var(--dark-flash);
+  }
+  .nav.is-on-dark .locale-switch {
+    border-color: rgb(186 202 212 / 0.3);
+  }
+  .nav.is-on-dark .locale-switch a {
+    color: var(--silver-base);
+  }
+  .nav.is-on-dark .locale-switch a[aria-current="true"] {
+    background: rgb(159 245 93 / 0.18);
+    color: var(--flash);
+  }
+
+  .nav__burger {
+    display: none;
+    margin-left: auto;
+    padding: 4px 12px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    border: 1px solid currentColor;
+    border-color: rgb(0 33 30 / 0.18);
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+  }
+
+  @media (max-width: 1000px) {
+    .nav__right {
+      display: none;
+    }
+    .nav__burger {
+      display: inline-flex;
+    }
+    .nav__links {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 14px;
+      padding: 20px;
+      /* deckend: sonst scheint die Überschrift darunter durch */
+      background: var(--silver);
+      border: 1px solid rgb(0 33 30 / 0.1);
+      border-radius: var(--radius-panel);
+      box-shadow: 0 16px 40px -24px rgb(0 33 30 / 0.35);
+    }
+    .nav__links.is-open {
+      display: flex;
+    }
+    .nav__links a {
+      font-size: 16px;
+      color: var(--ultra);
+    }
+    .nav__links-extra {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid rgb(0 33 30 / 0.1);
+    }
+    /* Menü-Panel bleibt hell – auch über dunklen Bändern gut lesbar */
+    .nav.is-on-dark .nav__links a {
+      color: var(--ultra);
+    }
+    .nav.is-on-dark .nav__links .locale-switch a {
+      color: var(--silver-dark);
+    }
+  }
+
+  /* --- Footer ------------------------------------------------------------ */
+  .footer {
+    background: var(--silver-card);
+    padding: 64px var(--band-side) 32px;
+  }
+  .footer__grid {
+    max-width: var(--inner);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .footer__claim {
+    margin-top: 16px;
+    max-width: 32ch;
+    font-size: 0.95rem;
+    color: var(--silver-dark);
+  }
+  .footer__heading {
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+  .footer ul {
+    display: grid;
+    gap: 8px;
+  }
+  .footer a {
+    font-size: 0.95rem;
+    opacity: 0.75;
+  }
+  .footer a:hover {
+    opacity: 1;
+    color: var(--dark-flash);
+  }
+  .footer__bottom {
+    max-width: var(--inner);
+    margin: 64px auto 0;
+    padding-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.86rem;
+    color: var(--silver-dark);
+    border-top: 1px solid rgb(0 33 30 / 0.1);
+  }
+  .footer__whisper {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  @media (max-width: 800px) {
+    .footer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .footer__grid > :first-child {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 480px) {
+    .footer__whisper {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+
+  .dark :focus-visible,
+  .band--ultra :focus-visible {
+    outline-color: var(--flash);
   }
 }

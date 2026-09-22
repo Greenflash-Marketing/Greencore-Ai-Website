@@ -5,6 +5,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { MotionProvider } from "@/components/motion/motion-provider";
+import { NetworkBackground } from "@/components/layout/network-background";
+import { SiteNav } from "@/components/layout/site-nav";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { Halobar } from "@/components/layout/halobar";
+import { halobar } from "@/config/site";
 import "../globals.css";
 
 // Laut Brand-Bundle ausschliesslich DM Sans + DM Mono.
@@ -51,7 +56,15 @@ export default async function LocaleLayout(props: LayoutProps<"/[locale]">) {
     <html lang={locale} className={`${dmSans.variable} ${dmMono.variable}`}>
       <body>
         <NextIntlClientProvider>
-          <MotionProvider>{props.children}</MotionProvider>
+          <MotionProvider>
+            <NetworkBackground />
+            <div className="page">
+              {halobar.enabled && <Halobar href={halobar.href} />}
+              <SiteNav />
+              <main id="inhalt">{props.children}</main>
+              <SiteFooter />
+            </div>
+          </MotionProvider>
         </NextIntlClientProvider>
       </body>
     </html>

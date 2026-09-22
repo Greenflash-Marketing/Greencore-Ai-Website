@@ -11,6 +11,65 @@
     "localeLabel": "Active locale",
     "sanityLabel": "Sanity project",
     "ctaPrimary": "Request a demo",
-    "ctaSecondary": "Upload load profile"
+    "ctaSecondary": "Upload load profile",
+    "bandKicker": "Core message",
+    "bandText": "No other platform manages the kilowatt hour more economically."
+  },
+  "Nav": {
+    "label": "Main navigation",
+    "platform": "Platform",
+    "useCases": "Use cases",
+    "references": "References",
+    "resources": "Resources",
+    "about": "About",
+    "cta": "Request a demo",
+    "login": "Log in",
+    "language": "Choose language",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "Halobar": {
+    "tag": "New",
+    "text": "Handelsblatt on Greencore AI: how energy systems become truly intelligent.",
+    "close": "Dismiss notice"
+  },
+  "Footer": {
+    "claim": "The operating system for industrial energy supply in Europe.",
+    "columns": {
+      "platform": "Platform",
+      "resources": "Resources",
+      "company": "Company"
+    },
+    "links": {
+      "simulation": "Simulation",
+      "optimization": "Optimization",
+      "trading": "Energy trading",
+      "blog": "Blog",
+      "press": "Press",
+      "references": "References",
+      "about": "About Greencore AI",
+      "demo": "Book a demo",
+      "contact": "Contact"
+    },
+    "imprint": "Legal notice",
+    "privacy": "Privacy",
+    "whisper": "A product of Greenflash GmbH"
+  },
+  "Pages": {
+    "inProgress": "This page is under construction.",
+    "backHome": "Back to home",
+    "platform": "Platform",
+    "simulation": "Simulation",
+    "optimization": "Optimization",
+    "trading": "Energy trading",
+    "references": "References",
+    "resources": "Resources",
+    "blog": "Blog",
+    "press": "Press",
+    "about": "About Greencore AI",
+    "demo": "Book a demo",
+    "contact": "Contact",
+    "imprint": "Legal notice",
+    "privacy": "Privacy"
   }
 }
