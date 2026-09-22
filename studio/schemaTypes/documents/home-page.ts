@@ -39,6 +39,17 @@ export const homePage = defineType({
         }),
       ],
     }),
+    // Ultra-dunkles Band direkt nach dem Header: eine Kernaussage
+    defineField({
+      name: 'claimBand',
+      title: '1b — Ultra-dunkles Band (eine Kernaussage)',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'claim', title: 'Aussage', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Erläuterung', type: 'localeText'}),
+      ],
+    }),
     // 2. Kundenlogos
     defineField({
       name: 'logoSlider',
@@ -65,6 +76,7 @@ export const homePage = defineType({
       fields: [
         defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Einleitung', type: 'localeText'}),
         defineField({
           name: 'showcase',
           title: 'Screenshots/Autoplay-Videos',
