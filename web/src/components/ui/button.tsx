@@ -10,8 +10,9 @@ const buttonVariants = cva(
       variant: {
         // Brand-Bundle: Flash-Flaeche, Ultra-Schrift, Hover ueber Deckkraft 0.92
         default: "bg-primary text-primary-foreground hover:opacity-92",
+        // Ghost-Button aus Entwurf A: transparent mit feiner Kontur, Hover in Flash
         outline:
-          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+          "border-ultra/25 bg-transparent hover:border-primary hover:bg-primary hover:text-primary-foreground aria-expanded:bg-muted dark:border-flash/40 dark:hover:text-primary-foreground",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:

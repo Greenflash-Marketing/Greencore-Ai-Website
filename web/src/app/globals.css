@@ -507,3 +507,282 @@
     outline-color: var(--flash);
   }
 }
+
+/* ==========================================================================
+   Startseite – 1 Header (aus Entwurf A, Version 8)
+   ========================================================================== */
+@layer components {
+  .hero {
+    display: flex;
+    align-items: flex-end;
+    min-height: min(88vh, 820px);
+    padding: clamp(96px, 12vw, 140px) var(--band-side) clamp(48px, 7vw, 80px);
+  }
+  .hero__inner {
+    width: 100%;
+    max-width: var(--inner-wide);
+    margin-inline: auto;
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  /* Textspalte als Bezugsgröße: die Headline skaliert mit der Spalte, nicht
+     mit dem Fenster – sonst laufen lange Wörter aus Sanity heraus. */
+  .hero__text {
+    container-type: inline-size;
+    min-width: 0;
+  }
+
+  /* Verlaufsschrift – Pflicht laut Brand-Bundle. --x1 setzt HeroHeadline. */
+  .hero__title {
+    max-width: 16ch;
+    font-size: clamp(36px, 10cqi, 76px);
+    font-weight: 700;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+    /* Wie die SVG-Vorlage aus Entwurf A: Verlauf spannt 110 % der Breite und
+       beginnt bei --x1 (5 % in Ruhe, folgt dem Zeiger von -45 % bis 55 %). */
+    --x1: 5%;
+    background-image: linear-gradient(
+      90deg,
+      var(--ultra) var(--x1),
+      var(--dark-flash) calc(var(--x1) + 46.2%),
+      var(--soft) calc(var(--x1) + 68.2%),
+      var(--lilac) calc(var(--x1) + 110%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero__sub {
+    margin-top: 28px;
+    max-width: 32ch;
+    font-size: clamp(18px, 2.1vw, 26px);
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0.72;
+  }
+
+  /* Laufendes Software-Fenster */
+  .autoplay {
+    padding: 10px;
+    border-radius: 18px;
+    background: linear-gradient(155deg, #123a31, var(--ultra));
+    border: 1px solid rgb(159 245 93 / 0.2);
+    box-shadow: 0 20px 48px rgb(0 12 10 / 0.22);
+  }
+  .autoplay__screen {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 260px;
+    padding: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--silver);
+    color: var(--ultra);
+  }
+  .autoplay__head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .autoplay__live {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dark-flash);
+  }
+  .autoplay__live::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--soft);
+    animation: gc-pulse 2.2s ease-in-out infinite;
+  }
+  .autoplay__frames {
+    position: relative;
+    flex: 1;
+  }
+  .autoplay__frame {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  }
+  .autoplay__frame[data-active] {
+    opacity: 1;
+    transform: none;
+  }
+  .autoplay__frame-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Beispiel-Oberfläche */
+  .ui-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .ui-kpi,
+  .ui-chart {
+    padding: 12px;
+    background: var(--silver-card);
+    border: 1px solid var(--silver-base);
+    border-radius: 10px;
+  }
+  .ui-kpi__label,
+  .ui-chart__head span,
+  .ui-legend {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+  .ui-kpi__value {
+    margin-top: 4px;
+    font-family: var(--font-mono);
+    font-size: 17px;
+    font-variant-numeric: tabular-nums;
+  }
+  .ui-kpi__value.is-positive {
+    color: var(--dark-flash);
+  }
+  .ui-chart__head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .ui-legend {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .ui-legend i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    border-radius: 2px;
+  }
+  .ui-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ui-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 7px 10px;
+    font-size: 11px;
+    background: var(--silver-card);
+    border: 1px solid var(--silver-base);
+    border-radius: 8px;
+  }
+  .ui-badge {
+    padding: 2px 7px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    border-radius: 999px;
+    background: rgb(103 214 69 / 0.3);
+    color: var(--dark);
+  }
+  .ui-badge--idle {
+    background: rgb(175 197 250 / 0.45);
+  }
+
+  /* Kundenlogos: Label darüber, Endlos-Slider über die volle Breite */
+  .logos {
+    margin-top: 64px;
+  }
+  .logos__label {
+    display: block;
+    max-width: 52ch;
+    margin-bottom: 24px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+  .logos__track-wrap {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  }
+  .logos__track {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    width: max-content;
+    animation: gc-marquee 46s linear infinite;
+  }
+  .logos__track-wrap:hover .logos__track {
+    animation-play-state: paused;
+  }
+  .logos img {
+    height: 26px;
+    width: auto;
+    /* Kundenlogos sind schwarz – auf Silber in Ultra-Tinte einfärben */
+    filter: brightness(0) saturate(100%) invert(9%) sepia(19%) saturate(1500%) hue-rotate(125deg);
+    opacity: 0.55;
+    transition: opacity 0.25s ease;
+  }
+  .logos img:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 1000px) {
+    .hero {
+      min-height: 0;
+    }
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .ui-kpi__value {
+      font-size: 14px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logos__track,
+    .autoplay__live::before {
+      animation: none;
+    }
+  }
+}
+
+@keyframes gc-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes gc-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}

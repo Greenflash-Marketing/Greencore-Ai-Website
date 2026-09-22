@@ -3,18 +3,6 @@
     "title": "Greencore AI",
     "description": "Das Betriebssystem für industrielle Energie."
   },
-  "Home": {
-    "kicker": "Grundgerüst",
-    "headline": "Das Betriebssystem für industrielle Energie",
-    "subline": "Technisches Grundgerüst steht. Inhalte und finale Optik folgen.",
-    "statusTitle": "Stand der Einrichtung",
-    "localeLabel": "Aktive Sprache",
-    "sanityLabel": "Sanity-Projekt",
-    "ctaPrimary": "Demo anfragen",
-    "ctaSecondary": "Lastgang hochladen",
-    "bandKicker": "Kernaussage",
-    "bandText": "Keine andere Plattform steuert die Kilowattstunde wirtschaftlicher."
-  },
   "Nav": {
     "label": "Hauptnavigation",
     "platform": "Plattform",

@@ -19,11 +19,18 @@ export const homePage = defineType({
       title: '1 — Header',
       type: 'object',
       fields: [
+        defineField({name: 'kicker', title: 'Kicker (kleine Zeile über der Headline)', type: 'localeString'}),
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
         defineField({name: 'subline', title: 'Subline', type: 'localeText'}),
         defineField({name: 'ctaPrimaryLabel', title: 'Primärer CTA-Text', type: 'localeString'}),
         defineField({name: 'ctaPrimaryHref', title: 'Primärer CTA-Ziel', type: 'string'}),
         defineField({name: 'ctaSecondaryLabel', title: 'Sekundärer CTA-Text', type: 'localeString'}),
+        defineField({name: 'ctaSecondaryHref', title: 'Sekundärer CTA-Ziel', type: 'string'}),
+        defineField({
+          name: 'logosLabel',
+          title: 'Beschriftung über den Kundenlogos',
+          type: 'localeString',
+        }),
         defineField({
           name: 'softwareScreenshotEntry',
           title: 'Vollflächiger Software-Screenshot (Scroll-Zoom-Ziel)',
