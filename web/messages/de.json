@@ -59,10 +59,5 @@
     "contact": "Kontakt",
     "imprint": "Impressum",
     "privacy": "Datenschutz"
-  },
-  "Cases": {
-    "case": "Fall {nr}",
-    "prev": "Vorheriger Fall",
-    "next": "Nächster Fall"
   }
 }

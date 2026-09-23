@@ -59,10 +59,5 @@
     "contact": "Contact",
     "imprint": "Legal notice",
     "privacy": "Privacy"
-  },
-  "Cases": {
-    "case": "Case {nr}",
-    "prev": "Previous case",
-    "next": "Next case"
   }
 }

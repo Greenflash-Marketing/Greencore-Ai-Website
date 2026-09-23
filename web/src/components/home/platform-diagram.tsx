@@ -1,71 +1,40 @@
-/**
- * Grafik zur Gegenüberstellung: links getrennte Systeme ohne Verbindung,
- * rechts dieselben Anlagen an einer Plattform. Nimmt die Netz-Bildsprache der
- * Seite auf und macht das Argument sichtbar, statt es nur zu behaupten.
- */
-export function PlatformDiagram({ labels }: { labels: { left: string; right: string } }) {
-  const dots = [
-    { x: 30, y: 30 },
-    { x: 96, y: 24 },
-    { x: 160, y: 38 },
-    { x: 34, y: 96 },
-    { x: 104, y: 104 },
-    { x: 162, y: 92 },
-  ];
-  return (
-    <div className="diagram" role="img" aria-label={`${labels.left} — ${labels.right}`}>
-      <figure className="diagram__side">
-        <svg viewBox="0 0 192 128" aria-hidden="true">
-          {dots.map((d, i) => (
-            <rect
-              key={i}
-              x={d.x - 14}
-              y={d.y - 11}
-              width="28"
-              height="22"
-              rx="6"
-              fill="none"
-              stroke="var(--silver-dark)"
-              strokeWidth="1.5"
-              opacity="0.75"
-            />
-          ))}
-        </svg>
-        <figcaption>{labels.left}</figcaption>
-      </figure>
+const DOTS = [
+  { x: 26, y: 24 },
+  { x: 80, y: 18 },
+  { x: 134, y: 28 },
+  { x: 28, y: 76 },
+  { x: 86, y: 82 },
+  { x: 136, y: 72 },
+];
 
-      <figure className="diagram__side diagram__side--connected">
-        <svg viewBox="0 0 192 128" aria-hidden="true">
-          {dots.map((d, i) => (
-            <line
-              key={`l${i}`}
-              x1="96"
-              y1="64"
-              x2={d.x}
-              y2={d.y}
-              stroke="var(--flash)"
-              strokeWidth="1.4"
-              opacity="0.55"
-            />
-          ))}
-          {dots.map((d, i) => (
-            <rect
-              key={`r${i}`}
-              x={d.x - 14}
-              y={d.y - 11}
-              width="28"
-              height="22"
-              rx="6"
-              fill="none"
-              stroke="var(--flash)"
-              strokeWidth="1.5"
-              opacity="0.85"
-            />
-          ))}
-          <circle cx="96" cy="64" r="15" fill="var(--flash)" />
-        </svg>
-        <figcaption>{labels.right}</figcaption>
-      </figure>
-    </div>
+/**
+ * Kleine Grafik im Kopf der Vergleichskarten: dieselben Anlagen einmal
+ * unverbunden, einmal an einer Plattform. Bewusst klein gehalten, damit der
+ * Abschnitt kompakt bleibt.
+ */
+export function CardDiagram({ connected }: { connected?: boolean }) {
+  const stroke = connected ? "var(--flash)" : "var(--silver-dark)";
+  return (
+    <svg className="card__diagram" viewBox="0 0 162 100" aria-hidden="true">
+      {connected &&
+        DOTS.map((d, i) => (
+          <line key={`l${i}`} x1="81" y1="50" x2={d.x} y2={d.y} stroke={stroke} strokeWidth="1.2" opacity="0.5" />
+        ))}
+      {DOTS.map((d, i) => (
+        <rect
+          key={i}
+          x={d.x - 12}
+          y={d.y - 9}
+          width="24"
+          height="18"
+          rx="5"
+          fill="none"
+          stroke={stroke}
+          strokeWidth="1.4"
+          opacity={connected ? 0.85 : 0.7}
+        />
+      ))}
+      {connected && <circle cx="81" cy="50" r="12" fill="var(--flash)" />}
+    </svg>
   );
 }

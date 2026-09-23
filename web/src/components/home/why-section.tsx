@@ -2,7 +2,7 @@ import { PortableText } from "next-sanity";
 import type { PortableTextBlock } from "next-sanity";
 import type { WhySection as WhySectionData } from "@/lib/sanity/home";
 import { BandHead } from "./band-head";
-import { PlatformDiagram } from "./platform-diagram";
+import { CardDiagram } from "./platform-diagram";
 
 /**
  * 7 — Warum Greencore AI: Gegenüberstellung von klassischem Energiemanagement
@@ -24,15 +24,9 @@ export function WhySection({ kicker, headline, body, compare }: WhySectionData) 
         ) : null}
 
         {compare && (
-          <>
-            <PlatformDiagram
-              labels={{
-                left: compare.classicTitle ?? "",
-                right: compare.ourTitle ?? "",
-              }}
-            />
-            <div className="grid-2">
+          <div className="grid-2">
               <div className="card">
+                <CardDiagram />
                 <span className="card__tag">{compare.classicTitle}</span>
                 <dl className="compare">
                   {classic.map((p, i) => (
@@ -44,6 +38,7 @@ export function WhySection({ kicker, headline, body, compare }: WhySectionData) 
                 </dl>
               </div>
               <div className="card card--dark">
+                <CardDiagram connected />
                 <span className="card__tag">{compare.ourTitle}</span>
                 <dl className="compare">
                   {ours.map((p, i) => (
@@ -54,8 +49,7 @@ export function WhySection({ kicker, headline, body, compare }: WhySectionData) 
                   ))}
                 </dl>
               </div>
-            </div>
-          </>
+          </div>
         )}
       </div>
     </section>

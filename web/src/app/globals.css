@@ -1379,14 +1379,15 @@
     object-fit: cover;
     object-position: center;
   }
+  /* Schwächerer Schleier als beim Foto – das Visual ist bereits dunkel angelegt */
   .cta-band::after {
     content: "";
     position: absolute;
     inset: 0;
     background: radial-gradient(
       ellipse at center,
-      rgb(0 33 30 / 0.55) 0%,
-      rgb(0 33 30 / 0.82) 70%
+      rgb(0 33 30 / 0.35) 0%,
+      rgb(0 33 30 / 0.72) 70%
     );
   }
   .cta-band .band__title,
@@ -1552,38 +1553,13 @@
     color: var(--silver-base);
   }
 
-  /* Gegenüberstellung: Grafik und Punkte mit Erklärung */
-  .diagram {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--stack-sm);
-  }
-  .diagram__side {
-    padding: var(--stack-md) var(--stack-md) var(--stack-sm);
-    background: var(--silver);
-    border: 1px solid var(--silver-base);
-    border-radius: var(--radius-card);
-    text-align: center;
-  }
-  .diagram__side--connected {
-    background: var(--ultra);
-    border-color: rgb(159 245 93 / 0.2);
-  }
-  .diagram__side svg {
+  /* Gegenüberstellung: kleine Grafik im Kopf jeder Karte */
+  .card__diagram {
+    display: block;
     width: 100%;
-    max-width: 260px;
+    max-width: 200px;
     height: auto;
-  }
-  .diagram__side figcaption {
-    margin-top: var(--stack-sm);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--silver-dark);
-  }
-  .diagram__side--connected figcaption {
-    color: var(--flash);
+    margin-bottom: var(--stack-sm);
   }
 
   .compare {

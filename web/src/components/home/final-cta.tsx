@@ -15,9 +15,10 @@ export function FinalCta({
   if (!headline) return null;
   return (
     <section className="band cta-band dark" id="demo" data-surface="dark">
-      {/* Keyvisual: Europakarte mit vernetzter Bildmarke in der Mitte */}
+      {/* Keyvisual: Verbindungen laufen auf die Bildmarke zu – Fortsetzung der
+          Netz-Story aus Hintergrund und Europa-Band */}
       <Image
-        src="/keyvisual-europa.webp"
+        src="/keyvisual-cta.svg"
         alt=""
         aria-hidden="true"
         fill
