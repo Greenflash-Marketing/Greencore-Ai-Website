@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { PagePlaceholder } from "@/components/layout/page-placeholder";
+import { SolutionPage } from "@/components/page/solution-page";
 
 export async function generateMetadata(props: PageProps<"/[locale]/plattform/simulation">): Promise<Metadata> {
   const { locale } = await props.params;
@@ -11,5 +11,5 @@ export async function generateMetadata(props: PageProps<"/[locale]/plattform/sim
 export default async function Page(props: PageProps<"/[locale]/plattform/simulation">) {
   const { locale } = await props.params;
   setRequestLocale(locale);
-  return <PagePlaceholder page="simulation" />;
+  return <SolutionPage moduleKey="plan" locale={locale} />;
 }

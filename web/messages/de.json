@@ -59,5 +59,15 @@
     "contact": "Kontakt",
     "imprint": "Impressum",
     "privacy": "Datenschutz"
+  },
+  "Solution": {
+    "useCasesKicker": "Anwendungsfälle",
+    "useCasesHeadline": "Wo das Modul täglich wirkt",
+    "screenshotDummy": "Attrappe · Software-Einblick folgt",
+    "ctaHeadline": "Sehen Sie Ihr eigenes Potenzial",
+    "ctaLede": "Laden Sie Ihren Lastgang hoch — Sie erhalten eine Demo mit Ihren eigenen Zahlen.",
+    "ctaLabel": "Demo anfragen",
+    "overviewLede": "Drei Module, eine Plattform: von der Simulation vor der Investition über die Steuerung im Betrieb bis zur Vermarktung der Flexibilität.",
+    "more": "Mehr erfahren"
   }
 }

@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Unterseiten: Kopf, Attrappen, Anwendungsfälle
+   Liegt bewusst in einer eigenen Datei, damit globals.css übersichtlich bleibt.
+   ========================================================================== */
+@layer components {
+  .page-header {
+    padding-top: clamp(96px, 12vw, 150px);
+  }
+  .page-header__title {
+    max-width: 18ch;
+    font-size: clamp(38px, 5.2vw, 64px);
+    font-weight: 700;
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+  .page-header__lede {
+    max-width: 56ch;
+    margin-top: 24px;
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.5;
+    color: var(--silver-dark);
+  }
+
+  /* Attrappe: klar als Platzhalter erkennbar */
+  .media-dummy {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+    background: var(--silver-card);
+    border: 1px dashed var(--silver-base);
+    border-radius: var(--radius-card);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+
+  /* Anwendungsfälle: abwechselnd Text links und rechts */
+  .usecases {
+    display: grid;
+    gap: var(--stack-lg);
+  }
+  .usecase {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(24px, 4vw, 56px);
+    align-items: center;
+  }
+  .usecase[data-flip] .usecase__text {
+    order: 2;
+  }
+  .usecase__idx {
+    display: block;
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--dark-flash);
+  }
+  .usecase__text h3 {
+    max-width: 20ch;
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+  .usecase__text p {
+    max-width: 46ch;
+    margin-top: 12px;
+    color: var(--silver-dark);
+  }
+
+  /* Übersichtskarten der Plattform */
+  .card--link h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .card--link p {
+    font-size: 0.97rem;
+    color: var(--silver-dark);
+  }
+
+  @media (max-width: 900px) {
+    .usecase {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .usecase[data-flip] .usecase__text {
+      order: 0;
+    }
+  }
+}
