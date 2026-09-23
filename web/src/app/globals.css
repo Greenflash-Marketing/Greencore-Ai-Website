@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./pages.css";
 
 /* .dark = Ultra-dunkles Band. Auf einen Abschnitt gesetzt, passen sich alle
    Komponenten darin automatisch an – kein seitenweiter Dark Mode. */

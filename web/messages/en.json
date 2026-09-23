@@ -59,5 +59,15 @@
     "contact": "Contact",
     "imprint": "Legal notice",
     "privacy": "Privacy"
+  },
+  "Solution": {
+    "useCasesKicker": "Use cases",
+    "useCasesHeadline": "Where this module works every day",
+    "screenshotDummy": "Placeholder · software view to follow",
+    "ctaHeadline": "See your own potential",
+    "ctaLede": "Upload your load profile — you get a demo with your own figures.",
+    "ctaLabel": "Request a demo",
+    "overviewLede": "Three modules, one platform: from simulation before the investment through control in operation to marketing flexibility.",
+    "more": "Learn more"
   }
 }

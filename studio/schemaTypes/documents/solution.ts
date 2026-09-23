@@ -80,6 +80,44 @@ export const solutionModule = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'lede',
+      title: 'Einleitung auf der Unterseite',
+      type: 'localeText',
+    }),
+    defineField({
+      name: 'stats',
+      title: 'Kennzahlen (Kundennutzen)',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'stat',
+          type: 'object',
+          fields: [
+            defineField({name: 'value', title: 'Wert', type: 'string'}),
+            defineField({name: 'unit', title: 'Einheit', type: 'string'}),
+            defineField({name: 'label', title: 'Beschriftung', type: 'localeString'}),
+          ],
+          preview: {select: {title: 'value', subtitle: 'label.de'}},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'useCases',
+      title: 'Anwendungsfälle dieses Moduls',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'moduleUseCase',
+          type: 'object',
+          fields: [
+            defineField({name: 'title', title: 'Titel', type: 'localeString'}),
+            defineField({name: 'description', title: 'Beschreibung', type: 'localeText'}),
+          ],
+          preview: {select: {title: 'title.de', subtitle: 'description.de'}},
+        }),
+      ],
+    }),
     defineField({name: 'order', title: 'Reihenfolge (Plan=1, Operate=2, Flex=3)', type: 'number'}),
     defineField({name: 'seo', title: 'SEO', type: 'seo'}),
   ],
