@@ -194,6 +194,7 @@ export const homePage = defineType({
             defineField({name: 'quote', title: 'Zitat', type: 'localeText'}),
             defineField({name: 'personName', title: 'Name', type: 'string'}),
             defineField({name: 'personRole', title: 'Rolle/Unternehmen', type: 'string'}),
+            defineField({name: 'companyLogo', title: 'Kundenlogo (über dem Zitat)', type: 'image'}),
             defineField({
               name: 'personPhoto',
               title: 'Foto',
@@ -211,8 +212,30 @@ export const homePage = defineType({
       title: '8 — Warum Greencore AI (Energieplattform vs. Energiemanagement)',
       type: 'object',
       fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
-        defineField({name: 'body', title: 'Inhalt', type: 'localeBlockContent'}),
+        defineField({name: 'body', title: 'Einleitung (optional)', type: 'localeBlockContent'}),
+        defineField({
+          name: 'compare',
+          title: 'Gegenüberstellung (zwei Karten)',
+          type: 'object',
+          fields: [
+            defineField({name: 'classicTitle', title: 'Linke Karte: Titel', type: 'localeString'}),
+            defineField({
+              name: 'classicPoints',
+              title: 'Linke Karte: Punkte',
+              type: 'array',
+              of: [{type: 'localeString'}],
+            }),
+            defineField({name: 'ourTitle', title: 'Rechte Karte: Titel', type: 'localeString'}),
+            defineField({
+              name: 'ourPoints',
+              title: 'Rechte Karte: Punkte',
+              type: 'array',
+              of: [{type: 'localeString'}],
+            }),
+          ],
+        }),
       ],
     }),
     // 9. FAQ

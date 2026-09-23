@@ -7,6 +7,9 @@ import { BandHead } from "./band-head";
 import { SplitPane } from "./split-pane";
 
 const TONES = ["ultra", "flash", "lilac"] as const;
+// Reihenfolge der Fälle: Lastspitzen, Eigenverbrauch, atypische Netznutzung,
+// Speicher, Beschaffung, Vermarktung
+const MOCKS = ["peak", "selfUse", "peak", "storage", "spot", "spot"] as const;
 
 /** 5 — Anwendungsfälle: nummeriertes Tab-Menü mit Schrittsteuerung. */
 export function UseCases({ band, cases }: { band?: BandHeadData; cases: UseCase[] }) {
@@ -37,7 +40,7 @@ export function UseCases({ band, cases }: { band?: BandHeadData; cases: UseCase[
           ))}
         </div>
 
-        <SplitPane tone={TONES[active % TONES.length]} image={current.image}>
+        <SplitPane tone={TONES[active % TONES.length]} image={current.image} mock={MOCKS[active % MOCKS.length]}>
           <span className="kicker kicker--flash">{t("case", { nr })}</span>
           {current.title && <h3>{current.title}</h3>}
           {current.description && <p>{current.description}</p>}

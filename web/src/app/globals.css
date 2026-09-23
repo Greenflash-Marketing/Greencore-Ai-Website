@@ -1197,8 +1197,7 @@
   .split__visual {
     display: flex;
   }
-  .split__img,
-  .split__placeholder {
+  .split__img {
     width: 100%;
     height: 100%;
     min-height: 280px;
@@ -1206,14 +1205,7 @@
     border-radius: var(--radius-card);
     border: 1px solid var(--silver-base);
   }
-  /* Platzhalterfläche, bis die Screenshots geliefert sind */
-  .split__placeholder {
-    background: repeating-linear-gradient(
-      135deg,
-      var(--silver-card) 0 14px,
-      color-mix(in srgb, var(--silver-base) 40%, var(--silver-card)) 14px 28px
-    );
-  }
+
 
   /* Anwendungsfälle */
   .cases__tabs {
@@ -1285,10 +1277,10 @@
     opacity: 1;
   }
 
-  /* Zitate */
-  .quotes {
+  /* Zwei-Spalten-Raster für Zitate und die Gegenüberstellung */
+  .grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
   .card {
@@ -1309,15 +1301,77 @@
     gap: 16px;
     font-size: 0.95rem;
   }
+  .quote__logo {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-bottom: 24px;
+  }
+  .quote__logo img {
+    height: 26px;
+    width: auto;
+    /* Kundenlogos sind schwarz – auf Silber in Ultra-Tinte einfärben */
+    filter: brightness(0) saturate(100%) invert(9%) sepia(19%) saturate(1500%) hue-rotate(125deg);
+    opacity: 0.55;
+  }
   .quote__photo {
-    width: 64px;
-    height: 64px;
+    flex: none;
+    width: 96px;
+    height: 96px;
+    overflow: hidden;
     border-radius: 50%;
+    border: 1px solid rgb(0 33 30 / 0.12);
+  }
+  .quote__photo img,
+  .quote__photo svg {
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
+  .quote__name {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
   .quote__role {
-    display: block;
+    font-size: 0.88rem;
     color: var(--silver-dark);
+  }
+
+  /* Karten der Gegenüberstellung */
+  .card__tag {
+    display: block;
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+  .card--dark {
+    background: var(--dark);
+    border-color: rgb(159 245 93 / 0.18);
+    color: var(--silver);
+  }
+  .card--dark .card__tag {
+    color: var(--flash);
+  }
+  .feature-list--tight {
+    margin-top: 0;
+  }
+
+  /* Beispiel-Oberfläche in den 50/50-Abschnitten */
+  .ui-mock {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 16px;
+    font-size: 12px;
+    color: var(--ultra);
+    background: var(--silver);
+    border: 1px solid var(--silver-base);
+    border-radius: var(--radius-card);
   }
 
   /* Abschluss-CTA: Keyvisual mit zentrierter Bildmarke, Text darüber */
@@ -1328,18 +1382,24 @@
     color: var(--silver);
     text-align: center;
   }
-  .cta-band__mark {
+  /* Keyvisual füllt das Band; ein dunkler Schleier hält den Text lesbar */
+  .cta-band__visual {
+    object-fit: cover;
+    object-position: center;
+  }
+  .cta-band::after {
+    content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: min(520px, 70%);
-    height: auto;
-    transform: translate(-50%, -50%);
-    opacity: 0.12;
-    pointer-events: none;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgb(0 33 30 / 0.55) 0%,
+      rgb(0 33 30 / 0.82) 70%
+    );
   }
   .cta-band__inner {
     position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1380,6 +1440,9 @@
     }
     .cases__tabs {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .grid-2 {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
   @media (max-width: 600px) {

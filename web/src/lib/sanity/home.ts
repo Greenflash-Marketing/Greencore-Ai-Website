@@ -32,9 +32,20 @@ export type Testimonial = {
   personName?: string;
   personRole?: string;
   photo?: string;
+  logo?: string;
 };
 
-export type WhySection = { headline?: string; body?: unknown };
+export type WhySection = {
+  kicker?: string;
+  headline?: string;
+  body?: unknown;
+  compare?: {
+    classicTitle?: string;
+    classicPoints?: string[];
+    ourTitle?: string;
+    ourPoints?: string[];
+  };
+};
 
 export type FaqItem = { question?: string; answer?: string };
 
@@ -98,9 +109,19 @@ const homeQuery = `*[_id == "homePage"][0]{
   "testimonialsBand": testimonialsBand{ ${t("kicker")}, ${t("headline")} },
   "testimonials": testimonials[defined(quote)]{
     "quote": coalesce(quote[$locale], quote.de),
-    personName, personRole, "photo": personPhoto.asset->url
+    personName, personRole,
+    "photo": personPhoto.asset->url,
+    "logo": companyLogo.asset->url
   },
-  "whySection": whySection{ ${t("headline")}, "body": coalesce(body[$locale], body.de) },
+  "whySection": whySection{
+    ${t("kicker")}, ${t("headline")},
+    "body": coalesce(body[$locale], body.de),
+    "compare": compare{
+      ${t("classicTitle")}, ${t("ourTitle")},
+      "classicPoints": classicPoints[]{"t": coalesce(@[$locale], @.de)}.t,
+      "ourPoints": ourPoints[]{"t": coalesce(@[$locale], @.de)}.t
+    }
+  },
   "faqBand": faqBand{ ${t("kicker")}, ${t("headline")} },
   "faq": faq[]{ ${t("question")}, ${t("answer")} },
   "finalCta": finalCta{
