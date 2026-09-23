@@ -8,6 +8,7 @@ import { BandHead } from "./band-head";
 import { SplitPane } from "./split-pane";
 
 const TONES = ["ultra", "flash", "lilac"] as const;
+const MOCKS = ["bars", "peak", "spot"] as const;
 
 /** 4 — Lösungen im Tab-Menü: Simulation, Optimierung, Energiehandel. */
 export function SolutionTabs({ band, modules }: { band?: BandHeadData; modules: SolutionModule[] }) {
@@ -37,7 +38,7 @@ export function SolutionTabs({ band, modules }: { band?: BandHeadData; modules: 
         </div>
 
         <div role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`}>
-          <SplitPane tone={TONES[active % TONES.length]} image={current.image}>
+          <SplitPane tone={TONES[active % TONES.length]} image={current.image} mock={MOCKS[active % MOCKS.length]}>
             {current.kicker && <span className="kicker kicker--flash">{current.kicker}</span>}
             {current.headline && <h3>{current.headline}</h3>}
             {current.body ? <PortableText value={current.body as PortableTextBlock[]} /> : null}

@@ -14,7 +14,18 @@ export type HomeHero = {
 export type CustomerLogo = { name: string; url: string; width: number; height: number };
 
 export type BandHead = { kicker?: string; headline?: string };
-export type StatsBand = BandHead;
+export type StatsBand = BandHead & { lede?: string };
+
+export type Compatibility = BandHead & { lede?: string; media?: string };
+
+export type EuropeBand = {
+  kicker?: string;
+  claim?: string;
+  lede?: string;
+  facts?: { title?: string; text?: string }[];
+};
+
+export type ComparePoint = { title?: string; text?: string };
 
 export type SolutionModule = {
   title?: string;
@@ -32,9 +43,20 @@ export type Testimonial = {
   personName?: string;
   personRole?: string;
   photo?: string;
+  logo?: string;
 };
 
-export type WhySection = { headline?: string; body?: unknown };
+export type WhySection = {
+  kicker?: string;
+  headline?: string;
+  body?: unknown;
+  compare?: {
+    classicTitle?: string;
+    classicItems?: ComparePoint[];
+    ourTitle?: string;
+    ourItems?: ComparePoint[];
+  };
+};
 
 export type FaqItem = { question?: string; answer?: string };
 
@@ -56,6 +78,8 @@ export type HomePage = {
   logos?: CustomerLogo[];
   statsBand?: StatsBand;
   statTiles?: StatTile[];
+  compatibility?: Compatibility;
+  europeBand?: EuropeBand;
   solutionsBand?: BandHead;
   solutions?: SolutionModule[];
   useCasesBand?: BandHead;
@@ -81,7 +105,15 @@ const homeQuery = `*[_id == "homePage"][0]{
     ${t("ctaSecondaryLabel")}, ctaSecondaryHref,
     ${t("logosLabel")}
   },
-  "statsBand": statsBand{ ${t("kicker")}, ${t("headline")} },
+  "statsBand": statsBand{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },
+  "compatibility": compatibility{
+    ${t("kicker")}, ${t("headline")}, ${t("lede")},
+    "media": media.asset->url
+  },
+  "europeBand": europeBand{
+    ${t("kicker")}, ${t("claim")}, ${t("lede")},
+    "facts": facts[]{ ${t("title")}, ${t("text")} }
+  },
   "statTiles": statTiles[defined(value)]{ value, unit, ${t("label")} },
   "softwareInsights": softwareInsights{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },
   "zoomScreenshot": hero.softwareScreenshotEntry.asset->url,
@@ -98,9 +130,19 @@ const homeQuery = `*[_id == "homePage"][0]{
   "testimonialsBand": testimonialsBand{ ${t("kicker")}, ${t("headline")} },
   "testimonials": testimonials[defined(quote)]{
     "quote": coalesce(quote[$locale], quote.de),
-    personName, personRole, "photo": personPhoto.asset->url
+    personName, personRole,
+    "photo": personPhoto.asset->url,
+    "logo": companyLogo.asset->url
   },
-  "whySection": whySection{ ${t("headline")}, "body": coalesce(body[$locale], body.de) },
+  "whySection": whySection{
+    ${t("kicker")}, ${t("headline")},
+    "body": coalesce(body[$locale], body.de),
+    "compare": compare{
+      ${t("classicTitle")}, ${t("ourTitle")},
+      "classicItems": classicItems[]{ ${t("title")}, ${t("text")} },
+      "ourItems": ourItems[]{ ${t("title")}, ${t("text")} }
+    }
+  },
   "faqBand": faqBand{ ${t("kicker")}, ${t("headline")} },
   "faq": faq[]{ ${t("question")}, ${t("answer")} },
   "finalCta": finalCta{

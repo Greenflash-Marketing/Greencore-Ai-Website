@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MockVisual, type MockKind } from "./mock-visual";
 
 /**
  * Layout-Pattern "50/50" aus dem Brand-Bundle: links Farbfläche mit Text,
@@ -9,11 +10,13 @@ export function SplitPane({
   children,
   image,
   imageAlt = "",
+  mock,
 }: {
   tone?: "ultra" | "flash" | "lilac";
   children: React.ReactNode;
   image?: string;
   imageAlt?: string;
+  mock?: MockKind;
 }) {
   return (
     <div className="split">
@@ -24,8 +27,8 @@ export function SplitPane({
         {image ? (
           <Image src={image} alt={imageAlt} width={960} height={720} className="split__img" />
         ) : (
-          // ponytail: neutrale Platzhalterfläche, bis die Screenshots vom Designer da sind
-          <div className="split__placeholder" aria-hidden="true" />
+          // Beispiel-Oberfläche, bis der echte Screenshot in Sanity liegt
+          <MockVisual kind={mock ?? "peak"} />
         )}
       </div>
     </div>

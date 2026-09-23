@@ -15,13 +15,16 @@ export function FinalCta({
   if (!headline) return null;
   return (
     <section className="band cta-band dark" id="demo" data-surface="dark">
+      {/* Keyvisual: Verbindungen laufen auf die Bildmarke zu – Fortsetzung der
+          Netz-Story aus Hintergrund und Europa-Band */}
       <Image
-        src="/brand/mark-only-on-dark-flash.svg"
+        src="/keyvisual-cta.svg"
         alt=""
         aria-hidden="true"
-        width={520}
-        height={520}
-        className="cta-band__mark"
+        fill
+        sizes="100vw"
+        className="cta-band__visual"
+        priority={false}
       />
       <div className="band__inner cta-band__inner">
         {headline && <h2 className="band__title">{headline}</h2>}

@@ -10,6 +10,7 @@ export function StatsBand({ band, tiles }: { band?: StatsBandData; tiles: StatTi
       <div className="band__inner">
         {band?.kicker && <span className="kicker kicker--flash">{band.kicker}</span>}
         {band?.headline && <h2 className="band__title">{band.headline}</h2>}
+        {band?.lede && <p className="band__lede">{band.lede}</p>}
         <PointerGlow selector=".stat" />
         <div className="stats">
           {tiles.map((tile, i) => (

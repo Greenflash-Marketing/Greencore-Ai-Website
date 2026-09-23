@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
 import type { SoftwareInsights } from "@/lib/sanity/home";
 import { Kpi, Row } from "./autoplay-window";
 
@@ -23,7 +22,6 @@ export function SoftwareZoom({
   intro?: SoftwareInsights;
   screenshot?: string;
 }) {
-  const t = useTranslations("Zoom");
   const track = useRef<HTMLDivElement>(null);
   const device = useRef<HTMLDivElement>(null);
   const screen = useRef<HTMLDivElement>(null);
@@ -58,7 +56,7 @@ export function SoftwareZoom({
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const startW = Math.min(760, vw * 0.86);
-      const startH = 420;
+      const startH = 560; // Startgröße: muss zur Höhe in globals.css passen
       device.current.style.width = `${Math.round(startW + (vw - 36 - startW) * p)}px`;
       screen.current.style.height = `${Math.round(startH + (vh - 88 - startH) * p)}px`;
       device.current.style.setProperty("--p", p.toFixed(3));
@@ -120,10 +118,6 @@ export function SoftwareZoom({
               </div>
             </div>
           </div>
-          <button type="button" className="zoom__hint" onClick={toggleFullscreen}>
-            <span className="zoom__hint-desktop">{t("hint")}</span>
-            <span className="zoom__hint-touch">{fullscreen ? t("close") : t("hintTouch")}</span>
-          </button>
         </div>
       </div>
     </section>

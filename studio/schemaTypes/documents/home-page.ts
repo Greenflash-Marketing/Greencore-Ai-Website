@@ -48,6 +48,7 @@ export const homePage = defineType({
       fields: [
         defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Erläuterung', type: 'localeText'}),
       ],
     }),
     // 2. Kundenlogos
@@ -115,6 +116,49 @@ export const homePage = defineType({
               subtitle: label,
             }),
           },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'compatibility',
+      title: '3b — Kompatibilität (herstellerübergreifend)',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Erläuterung', type: 'localeText'}),
+        defineField({
+          name: 'media',
+          title: 'Bild (z. B. Wand kompatibler Hersteller)',
+          type: 'image',
+          options: {hotspot: true},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'europeBand',
+      title: '6b — Europa (Vision und Marktposition)',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'claim', title: 'Aussage', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Erläuterung', type: 'localeText'}),
+        defineField({
+          name: 'facts',
+          title: 'Drei Punkte',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              name: 'fact',
+              type: 'object',
+              fields: [
+                defineField({name: 'title', title: 'Titel', type: 'localeString'}),
+                defineField({name: 'text', title: 'Text', type: 'localeString'}),
+              ],
+              preview: {select: {title: 'title.de', subtitle: 'text.de'}},
+            }),
+          ],
+          validation: (Rule) => Rule.max(3),
         }),
       ],
     }),
@@ -194,6 +238,7 @@ export const homePage = defineType({
             defineField({name: 'quote', title: 'Zitat', type: 'localeText'}),
             defineField({name: 'personName', title: 'Name', type: 'string'}),
             defineField({name: 'personRole', title: 'Rolle/Unternehmen', type: 'string'}),
+            defineField({name: 'companyLogo', title: 'Kundenlogo (über dem Zitat)', type: 'image'}),
             defineField({
               name: 'personPhoto',
               title: 'Foto',
@@ -211,8 +256,50 @@ export const homePage = defineType({
       title: '8 — Warum Greencore AI (Energieplattform vs. Energiemanagement)',
       type: 'object',
       fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
-        defineField({name: 'body', title: 'Inhalt', type: 'localeBlockContent'}),
+        defineField({name: 'body', title: 'Einleitung (optional)', type: 'localeBlockContent'}),
+        defineField({
+          name: 'compare',
+          title: 'Gegenüberstellung (zwei Karten)',
+          type: 'object',
+          fields: [
+            defineField({name: 'classicTitle', title: 'Linke Karte: Titel', type: 'localeString'}),
+            defineField({
+              name: 'classicItems',
+              title: 'Linke Karte: Punkte',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  name: 'point',
+                  type: 'object',
+                  fields: [
+                    defineField({name: 'title', title: 'Stichwort', type: 'localeString'}),
+                    defineField({name: 'text', title: 'Erklärung', type: 'localeString'}),
+                  ],
+                  preview: {select: {title: 'title.de', subtitle: 'text.de'}},
+                }),
+              ],
+            }),
+            defineField({name: 'ourTitle', title: 'Rechte Karte: Titel', type: 'localeString'}),
+            defineField({
+              name: 'ourItems',
+              title: 'Rechte Karte: Punkte',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  name: 'point',
+                  type: 'object',
+                  fields: [
+                    defineField({name: 'title', title: 'Stichwort', type: 'localeString'}),
+                    defineField({name: 'text', title: 'Erklärung', type: 'localeString'}),
+                  ],
+                  preview: {select: {title: 'title.de', subtitle: 'text.de'}},
+                }),
+              ],
+            }),
+          ],
+        }),
       ],
     }),
     // 9. FAQ
