@@ -120,6 +120,15 @@ export const homePage = defineType({
     }),
     // 5. Lösungen im Tab-Menü
     defineField({
+      name: 'solutionsBand',
+      title: '5 — Lösungen: Kicker und Headline',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+      ],
+    }),
+    defineField({
       name: 'solutionTabs',
       title: '5 — Lösungen im Tab-Menü (Referenzen auf die 3 Module)',
       type: 'array',
@@ -127,6 +136,15 @@ export const homePage = defineType({
       validation: (Rule) => Rule.max(3),
     }),
     // 6. Funktionen/Anwendungsfälle
+    defineField({
+      name: 'useCasesBand',
+      title: '6 — Anwendungsfälle: Kicker und Headline',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+      ],
+    }),
     defineField({
       name: 'useCases',
       title: '6 — Funktionen/Anwendungsfälle (Orientierung: furoenergy.com)',
@@ -154,6 +172,15 @@ export const homePage = defineType({
       ],
     }),
     // 7. Testimonials
+    defineField({
+      name: 'testimonialsBand',
+      title: '7 — Testimonials: Kicker und Headline',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+      ],
+    }),
     defineField({
       name: 'testimonials',
       title: '7 — Referenz-Testimonials (1–2 fix oder Slider)',
@@ -190,6 +217,15 @@ export const homePage = defineType({
     }),
     // 9. FAQ
     defineField({
+      name: 'faqBand',
+      title: '9 — FAQ: Kicker und Headline',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+      ],
+    }),
+    defineField({
       name: 'faq',
       title: '9 — FAQ',
       type: 'array',
@@ -214,7 +250,10 @@ export const homePage = defineType({
       fields: [
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
         defineField({name: 'ctaLabel', title: 'CTA-Text', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Erläuterung', type: 'localeText'}),
         defineField({name: 'ctaHref', title: 'CTA-Ziel', type: 'string', initialValue: '/demo'}),
+        defineField({name: 'ctaSecondaryLabel', title: 'Zweiter CTA-Text', type: 'localeString'}),
+        defineField({name: 'ctaSecondaryHref', title: 'Zweites CTA-Ziel', type: 'string'}),
       ],
     }),
     defineField({name: 'seo', title: 'SEO', type: 'seo'}),
