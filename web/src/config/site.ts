@@ -8,17 +8,38 @@ import type { AppPathname } from "@/i18n/routing";
  * Komponenten bekommen sie als Eigenschaften und ändern sich dafür nicht.
  */
 
-export type NavItem = { key: string; href: AppPathname; hash?: string };
+export type NavItem = {
+  key: string;
+  href?: AppPathname;
+  hash?: string;
+  /** Punkte mit Kindern sind reine Aufklapp-Menüs ohne eigene Seite. */
+  children?: { key: string; href: AppPathname }[];
+};
 
 export const navItems: NavItem[] = [
-  { key: "platform", href: "/plattform" },
-  { key: "useCases", href: "/", hash: "anwendungsfaelle" },
+  {
+    key: "platform",
+    children: [
+      { key: "simulation", href: "/plattform/simulation" },
+      { key: "optimization", href: "/plattform/optimierung" },
+      { key: "trading", href: "/plattform/energiehandel" },
+    ],
+  },
   { key: "references", href: "/referenzen" },
-  { key: "resources", href: "/ressourcen" },
+  {
+    key: "resources",
+    children: [
+      { key: "blog", href: "/ressourcen/blog" },
+      { key: "press", href: "/ressourcen/presse" },
+    ],
+  },
   { key: "about", href: "/ueber-uns" },
 ];
 
-export const footerColumns: { key: string; items: NavItem[] }[] = [
+/** Im Footer hat jeder Eintrag immer ein Ziel. */
+export type FooterLink = { key: string; href: AppPathname };
+
+export const footerColumns: { key: string; items: FooterLink[] }[] = [
   {
     key: "platform",
     items: [

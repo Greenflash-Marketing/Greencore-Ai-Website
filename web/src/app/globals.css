@@ -1587,3 +1587,82 @@
     }
   }
 }
+
+/* Aufklapp-Menüs in der Navigation (Plattform, Ressourcen) */
+@layer components {
+  .nav__item {
+    position: relative;
+  }
+  .nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--silver-dark);
+    cursor: pointer;
+    transition: color 0.25s ease;
+  }
+  .nav__toggle:hover,
+  .nav__toggle[aria-expanded="true"] {
+    color: var(--ultra);
+  }
+  .nav.is-on-dark .nav__toggle {
+    color: var(--silver-base);
+  }
+  .nav.is-on-dark .nav__toggle:hover,
+  .nav.is-on-dark .nav__toggle[aria-expanded="true"] {
+    color: var(--flash);
+  }
+  .nav__chevron {
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.25s ease;
+  }
+  .nav__toggle[aria-expanded="true"] .nav__chevron {
+    transform: translateY(1px) rotate(-135deg);
+  }
+
+  .nav__submenu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: -16px;
+    z-index: 102;
+    display: grid;
+    gap: 10px;
+    min-width: 210px;
+    padding: 16px;
+    background: var(--silver);
+    border: 1px solid rgb(0 33 30 / 0.1);
+    border-radius: var(--radius-panel);
+    box-shadow: 0 18px 44px -26px rgb(0 33 30 / 0.45);
+  }
+  .nav__submenu a {
+    color: var(--ultra);
+  }
+  .nav__submenu a:hover {
+    color: var(--dark-flash);
+  }
+
+  @media (max-width: 1000px) {
+    /* Im aufgeklappten Menü stehen die Unterpunkte eingerückt darunter */
+    .nav__submenu {
+      position: static;
+      min-width: 0;
+      margin: 10px 0 0 16px;
+      padding: 0 0 0 14px;
+      background: none;
+      border: 0;
+      border-left: 1px solid var(--silver-base);
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .nav__toggle {
+      font-size: 16px;
+      color: var(--ultra);
+    }
+  }
+}

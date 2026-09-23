@@ -18,6 +18,12 @@ export const pressMention = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({name: 'publishedAt', title: 'Veröffentlicht am', type: 'date'}),
+    defineField({
+      name: 'category',
+      title: 'Kategorie (für die Filterung)',
+      type: 'string',
+      options: {list: ['Fachpresse', 'Wirtschaftspresse', 'Auszeichnung', 'Vortrag']},
+    }),
     defineField({name: 'excerpt', title: 'Kurzbeschreibung', type: 'localeText'}),
     defineField({name: 'thumbnail', title: 'Vorschaubild', type: 'image', options: {hotspot: true}}),
   ],

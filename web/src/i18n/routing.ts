@@ -9,12 +9,10 @@ export const routing = defineRouting({
   // englischen Adressen werden darauf abgebildet. Vorschlag, noch nicht final.
   pathnames: {
     "/": "/",
-    "/plattform": { de: "/plattform", en: "/platform" },
     "/plattform/simulation": { de: "/plattform/simulation", en: "/platform/simulation" },
     "/plattform/optimierung": { de: "/plattform/optimierung", en: "/platform/optimization" },
     "/plattform/energiehandel": { de: "/plattform/energiehandel", en: "/platform/energy-trading" },
     "/referenzen": { de: "/referenzen", en: "/references" },
-    "/ressourcen": { de: "/ressourcen", en: "/resources" },
     "/ressourcen/blog": { de: "/ressourcen/blog", en: "/resources/blog" },
     "/ressourcen/presse": { de: "/ressourcen/presse", en: "/resources/press" },
     "/ueber-uns": { de: "/ueber-uns", en: "/about" },
