@@ -3,6 +3,8 @@ import { getHomePage } from "@/lib/sanity/home";
 import { Hero } from "@/components/home/hero";
 import { StatsBand } from "@/components/home/stats-band";
 import { SoftwareZoom } from "@/components/home/software-zoom";
+import { Compatibility } from "@/components/home/compatibility";
+import { EuropeBand } from "@/components/home/europe-band";
 import { SolutionTabs } from "@/components/home/solution-tabs";
 import { UseCases } from "@/components/home/use-cases";
 import { Testimonials } from "@/components/home/testimonials";
@@ -25,8 +27,10 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
       {home.hero && <Hero hero={home.hero} logos={home.logos ?? []} />}
       <StatsBand band={home.statsBand} tiles={home.statTiles ?? []} />
       <SoftwareZoom intro={home.softwareInsights} screenshot={home.zoomScreenshot} />
+      {home.compatibility && <Compatibility {...home.compatibility} />}
       <SolutionTabs band={home.solutionsBand} modules={home.solutions ?? []} />
       <UseCases band={home.useCasesBand} cases={home.useCases ?? []} />
+      {home.europeBand && <EuropeBand {...home.europeBand} />}
       <Testimonials band={home.testimonialsBand} items={home.testimonials ?? []} />
       {home.whySection && <WhySection {...home.whySection} />}
       {home.finalCta && <FinalCta {...home.finalCta} />}

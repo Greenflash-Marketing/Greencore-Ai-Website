@@ -1474,3 +1474,139 @@
     }
   }
 }
+
+/* ==========================================================================
+   Startseite – Kompatibilität, Europa, Gegenüberstellung
+   ========================================================================== */
+@layer components {
+  /* Kompatibilität: genau ein Bild unter dem Text */
+  .compat__media {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--silver-base);
+  }
+  .compat__media--dummy {
+    display: grid;
+    place-items: center;
+    min-height: 200px;
+    border-style: dashed;
+    background: var(--silver);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+
+  /* Europa-Band mit Keyvisual */
+  .euro {
+    position: relative;
+    overflow: hidden;
+    background: var(--ultra);
+  }
+  .euro__visual {
+    object-fit: cover;
+    opacity: 0.55;
+  }
+  .euro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgb(0 33 30 / 0.92) 30%, rgb(0 33 30 / 0.55) 100%);
+  }
+  .euro__inner {
+    position: relative;
+    z-index: 1;
+  }
+  .slab__claim {
+    max-width: 16ch;
+    font-size: clamp(32px, 4.8vw, 56px);
+    font-weight: 600;
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+  .slab__lede {
+    max-width: 46ch;
+    margin-top: 18px;
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--silver) 82%, transparent);
+  }
+  .euro__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--stack-sm);
+    margin-top: var(--stack-lg);
+  }
+  .euro__facts strong {
+    display: block;
+    font-size: 0.95rem;
+  }
+  .euro__facts span {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.9rem;
+    color: var(--silver-base);
+  }
+
+  /* Gegenüberstellung: Grafik und Punkte mit Erklärung */
+  .diagram {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--stack-sm);
+  }
+  .diagram__side {
+    padding: var(--stack-md) var(--stack-md) var(--stack-sm);
+    background: var(--silver);
+    border: 1px solid var(--silver-base);
+    border-radius: var(--radius-card);
+    text-align: center;
+  }
+  .diagram__side--connected {
+    background: var(--ultra);
+    border-color: rgb(159 245 93 / 0.2);
+  }
+  .diagram__side svg {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+  }
+  .diagram__side figcaption {
+    margin-top: var(--stack-sm);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+  }
+  .diagram__side--connected figcaption {
+    color: var(--flash);
+  }
+
+  .compare {
+    display: grid;
+    gap: var(--stack-sm);
+  }
+  .compare dt {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .compare dd {
+    margin-top: 2px;
+    font-size: 0.95rem;
+    color: var(--silver-dark);
+  }
+  .card--dark .compare dd {
+    color: var(--silver-base);
+  }
+
+  @media (max-width: 800px) {
+    .euro__facts,
+    .diagram {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

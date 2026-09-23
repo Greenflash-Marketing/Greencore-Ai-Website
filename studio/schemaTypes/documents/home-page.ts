@@ -48,6 +48,7 @@ export const homePage = defineType({
       fields: [
         defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Erläuterung', type: 'localeText'}),
       ],
     }),
     // 2. Kundenlogos
@@ -115,6 +116,49 @@ export const homePage = defineType({
               subtitle: label,
             }),
           },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'compatibility',
+      title: '3b — Kompatibilität (herstellerübergreifend)',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Erläuterung', type: 'localeText'}),
+        defineField({
+          name: 'media',
+          title: 'Bild (z. B. Wand kompatibler Hersteller)',
+          type: 'image',
+          options: {hotspot: true},
+        }),
+      ],
+    }),
+    defineField({
+      name: 'europeBand',
+      title: '6b — Europa (Vision und Marktposition)',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'claim', title: 'Aussage', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Erläuterung', type: 'localeText'}),
+        defineField({
+          name: 'facts',
+          title: 'Drei Punkte',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              name: 'fact',
+              type: 'object',
+              fields: [
+                defineField({name: 'title', title: 'Titel', type: 'localeString'}),
+                defineField({name: 'text', title: 'Text', type: 'localeString'}),
+              ],
+              preview: {select: {title: 'title.de', subtitle: 'text.de'}},
+            }),
+          ],
+          validation: (Rule) => Rule.max(3),
         }),
       ],
     }),
@@ -222,17 +266,37 @@ export const homePage = defineType({
           fields: [
             defineField({name: 'classicTitle', title: 'Linke Karte: Titel', type: 'localeString'}),
             defineField({
-              name: 'classicPoints',
+              name: 'classicItems',
               title: 'Linke Karte: Punkte',
               type: 'array',
-              of: [{type: 'localeString'}],
+              of: [
+                defineArrayMember({
+                  name: 'point',
+                  type: 'object',
+                  fields: [
+                    defineField({name: 'title', title: 'Stichwort', type: 'localeString'}),
+                    defineField({name: 'text', title: 'Erklärung', type: 'localeString'}),
+                  ],
+                  preview: {select: {title: 'title.de', subtitle: 'text.de'}},
+                }),
+              ],
             }),
             defineField({name: 'ourTitle', title: 'Rechte Karte: Titel', type: 'localeString'}),
             defineField({
-              name: 'ourPoints',
+              name: 'ourItems',
               title: 'Rechte Karte: Punkte',
               type: 'array',
-              of: [{type: 'localeString'}],
+              of: [
+                defineArrayMember({
+                  name: 'point',
+                  type: 'object',
+                  fields: [
+                    defineField({name: 'title', title: 'Stichwort', type: 'localeString'}),
+                    defineField({name: 'text', title: 'Erklärung', type: 'localeString'}),
+                  ],
+                  preview: {select: {title: 'title.de', subtitle: 'text.de'}},
+                }),
+              ],
             }),
           ],
         }),

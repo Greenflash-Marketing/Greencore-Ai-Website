@@ -14,7 +14,18 @@ export type HomeHero = {
 export type CustomerLogo = { name: string; url: string; width: number; height: number };
 
 export type BandHead = { kicker?: string; headline?: string };
-export type StatsBand = BandHead;
+export type StatsBand = BandHead & { lede?: string };
+
+export type Compatibility = BandHead & { lede?: string; media?: string };
+
+export type EuropeBand = {
+  kicker?: string;
+  claim?: string;
+  lede?: string;
+  facts?: { title?: string; text?: string }[];
+};
+
+export type ComparePoint = { title?: string; text?: string };
 
 export type SolutionModule = {
   title?: string;
@@ -41,9 +52,9 @@ export type WhySection = {
   body?: unknown;
   compare?: {
     classicTitle?: string;
-    classicPoints?: string[];
+    classicItems?: ComparePoint[];
     ourTitle?: string;
-    ourPoints?: string[];
+    ourItems?: ComparePoint[];
   };
 };
 
@@ -67,6 +78,8 @@ export type HomePage = {
   logos?: CustomerLogo[];
   statsBand?: StatsBand;
   statTiles?: StatTile[];
+  compatibility?: Compatibility;
+  europeBand?: EuropeBand;
   solutionsBand?: BandHead;
   solutions?: SolutionModule[];
   useCasesBand?: BandHead;
@@ -92,7 +105,15 @@ const homeQuery = `*[_id == "homePage"][0]{
     ${t("ctaSecondaryLabel")}, ctaSecondaryHref,
     ${t("logosLabel")}
   },
-  "statsBand": statsBand{ ${t("kicker")}, ${t("headline")} },
+  "statsBand": statsBand{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },
+  "compatibility": compatibility{
+    ${t("kicker")}, ${t("headline")}, ${t("lede")},
+    "media": media.asset->url
+  },
+  "europeBand": europeBand{
+    ${t("kicker")}, ${t("claim")}, ${t("lede")},
+    "facts": facts[]{ ${t("title")}, ${t("text")} }
+  },
   "statTiles": statTiles[defined(value)]{ value, unit, ${t("label")} },
   "softwareInsights": softwareInsights{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },
   "zoomScreenshot": hero.softwareScreenshotEntry.asset->url,
@@ -118,8 +139,8 @@ const homeQuery = `*[_id == "homePage"][0]{
     "body": coalesce(body[$locale], body.de),
     "compare": compare{
       ${t("classicTitle")}, ${t("ourTitle")},
-      "classicPoints": classicPoints[]{"t": coalesce(@[$locale], @.de)}.t,
-      "ourPoints": ourPoints[]{"t": coalesce(@[$locale], @.de)}.t
+      "classicItems": classicItems[]{ ${t("title")}, ${t("text")} },
+      "ourItems": ourItems[]{ ${t("title")}, ${t("text")} }
     }
   },
   "faqBand": faqBand{ ${t("kicker")}, ${t("headline")} },
