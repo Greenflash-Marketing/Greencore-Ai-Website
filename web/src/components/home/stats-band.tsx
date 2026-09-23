@@ -1,5 +1,6 @@
 import type { StatTile, StatsBand as StatsBandData } from "@/lib/sanity/home";
 import { CountUp } from "./count-up";
+import { PointerGlow } from "./pointer-glow";
 
 /** Dunkelgrünes Band direkt nach dem Header: die Kennzahlen in Glaskacheln. */
 export function StatsBand({ band, tiles }: { band?: StatsBandData; tiles: StatTile[] }) {
@@ -9,6 +10,7 @@ export function StatsBand({ band, tiles }: { band?: StatsBandData; tiles: StatTi
       <div className="band__inner">
         {band?.kicker && <span className="kicker kicker--flash">{band.kicker}</span>}
         {band?.headline && <h2 className="band__title">{band.headline}</h2>}
+        <PointerGlow selector=".stat" />
         <div className="stats">
           {tiles.map((tile, i) => (
             <div key={i} className="stat">
