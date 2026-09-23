@@ -60,11 +60,6 @@
     "imprint": "Legal notice",
     "privacy": "Privacy"
   },
-  "Zoom": {
-    "hint": "Scroll to zoom in",
-    "hintTouch": "Tap for full screen",
-    "close": "Close full screen"
-  },
   "Cases": {
     "case": "Case {nr}",
     "prev": "Previous case",

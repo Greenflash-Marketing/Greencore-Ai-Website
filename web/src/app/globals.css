@@ -30,6 +30,13 @@
   --leading-display: 1.05;
   --leading-body: 1.5;
 
+  /* Vertikale Abstands-Staffel – gilt für alle Abschnitte.
+     stack-sm: innerhalb einer Gruppe · stack-md: zwischen Textblöcken ·
+     stack-lg: von der Abschnitts-Überschrift zum Inhalt */
+  --stack-sm: 16px;
+  --stack-md: 32px;
+  --stack-lg: 48px;
+
   /* Layout (aus Entwurf A) */
   --band-pad: clamp(72px, 10vw, 120px);
   --band-side: clamp(20px, 4vw, 48px);
@@ -722,7 +729,6 @@
   }
   .logos__label {
     display: block;
-    max-width: 52ch;
     margin-bottom: 24px;
     font-family: var(--font-mono);
     font-size: 12px;
@@ -894,13 +900,15 @@
     text-wrap: balance;
   }
 
+  /* Die Bühne ist 100 vh hoch und zentriert das Tablet. Der Leerraum ober- und
+     unterhalb ergibt sich daraus – deshalb hier keine zusätzliche Polsterung. */
   .zoom {
-    padding-bottom: var(--band-pad);
+    padding-bottom: 0;
   }
   .zoom__intro {
     max-width: var(--inner);
     margin: 0 auto;
-    padding: var(--band-pad) var(--band-side) 48px;
+    padding: var(--band-pad) var(--band-side) var(--stack-sm);
   }
   /* Die Spur ist so hoch, dass Hinein- und Herauszoomen Platz haben; die
      Bühne bleibt per sticky angeheftet. */
@@ -937,7 +945,7 @@
     position: relative;
     display: grid;
     grid-template-columns: 150px minmax(0, 1fr);
-    height: 420px;
+    height: 560px;
     overflow: hidden;
     border-radius: 12px;
     background: var(--silver);
@@ -946,22 +954,6 @@
     line-height: 1.35;
   }
 
-  .zoom__hint {
-    position: absolute;
-    left: 50%;
-    bottom: 28px;
-    transform: translateX(-50%);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--silver-dark);
-    opacity: calc(1 - var(--p, 0) * 3);
-    pointer-events: none;
-  }
-  .zoom__hint-touch {
-    display: none;
-  }
 
   /* Beispiel-Oberfläche im Tablet */
   .ui-side {
@@ -1052,19 +1044,9 @@
     .ui-side__brand {
       margin-bottom: 0;
     }
-    .zoom__hint {
-      position: static;
-      transform: none;
-      margin-top: 16px;
-      opacity: 0.8;
-      pointer-events: auto;
-      cursor: pointer;
-    }
-    .zoom__hint-desktop {
-      display: none;
-    }
-    .zoom__hint-touch {
-      display: inline;
+    /* Mobil: die ganze Fläche öffnet das Vollbild */
+    .tablet {
+      cursor: zoom-in;
     }
     .tablet.is-fullscreen {
       position: fixed;
@@ -1085,9 +1067,6 @@
       position: static;
       height: auto;
     }
-    .zoom__hint {
-      display: none;
-    }
   }
 }
 
@@ -1099,7 +1078,20 @@
     max-width: var(--inner-wide);
   }
   .band__head {
-    margin-bottom: 48px;
+    margin-bottom: var(--stack-lg);
+  }
+  /* Grundrhythmus: aufeinanderfolgende Blöcke im Band bekommen immer Luft.
+     Vorher fehlte die Regel ganz – z. B. Copy direkt auf den Karten. */
+  .band__inner > * + *,
+  .band__inner--wide > * + * {
+    margin-top: var(--stack-md);
+  }
+  .band__inner > .band__head + * {
+    margin-top: 0;
+  }
+  .band__inner > .band__lede + *,
+  .band__inner > .prose + * {
+    margin-top: var(--stack-lg);
   }
   .prose p + p {
     margin-top: 16px;
@@ -1397,6 +1389,13 @@
       rgb(0 33 30 / 0.82) 70%
     );
   }
+  .cta-band .band__title,
+  .cta-band .band__lede {
+    color: var(--silver);
+  }
+  .cta-band .band__lede {
+    color: color-mix(in srgb, var(--silver) 88%, transparent);
+  }
   .cta-band__inner {
     position: relative;
     z-index: 1;
@@ -1415,18 +1414,42 @@
   /* FAQ – natives <details> */
   .faq {
     display: grid;
-    gap: 8px;
+    gap: 12px;
+    max-width: 820px;
   }
   .faq details {
-    padding: 20px 24px;
+    padding: 16px 24px;
     background: var(--silver-card);
-    border: 1px solid var(--silver-base);
+    border: 1px solid rgb(0 33 30 / 0.08);
     border-radius: var(--radius-card);
+    transition: border-color 0.25s ease;
+  }
+  .faq details[open] {
+    border-color: rgb(3 112 69 / 0.35);
   }
   .faq summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     cursor: pointer;
+    /* eigenes Zeichen statt des Standard-Dreiecks */
+    list-style: none;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary::after {
+    content: "+";
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    line-height: 1;
+    color: var(--dark-flash);
+  }
+  .faq details[open] summary::after {
+    content: "–";
   }
   .faq p {
     margin-top: 12px;
