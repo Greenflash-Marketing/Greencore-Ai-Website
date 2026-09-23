@@ -284,10 +284,11 @@
     gap: 24px;
     padding: 12px 12px 12px 20px;
     color: var(--ultra);
-    /* Glas nur auf diesem einen Panel – nicht flächig über dem Canvas */
+    /* Glas nur auf diesem einen Panel – nicht flächig über dem Canvas.
+       Nur die Standard-Schreibweise: -webkit- ergänzt der Build selbst. Beide
+       von Hand notiert, behält der Optimierer nur -webkit- (fehlt dann in Chrome). */
     background: rgb(235 241 245 / 0.86);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgb(0 33 30 / 0.08);
     border-radius: var(--radius-panel);
     transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
@@ -784,5 +785,276 @@
 @keyframes gc-marquee {
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   Startseite – Kennzahlen-Band und Software-Einblick mit Zoom (Entwurf A, V8)
+   ========================================================================== */
+@layer components {
+  .kicker--flash {
+    color: var(--flash);
+    opacity: 1;
+  }
+  /* Dunkelgrünes Band (Dark Green) – das Netz scheint wie beim Ultra-Band durch */
+  .band--dark {
+    background: color-mix(in srgb, var(--dark) 85%, transparent);
+    color: var(--silver);
+  }
+
+  /* Kennzahlen: Glaskacheln (Glas laut CLAUDE.md für Kennzahlen vorgesehen,
+     Weichzeichner bewusst nur auf diesen Kacheln, nicht flächig) */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .stat {
+    padding: 32px;
+    border-radius: var(--radius-card);
+    background: rgb(0 33 30 / 0.35);
+    border: 1px solid rgb(159 245 93 / 0.18);
+    backdrop-filter: blur(8px);
+    transition: border-color 0.35s ease;
+  }
+  .stat:hover {
+    border-color: rgb(159 245 93 / 0.42);
+  }
+  .stat__value {
+    font-family: var(--font-mono);
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--flash);
+  }
+  .stat__label {
+    margin-top: 12px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--silver-base);
+  }
+  @media (max-width: 800px) {
+    .stats {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  .band__lede {
+    max-width: 38ch;
+    margin-top: 18px;
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.45;
+    color: var(--silver-dark);
+  }
+  .band--ultra .band__lede,
+  .band--dark .band__lede {
+    color: color-mix(in srgb, var(--silver) 78%, transparent);
+  }
+  .band__title {
+    max-width: 16ch;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 600;
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+
+  .zoom {
+    padding-bottom: var(--band-pad);
+  }
+  .zoom__intro {
+    max-width: var(--inner);
+    margin: 0 auto;
+    padding: var(--band-pad) var(--band-side) 48px;
+  }
+  /* Die Spur ist so hoch, dass Hinein- und Herauszoomen Platz haben; die
+     Bühne bleibt per sticky angeheftet. */
+  .zoom__track {
+    position: relative;
+    height: 260vh;
+  }
+  .zoom__stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  /* Breite/Höhe setzt JavaScript getrennt aus dem Scroll-Fortschritt */
+  .zoom__device {
+    --p: 0;
+    width: min(760px, 88vw);
+    will-change: width;
+  }
+
+  /* Rahmen bleibt auch im vollen Zoom sichtbar (Wunsch Designer) */
+  .tablet {
+    position: relative;
+    padding: clamp(8px, calc(14px - var(--p, 0) * 4px), 14px);
+    border-radius: 22px;
+    background: linear-gradient(155deg, #123a31, var(--ultra));
+    border: 1px solid rgb(159 245 93 / 0.22);
+    box-shadow: 0 24px 60px rgb(0 12 10 / 0.28);
+  }
+  .tablet__screen {
+    position: relative;
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    height: 420px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--silver);
+    color: var(--ultra);
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .zoom__hint {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver-dark);
+    opacity: calc(1 - var(--p, 0) * 3);
+    pointer-events: none;
+  }
+  .zoom__hint-touch {
+    display: none;
+  }
+
+  /* Beispiel-Oberfläche im Tablet */
+  .ui-side {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 12px;
+    background: var(--ultra);
+    color: var(--silver-base);
+  }
+  .ui-side__brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--silver);
+  }
+  .ui-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 9px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+  .ui-nav-item[data-active] {
+    background: rgb(159 245 93 / 0.16);
+    color: var(--flash);
+  }
+  .ui-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.8;
+  }
+  .ui-main {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+  .ui-topbar {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .ui-topbar strong {
+    font-size: 15px;
+    letter-spacing: -0.02em;
+  }
+  .ui-time {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--silver-dark);
+  }
+
+  /* Mobil: kein Anheften – Tablet steht im Fluss, Tippen öffnet Vollbild */
+  @media (max-width: 1000px) {
+    .zoom__track {
+      height: auto;
+    }
+    .zoom__stage {
+      position: static;
+      height: auto;
+      flex-direction: column;
+      padding: 0 var(--band-side);
+      overflow: visible;
+    }
+    .zoom__device {
+      width: 100%;
+    }
+    .tablet {
+      cursor: zoom-in;
+    }
+    .tablet__screen {
+      grid-template-columns: minmax(0, 1fr);
+      height: auto;
+    }
+    .ui-side {
+      flex-direction: row;
+      overflow-x: auto;
+    }
+    .ui-side__brand {
+      margin-bottom: 0;
+    }
+    .zoom__hint {
+      position: static;
+      transform: none;
+      margin-top: 16px;
+      opacity: 0.8;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    .zoom__hint-desktop {
+      display: none;
+    }
+    .zoom__hint-touch {
+      display: inline;
+    }
+    .tablet.is-fullscreen {
+      position: fixed;
+      inset: 12px;
+      z-index: 200;
+      overflow: auto;
+      cursor: zoom-out;
+      box-shadow: 0 30px 80px rgb(0 12 10 / 0.5);
+    }
+  }
+
+  /* Reduzierte Bewegung: kein Zoom, das Tablet steht einfach im Bild */
+  @media (prefers-reduced-motion: reduce) and (min-width: 1001px) {
+    .zoom__track {
+      height: auto;
+    }
+    .zoom__stage {
+      position: static;
+      height: auto;
+    }
+    .zoom__hint {
+      display: none;
+    }
   }
 }

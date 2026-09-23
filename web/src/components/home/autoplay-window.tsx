@@ -56,7 +56,7 @@ const FRAMES = [
   </div>,
 ];
 
-function Kpi({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
+export function Kpi({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
   return (
     <div className="ui-kpi">
       <div className="ui-kpi__label">{label}</div>
@@ -65,7 +65,7 @@ function Kpi({ label, value, positive }: { label: string; value: string; positiv
   );
 }
 
-function Row({ a, b, badge, idle }: { a: string; b: string; badge: string; idle?: boolean }) {
+export function Row({ a, b, badge, idle }: { a: string; b: string; badge: string; idle?: boolean }) {
   return (
     <div className="ui-row">
       <span>{a}</span>

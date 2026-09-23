@@ -39,6 +39,17 @@ export const homePage = defineType({
         }),
       ],
     }),
+    // Dunkelgrünes Band direkt nach dem Header: die Kennzahlen (Entscheidung 22.09.)
+    defineField({
+      name: 'statsBand',
+      title: '1b — Kennzahlen-Band (dunkelgrün, direkt nach dem Header)',
+      description: 'Die Kacheln selbst stehen unter „4 — Kennzahlen-Kacheln“.',
+      type: 'object',
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+      ],
+    }),
     // 2. Kundenlogos
     defineField({
       name: 'logoSlider',
@@ -65,6 +76,7 @@ export const homePage = defineType({
       fields: [
         defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Einleitung', type: 'localeText'}),
         defineField({
           name: 'showcase',
           title: 'Screenshots/Autoplay-Videos',
@@ -87,7 +99,12 @@ export const homePage = defineType({
           type: 'object',
           icon: BarChartIcon,
           fields: [
-            defineField({name: 'value', title: 'Wert', type: 'string'}),
+            defineField({
+              name: 'value',
+              title: 'Wert',
+              description: 'Zahl mit optionalem Vorzeichen, z. B. „−32“ oder „65.000“ – wird beim Hineinscrollen hochgezählt.',
+              type: 'string',
+            }),
             defineField({name: 'unit', title: 'Einheit', type: 'string'}),
             defineField({name: 'label', title: 'Beschriftung', type: 'localeString'}),
           ],

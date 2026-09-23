@@ -197,6 +197,10 @@ davor der Abschluss-CTA:
 9. FAQ-Bereich
 10. Footer (allgemein, inkl. Impressum/Datenschutz/dezente Greenflash-Erwähnung)
 
+**Entscheidung 22.09.:** Das hervorgehobene Band direkt nach dem Header zeigt die **Kennzahlen**
+(bisher Abschnitt 3) auf **Dark Green** (`#073D2B`) statt einer einzelnen Aussage auf Ultra.
+Ein eigener Kennzahlen-Abschnitt entfällt damit.
+
 Hell/Dunkel-Rhythmus als Beispiel (wechselnd, keine feste Regel, wird mit Designer weiter
 entwickelt): 1 Header dunkel · 2 Software-Einblicke (Hintergrund ergibt sich aus Screenshot) ·
 3 Kennzahlen hell · 4 Tab-Menü hell · 5 Anwendungsfälle dunkel · 6 Testimonials hell ·

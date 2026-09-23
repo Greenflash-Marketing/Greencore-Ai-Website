@@ -59,5 +59,10 @@
     "contact": "Kontakt",
     "imprint": "Impressum",
     "privacy": "Datenschutz"
+  },
+  "Zoom": {
+    "hint": "Scrollen zum Hineinzoomen",
+    "hintTouch": "Tippen für Vollbild",
+    "close": "Vollbild schließen"
   }
 }
