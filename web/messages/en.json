@@ -6,7 +6,6 @@
   "Nav": {
     "label": "Main navigation",
     "platform": "Platform",
-    "useCases": "Use cases",
     "references": "References",
     "resources": "Resources",
     "about": "About",
@@ -14,7 +13,12 @@
     "login": "Log in",
     "language": "Choose language",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "simulation": "Simulation",
+    "optimization": "Optimization",
+    "trading": "Energy trading",
+    "blog": "Blog",
+    "press": "Press"
   },
   "Halobar": {
     "tag": "New",
@@ -69,5 +73,43 @@
     "ctaLabel": "Request a demo",
     "overviewLede": "Three modules, one platform: from simulation before the investment through control in operation to marketing flexibility.",
     "more": "Learn more"
+  },
+  "Collections": {
+    "all": "All",
+    "filterLabel": "Filter by category",
+    "empty": "Articles will appear here soon.",
+    "imageDummy": "Placeholder · image to follow",
+    "detailSoon": "Detail page to follow",
+    "refKicker": "References",
+    "refHeadline": "Results from industry",
+    "refLede": "Projects of energy-intensive companies with the figures they produced — filterable by sector.",
+    "refCta": "View reference",
+    "blogKicker": "Blog",
+    "blogHeadline": "Context instead of headlines",
+    "blogLede": "Articles on product, market and regulation — written for the people responsible for energy.",
+    "blogCta": "Read article",
+    "presseKicker": "Press",
+    "presseHeadline": "Greencore AI in the media",
+    "presseLede": "Coverage of the platform and its results. Articles open at the respective publication.",
+    "presseCta": "Open article",
+    "resourcesLede": "Blog and press in one place: our own analysis and coverage from the media."
+  },
+  "About": {
+    "visionKicker": "Vision, mission, ambition",
+    "shiftKicker": "Positioning",
+    "shiftHeadline": "From passive consumer to active market player",
+    "principlesKicker": "Principles",
+    "principlesHeadline": "What we hold to",
+    "greenflashKicker": "Origin",
+    "greenflashHeadline": "Greenflash is the partner. Greencore AI is the product.",
+    "teamDummy": "Placeholder · image to follow"
+  },
+  "Demo": {
+    "stepsKicker": "How it works",
+    "stepsHeadline": "Three steps to your own demo",
+    "formKicker": "Request",
+    "formHeadline": "Request a demo",
+    "formLede": "The form will be connected to the CRM. Until then a placeholder stands here.",
+    "formDummy": "Placeholder · form to follow"
   }
 }

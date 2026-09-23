@@ -26,7 +26,14 @@ export const caseStudy = defineType({
       initialValue: true,
     }),
     defineField({name: 'customerName', title: 'Kundenname (öffentlich)', type: 'string'}),
-    defineField({name: 'industry', title: 'Branche', type: 'string'}),
+    defineField({
+      name: 'industry',
+      title: 'Branche (für die Filterung)',
+      type: 'string',
+      options: {
+        list: ['Lebensmittel', 'Kunststoff & Chemie', 'Logistik', 'Handel', 'Metall & Maschinenbau', 'Industrie'],
+      },
+    }),
     defineField({name: 'consumption', title: 'Verbrauch (z. B. "30 GWh")', type: 'string'}),
     defineField({
       name: 'components',

@@ -16,6 +16,12 @@ export const post = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({name: 'publishedAt', title: 'Veröffentlicht am', type: 'datetime'}),
+    defineField({
+      name: 'category',
+      title: 'Kategorie (für die Filterung)',
+      type: 'string',
+      options: {list: ['Produkt', 'Markt & Regulatorik', 'Technologie', 'Unternehmen']},
+    }),
     defineField({name: 'excerpt', title: 'Teaser-Text', type: 'localeText'}),
     defineField({name: 'coverImage', title: 'Titelbild', type: 'image', options: {hotspot: true}}),
     defineField({name: 'body', title: 'Inhalt', type: 'localeBlockContent'}),

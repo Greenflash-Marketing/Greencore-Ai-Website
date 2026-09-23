@@ -25,7 +25,7 @@ export function SiteNav() {
   const [surface, setSurface] = useState({ path: pathname, dark: false });
   const onDark = surface.path === pathname && surface.dark;
   const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
+
 
   // Welcher Untergrund liegt gerade unter der Navigation? Ein schmaler
   // Beobachtungsstreifen auf Höhe der Navigation statt Messung bei jedem Scroll.
@@ -47,13 +47,30 @@ export function SiteNav() {
     return () => io.disconnect();
   }, [pathname]);
 
+  // Offenes Aufklapp-Menü (nur eines gleichzeitig)
+  const [openKey, setOpenKey] = useState<string | null>(null);
+  const closeAll = () => {
+    setMenuOpen(false);
+    setOpenKey(null);
+  };
+
+  // Aufklapp-Menü schließt bei Klick daneben
+  useEffect(() => {
+    if (!openKey) return;
+    const onDown = (e: PointerEvent) => {
+      if (!(e.target as Element | null)?.closest?.(".nav__item")) setOpenKey(null);
+    };
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, [openKey]);
+
   // Menü schließt beim Klick auf einen Eintrag (siehe onClick) und mit Escape
   useEffect(() => {
-    if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    if (!menuOpen && !openKey) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeAll();
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [menuOpen]);
+  }, [menuOpen, openKey]);
 
   return (
     <div className="nav-wrap">
@@ -79,21 +96,54 @@ export function SiteNav() {
         </Link>
 
         <ul id="nav-links" className={cn("nav__links", menuOpen && "is-open")}>
-          {navItems.map((item) => (
-            <li key={item.key}>
-              <Link
-                href={item.hash ? { pathname: item.href, hash: item.hash } : item.href}
-                aria-current={!item.hash && pathname === item.href ? "page" : undefined}
-                onClick={closeMenu}
-              >
-                {t(item.key)}
-              </Link>
-            </li>
-          ))}
+          {navItems.map((item) =>
+            item.children ? (
+              // Reiner Aufklapp-Punkt: keine eigene Seite, nur die Unterseiten
+              <li key={item.key} className="nav__item">
+                <button
+                  type="button"
+                  className="nav__toggle"
+                  aria-expanded={openKey === item.key}
+                  aria-controls={`submenu-${item.key}`}
+                  onClick={() => setOpenKey((k) => (k === item.key ? null : item.key))}
+                >
+                  {t(item.key)}
+                  <span aria-hidden="true" className="nav__chevron" />
+                </button>
+                <ul
+                  id={`submenu-${item.key}`}
+                  className="nav__submenu"
+                  hidden={openKey !== item.key}
+                >
+                  {item.children.map((child) => (
+                    <li key={child.key}>
+                      <Link
+                        href={child.href}
+                        aria-current={pathname === child.href ? "page" : undefined}
+                        onClick={closeAll}
+                      >
+                        {t(child.key)}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li key={item.key} className="nav__item">
+                <Link
+                  href={item.hash ? { pathname: item.href!, hash: item.hash } : item.href!}
+                  aria-current={!item.hash && pathname === item.href ? "page" : undefined}
+                  onClick={closeAll}
+                >
+                  {t(item.key)}
+                </Link>
+              </li>
+            ),
+          )}
           {/* Mobil: Sprache und CTA im aufgeklappten Menü */}
           <li className="nav__links-extra">
             <LocaleSwitcher />
-            <Link href="/demo" className={buttonVariants()} onClick={closeMenu}>
+            <Link href="/demo" className={buttonVariants()} onClick={closeAll}>
               {t("cta")}
             </Link>
           </li>
