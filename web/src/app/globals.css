@@ -796,9 +796,12 @@
     color: var(--flash);
     opacity: 1;
   }
-  /* Dunkelgrünes Band (Dark Green) – das Netz scheint wie beim Ultra-Band durch */
+  /* Dunkelgrünes Band: deckendes Dark Green (#073D2B). Bewusst NICHT
+     durchscheinend – die silberne Grundfläche darunter mischt sich sonst ein
+     und hellt den Ton sichtbar auf (85 % ergaben rund #29584A). Dafür ist das
+     Netz in diesem einen Band nicht sichtbar. */
   .band--dark {
-    background: color-mix(in srgb, var(--dark) 85%, transparent);
+    background: var(--dark);
     color: var(--silver);
   }
 
