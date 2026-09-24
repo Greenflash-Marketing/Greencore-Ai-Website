@@ -108,27 +108,33 @@ export function MockVisual({ kind }: { kind: MockKind }) {
       )}
 
       {kind === "spot" && (
-        <div className="ui-chart">
-          <div className="ui-chart__head">
-            <span>Spotpreis &amp; Einsatzfenster · 24 h</span>
+        <>
+          <div className="ui-chart">
+            <div className="ui-chart__head">
+              <span>Spotpreis &amp; Einsatzfenster · 24 h</span>
+            </div>
+            <svg viewBox="0 0 320 120">
+              <rect x="52" y="10" width="42" height="100" fill="rgba(159,245,93,0.16)" />
+              <rect x="214" y="10" width="46" height="100" fill="rgba(90,107,214,0.16)" />
+              <path
+                d="M0 70 L32 78 L64 96 L96 66 L128 52 L160 58 L192 40 L224 26 L256 38 L288 60 L320 72"
+                fill="none"
+                stroke="#037045"
+                strokeWidth="2.4"
+              />
+              <text x="56" y="26" fontFamily="monospace" fontSize="8" fill="#566470">
+                einkaufen
+              </text>
+              <text x="218" y="26" fontFamily="monospace" fontSize="8" fill="#566470">
+                vermarkten
+              </text>
+            </svg>
           </div>
-          <svg viewBox="0 0 320 120">
-            <rect x="52" y="10" width="42" height="100" fill="rgba(159,245,93,0.16)" />
-            <rect x="214" y="10" width="46" height="100" fill="rgba(90,107,214,0.16)" />
-            <path
-              d="M0 70 L32 78 L64 96 L96 66 L128 52 L160 58 L192 40 L224 26 L256 38 L288 60 L320 72"
-              fill="none"
-              stroke="#037045"
-              strokeWidth="2.4"
-            />
-            <text x="56" y="26" fontFamily="monospace" fontSize="8" fill="#566470">
-              einkaufen
-            </text>
-            <text x="218" y="26" fontFamily="monospace" fontSize="8" fill="#566470">
-              vermarkten
-            </text>
-          </svg>
-        </div>
+          <div className="ui-rows">
+            <Row a="Tranche Q4" b="65 % beschafft" badge="im Plan" />
+            <Row a="Spotoptimierung" b="+ 3.200 € heute" badge="aktiv" />
+          </div>
+        </>
       )}
 
       {kind === "storage" && (

@@ -5,7 +5,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { MotionProvider } from "@/components/motion/motion-provider";
-import { NetworkBackground } from "@/components/layout/network-background";
 import { SiteNav } from "@/components/layout/site-nav";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Halobar } from "@/components/layout/halobar";
@@ -57,7 +56,6 @@ export default async function LocaleLayout(props: LayoutProps<"/[locale]">) {
       <body>
         <NextIntlClientProvider>
           <MotionProvider>
-            <NetworkBackground />
             <div className="page">
               {halobar.enabled && <Halobar href={halobar.href} />}
               <SiteNav />

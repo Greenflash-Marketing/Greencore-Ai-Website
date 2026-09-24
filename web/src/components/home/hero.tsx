@@ -9,30 +9,33 @@ import { AutoplayWindow } from "./autoplay-window";
 export function Hero({ hero, logos = [] }: { hero: HomeHero; logos?: CustomerLogo[] }) {
   return (
     <section className="hero band--silver" data-surface="silver">
-      <div className="hero__inner">
-        <div className="hero__grid">
-          <div className="hero__text">
-            {hero.kicker && <span className="kicker">{hero.kicker}</span>}
-            {hero.headline && <HeroHeadline>{hero.headline}</HeroHeadline>}
-            {hero.subline && <p className="hero__sub">{hero.subline}</p>}
-            <div className="mt-9 flex flex-wrap gap-3">
-              {hero.ctaPrimaryLabel && hero.ctaPrimaryHref && (
-                <CmsLink href={hero.ctaPrimaryHref} className={buttonVariants()}>
-                  {hero.ctaPrimaryLabel}
-                </CmsLink>
-              )}
-              {hero.ctaSecondaryLabel && hero.ctaSecondaryHref && (
-                <CmsLink href={hero.ctaSecondaryHref} className={buttonVariants({ variant: "outline" })}>
-                  {hero.ctaSecondaryLabel}
-                </CmsLink>
-              )}
+      <div className="hero__stage">
+        <div className="hero__inner">
+          <div className="hero__grid">
+            <div className="hero__text">
+              {hero.headline && <HeroHeadline>{hero.headline}</HeroHeadline>}
+              {hero.subline && <p className="hero__sub">{hero.subline}</p>}
+              <div className="hero__ctas">
+                {hero.ctaPrimaryLabel && hero.ctaPrimaryHref && (
+                  <CmsLink href={hero.ctaPrimaryHref} className={buttonVariants()}>
+                    {hero.ctaPrimaryLabel}
+                  </CmsLink>
+                )}
+                {hero.ctaSecondaryLabel && hero.ctaSecondaryHref && (
+                  <CmsLink href={hero.ctaSecondaryHref} className={buttonVariants({ variant: "outline" })}>
+                    {hero.ctaSecondaryLabel}
+                  </CmsLink>
+                )}
+              </div>
             </div>
+            <AutoplayWindow />
           </div>
-          <AutoplayWindow />
         </div>
+      </div>
 
-        {logos.length > 0 && (
-          <div className="logos">
+      {logos.length > 0 && (
+        <div className="logos">
+          <div className="hero__inner">
             {hero.logosLabel && <span className="logos__label">{hero.logosLabel}</span>}
             <div className="logos__track-wrap">
               <div className="logos__track">
@@ -51,8 +54,8 @@ export function Hero({ hero, logos = [] }: { hero: HomeHero; logos?: CustomerLog
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }

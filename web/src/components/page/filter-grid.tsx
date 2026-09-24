@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { routing, type AppPathname } from "@/i18n/routing";
 import { buttonVariants } from "@/components/ui/button";
+import { Reveal } from "@/components/motion/reveal";
+import { stagger } from "@/components/motion/stagger";
 import type { GridItem } from "@/lib/sanity/collections";
 import { MediaDummy } from "./media-dummy";
 
@@ -31,7 +33,7 @@ export function FilterGrid({ items, ctaLabel }: { items: GridItem[]; ctaLabel: s
   return (
     <>
       {categories.length > 1 && (
-        <div className="filters" role="group" aria-label={t("filterLabel")}>
+        <Reveal className="filters" role="group" aria-label={t("filterLabel")}>
           <button type="button" aria-pressed={active === null} onClick={() => setActive(null)}>
             {t("all")}
           </button>
@@ -40,12 +42,12 @@ export function FilterGrid({ items, ctaLabel }: { items: GridItem[]; ctaLabel: s
               {c}
             </button>
           ))}
-        </div>
+        </Reveal>
       )}
 
       <div className="post-grid">
-        {shown.map((item) => (
-          <article key={item.id} className="post-card">
+        {shown.map((item, i) => (
+          <Reveal key={item.id} as="article" className="post-card" delay={stagger(i)}>
             <div className="post-card__media">
               {item.image ? (
                 <Image src={item.image} alt="" width={640} height={360} />
@@ -76,7 +78,7 @@ export function FilterGrid({ items, ctaLabel }: { items: GridItem[]; ctaLabel: s
                   <span className="post-card__soon">{t("detailSoon")}</span>
                 ))}
             </div>
-          </article>
+          </Reveal>
         ))}
       </div>
     </>

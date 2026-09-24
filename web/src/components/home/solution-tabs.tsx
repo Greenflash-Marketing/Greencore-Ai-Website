@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PortableText } from "next-sanity";
 import type { PortableTextBlock } from "next-sanity";
 import type { BandHead as BandHeadData, SolutionModule } from "@/lib/sanity/home";
+import { Reveal } from "@/components/motion/reveal";
 import { BandHead } from "./band-head";
 import { SplitPane } from "./split-pane";
 
@@ -21,8 +22,8 @@ export function SolutionTabs({ band, modules }: { band?: BandHeadData; modules: 
       <div className="band__inner band__inner--wide">
         <BandHead {...band} />
 
-        <div className="tabs" role="tablist" aria-label={band?.headline}>
-          {modules.map((m, i) => (
+        <Reveal className="tabs" role="tablist" aria-label={band?.headline} delay={0.07}>
+          {modules.map((mod, i) => (
             <button
               key={i}
               role="tab"
@@ -32,10 +33,10 @@ export function SolutionTabs({ band, modules }: { band?: BandHeadData; modules: 
               tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
             >
-              {m.title}
+              {mod.title}
             </button>
           ))}
-        </div>
+        </Reveal>
 
         <div role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`}>
           <SplitPane tone={TONES[active % TONES.length]} image={current.image} mock={MOCKS[active % MOCKS.length]}>

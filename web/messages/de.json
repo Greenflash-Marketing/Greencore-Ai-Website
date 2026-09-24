@@ -111,5 +111,8 @@
     "formHeadline": "Demo anfragen",
     "formLede": "Das Formular wird an das CRM angebunden. Bis dahin steht hier eine Attrappe.",
     "formDummy": "Attrappe · Formular folgt"
+  },
+  "Home": {
+    "worksWith": "Funktioniert mit:"
   }
 }

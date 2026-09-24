@@ -3,6 +3,7 @@ import type { PortableTextBlock } from "next-sanity";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { getSolution } from "@/lib/sanity/solution";
+import { Reveal } from "@/components/motion/reveal";
 import { PageHeader } from "./page-header";
 import { StatRow } from "./stat-row";
 import { UseCaseList } from "./use-case-list";
@@ -29,7 +30,7 @@ export async function SolutionPage({ moduleKey, locale }: { moduleKey: string; l
 
       <section className="band band--silver" data-surface="silver">
         <div className="band__inner band__inner--wide">
-          <div className="split">
+          <Reveal className="split">
             <div className="split__pane" data-tone="ultra">
               {data.shortDescription && <h2>{data.shortDescription}</h2>}
               {data.body ? <PortableText value={data.body as PortableTextBlock[]} /> : null}
@@ -54,7 +55,7 @@ export async function SolutionPage({ moduleKey, locale }: { moduleKey: string; l
                 <MediaDummy label={t("screenshotDummy")} ratio="4 / 3" />
               )}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

@@ -111,5 +111,8 @@
     "formHeadline": "Request a demo",
     "formLede": "The form will be connected to the CRM. Until then a placeholder stands here.",
     "formDummy": "Placeholder · form to follow"
+  },
+  "Home": {
+    "worksWith": "Works with:"
   }
 }

@@ -25,6 +25,7 @@
   --radius-card: 12px;
   --radius-btn: 10px;
   --radius-panel: 14px;
+  --radius-control: 10px;
 
   --tracking-display: -0.03em;
   --tracking-kicker: 0.1em;
@@ -38,12 +39,15 @@
   --stack-md: 32px;
   --stack-lg: 48px;
 
-  /* Layout (aus Entwurf A) */
+  /* Eine Spalte für Nav, Hero, Bänder und Footer – gleiche Kante überall */
   --band-pad: clamp(72px, 10vw, 120px);
   --band-side: clamp(20px, 4vw, 48px);
-  --inner: 1080px;
-  --inner-wide: 1120px;
+  --page: 1120px;
+  --inner: var(--page);
+  --inner-wide: var(--page);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Apple CSS-Standard: weiches Ein-/Auslaufen ohne Überschwingen */
+  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
 
   /* Farbrollen fuer shadcn/21st.dev-Komponenten, abgebildet auf die Marke.
      Silber ist die Standardflaeche, Ultra die Schrift darauf. */
@@ -182,6 +186,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 18px;
+    letter-spacing: 0;
     line-height: var(--leading-body);
   }
 }
@@ -190,38 +196,28 @@
    Seitenhülle: Hintergrund, Bänder, Navigation, Halobar, Footer
    ========================================================================== */
 @layer components {
-  /* Netz liegt fest HINTER der Seite. Wie stark es durchscheint, steuert die
-     Deckkraft der Bänder: auf Silber nur eine Ahnung, auf Dunkel klar. */
-  .network-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-
   .page {
     position: relative;
-    z-index: 1;
   }
 
-  /* Bänder: jede Section trägt data-surface="silver|dark" (für Netz + Nav) */
+  /* Bänder: jede Section trägt data-surface="silver|dark" (für Nav) */
   .band {
     position: relative;
     padding: var(--band-pad) var(--band-side);
   }
   .band__inner {
-    max-width: var(--inner);
+    max-width: var(--page);
     margin-inline: auto;
   }
   .band--silver {
-    background: color-mix(in srgb, var(--silver) 90%, transparent);
+    background: var(--silver);
   }
   .band--silver-card {
-    background: color-mix(in srgb, var(--silver-card) 90%, transparent);
+    background: var(--silver-card);
   }
   /* Ultra-dunkles Band: zusätzlich Klasse .dark, damit Komponenten umschalten */
   .band--ultra {
-    background: color-mix(in srgb, var(--ultra) 80%, transparent);
+    background: var(--ultra);
     color: var(--silver);
   }
 
@@ -240,7 +236,7 @@
   .halobar {
     position: relative;
     z-index: 101;
-    width: min(100% - 40px, var(--inner-wide));
+    width: min(100% - 2 * var(--band-side), var(--page));
     margin: 20px auto 0;
     padding: 10px 20px;
     display: flex;
@@ -284,8 +280,10 @@
   }
 
   .nav {
+    --mx: 50%;
+    --my: 50%;
     position: relative;
-    width: min(100% - 40px, var(--inner-wide));
+    width: min(100% - 2 * var(--band-side), var(--page));
     margin-inline: auto;
     display: flex;
     align-items: center;
@@ -305,6 +303,48 @@
     background: rgb(0 33 30 / 0.72);
     border-color: rgb(159 245 93 / 0.22);
     color: var(--silver);
+  }
+  /* Leiser diagonaler Schein – kein Kippen, kein overflow:hidden (Menüs hängen raus) */
+  .nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.45s ease;
+    background: linear-gradient(
+      125deg,
+      transparent 34%,
+      rgb(159 245 93 / 0.12) 46%,
+      rgb(175 197 250 / 0.14) 54%,
+      rgb(159 245 93 / 0.08) 62%,
+      transparent 74%
+    );
+    background-size: 240% 240%;
+    background-position: var(--mx) var(--my);
+    mix-blend-mode: soft-light;
+  }
+  .nav:hover::before,
+  .nav:focus-within::before {
+    opacity: 0.55;
+  }
+  .nav.is-on-dark::before {
+    background: linear-gradient(
+      125deg,
+      transparent 34%,
+      rgb(159 245 93 / 0.16) 46%,
+      rgb(175 197 250 / 0.12) 54%,
+      rgb(159 245 93 / 0.1) 62%,
+      transparent 74%
+    );
+    background-size: 240% 240%;
+    background-position: var(--mx) var(--my);
+  }
+  .nav > * {
+    position: relative;
+    z-index: 1;
   }
 
   .nav__brand {
@@ -447,7 +487,7 @@
     padding: 64px var(--band-side) 32px;
   }
   .footer__grid {
-    max-width: var(--inner);
+    max-width: var(--page);
     margin-inline: auto;
     display: grid;
     grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr));
@@ -481,7 +521,7 @@
     color: var(--dark-flash);
   }
   .footer__bottom {
-    max-width: var(--inner);
+    max-width: var(--page);
     margin: 64px auto 0;
     padding-top: 16px;
     display: flex;
@@ -521,15 +561,21 @@
    Startseite – 1 Header (aus Entwurf A, Version 8)
    ========================================================================== */
 @layer components {
+  /* Bühne: eine Komposition mittig; Logos bleiben darunter (nicht hochziehen). */
   .hero {
     display: flex;
-    align-items: flex-end;
-    min-height: min(88vh, 820px);
-    padding: clamp(96px, 12vw, 140px) var(--band-side) clamp(48px, 7vw, 80px);
+    flex-direction: column;
+    padding: 0;
+  }
+  .hero__stage {
+    display: flex;
+    align-items: center;
+    min-height: calc(100svh - 4.5rem);
+    padding: clamp(56px, 8vw, 96px) var(--band-side) clamp(48px, 6vw, 80px);
   }
   .hero__inner {
     width: 100%;
-    max-width: var(--inner-wide);
+    max-width: var(--page);
     margin-inline: auto;
   }
   .hero__grid {
@@ -568,6 +614,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: gc-hero-in 0.9s var(--ease-apple) both;
   }
   .hero__sub {
     margin-top: 28px;
@@ -576,21 +623,34 @@
     font-weight: 500;
     line-height: 1.4;
     opacity: 0.72;
+    animation: gc-hero-in-muted 0.9s var(--ease-apple) 0.1s both;
+  }
+  .hero__ctas {
+    margin-top: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    animation: gc-hero-in 0.9s var(--ease-apple) 0.18s both;
   }
 
   /* Laufendes Software-Fenster */
   .autoplay {
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
     padding: 10px;
     border-radius: 18px;
     background: linear-gradient(155deg, #123a31, var(--ultra));
     border: 1px solid rgb(159 245 93 / 0.2);
     box-shadow: 0 20px 48px rgb(0 12 10 / 0.22);
+    animation: gc-hero-in 1s var(--ease-apple) 0.14s both;
   }
   .autoplay__screen {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 12px;
-    min-height: 260px;
+    min-height: 280px;
     padding: 16px;
     border-radius: 10px;
     overflow: hidden;
@@ -724,9 +784,9 @@
     background: rgb(175 197 250 / 0.45);
   }
 
-  /* Kundenlogos: Label darüber, Endlos-Slider über die volle Breite */
+  /* Kundenlogos: erster Scroll nach der Viewport-Bühne, gleiche Silberfläche */
   .logos {
-    margin-top: 64px;
+    padding: var(--stack-lg) var(--band-side) clamp(48px, 7vw, 80px);
   }
   .logos__label {
     display: block;
@@ -763,9 +823,60 @@
     opacity: 0.9;
   }
 
+  /* Inline-Logo-Zyklus: fester Text + wechselndes Markenzeichen im Slot */
+  .logo-cycle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35em;
+    margin: var(--stack-md) 0 0;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ultra);
+  }
+  .logo-cycle__slot {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    min-width: 4.5rem;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+  .logo-cycle__mark {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    will-change: transform, opacity;
+  }
+  .logo-cycle__ph {
+    display: block;
+    height: 26px;
+    border-radius: 4px;
+    background: var(--ultra);
+    opacity: 0.18;
+  }
+  .logo-cycle img {
+    height: 26px;
+    width: auto;
+    filter: brightness(0) saturate(100%) invert(9%) sepia(19%) saturate(1500%) hue-rotate(125deg);
+    opacity: 0.55;
+  }
+  .logo-cycle__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   @media (max-width: 1000px) {
-    .hero {
+    .hero__stage {
       min-height: 0;
+      padding-top: clamp(96px, 12vw, 140px);
     }
     .hero__grid {
       grid-template-columns: minmax(0, 1fr);
@@ -778,8 +889,22 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .logos__track,
-    .autoplay__live::before {
+    .autoplay__live::before,
+    .hero__title,
+    .hero__sub,
+    .hero__ctas,
+    .autoplay {
       animation: none;
+    }
+    .nav::before,
+    .stat::before,
+    .cta-band__panel::before {
+      display: none;
+    }
+    /* Scroll-Reveals: nie unsichtbar bleiben, auch bei Hydration-Mismatch */
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
 }
@@ -794,6 +919,26 @@
     transform: translateX(-50%);
   }
 }
+@keyframes gc-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes gc-hero-in-muted {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 0.72;
+    transform: none;
+  }
+}
 
 /* ==========================================================================
    Startseite – Kennzahlen-Band und Software-Einblick mit Zoom (Entwurf A, V8)
@@ -803,26 +948,21 @@
     color: var(--flash);
     opacity: 1;
   }
-  /* Dunkelgrünes Band: deckendes Dark Green (#073D2B). Bewusst NICHT
-     durchscheinend – die silberne Grundfläche darunter mischt sich sonst ein
-     und hellt den Ton sichtbar auf (85 % ergaben rund #29584A). Dafür ist das
-     Netz in diesem einen Band nicht sichtbar. */
+  /* Dunkelgrünes Band: deckendes Dark Green (#073D2B). */
   .band--dark {
     background: var(--dark);
     color: var(--silver);
   }
 
-  /* Kennzahlen: Glaskacheln (Glas laut CLAUDE.md für Kennzahlen vorgesehen,
-     Weichzeichner bewusst nur auf diesen Kacheln, nicht flächig) */
+  /* Kennzahlen: Kacheln mit leiser Folienbahn (kein Kippen, kein elevation theater) */
   .stats {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    gap: 24px;
     margin-top: 48px;
   }
-  /* Karten-DNA aus Entwurf A: Lichtschein folgt dem Zeiger (--mx/--my setzt
-     PointerGlow), Rahmen zieht mit. Kein backdrop-filter mehr – das Band ist
-     deckend, ein Weichzeichner hätte dort nichts zu zeichnen. */
+  /* Diagonaler Sweep folgt dem Zeiger (--mx/--my setzt PointerGlow).
+     Kein backdrop-filter – das dunkle Band ist deckend. */
   .stat {
     --mx: 50%;
     --my: 50%;
@@ -837,17 +977,23 @@
   .stat::before {
     content: "";
     position: absolute;
-    inset: -1px;
+    inset: 0;
     border-radius: inherit;
     opacity: 0;
     pointer-events: none;
+    z-index: 0;
     transition: opacity 0.4s ease;
-    background: radial-gradient(
-      circle 180px at var(--mx) var(--my),
-      rgb(159 245 93 / 0.22) 0%,
-      rgb(175 197 250 / 0.12) 45%,
-      transparent 72%
+    background: linear-gradient(
+      125deg,
+      transparent 28%,
+      rgb(159 245 93 / 0.22) 44%,
+      rgb(175 197 250 / 0.16) 52%,
+      rgb(159 245 93 / 0.14) 60%,
+      transparent 74%
     );
+    background-size: 220% 220%;
+    background-position: var(--mx) var(--my);
+    mix-blend-mode: soft-light;
   }
   .stat:hover::before,
   .stat:focus-within::before {
@@ -895,7 +1041,7 @@
   .band__title {
     max-width: 16ch;
     font-size: clamp(32px, 4.5vw, 52px);
-    font-weight: 600;
+    font-weight: 700;
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     text-wrap: balance;
@@ -907,7 +1053,7 @@
     padding-bottom: 0;
   }
   .zoom__intro {
-    max-width: var(--inner);
+    max-width: var(--page);
     margin: 0 auto;
     padding: var(--band-pad) var(--band-side) var(--stack-sm);
   }
@@ -926,11 +1072,14 @@
     justify-content: center;
     overflow: hidden;
   }
-  /* Breite/Höhe setzt JavaScript getrennt aus dem Scroll-Fortschritt */
+  /* Endbreite/-höhe setzt JS; --scale verkleinert nur die Darstellung */
   .zoom__device {
     --p: 0;
+    --scale: 1;
     width: min(760px, 88vw);
-    will-change: width;
+    transform: scale(var(--scale));
+    transform-origin: center center;
+    will-change: transform;
   }
 
   /* Rahmen bleibt auch im vollen Zoom sichtbar (Wunsch Designer) */
@@ -953,6 +1102,39 @@
     color: var(--ultra);
     font-size: 12px;
     line-height: 1.35;
+  }
+  /* Live-FACE-Demo: eine Fläche. Inhalt wie Browser-Zoom 85 % (größeres
+     Layout, visuell auf die Screen-Fläche skaliert). */
+  .tablet__screen--live {
+    display: block;
+  }
+  .tablet__demo {
+    --demo-zoom: 0.85;
+    display: block;
+    width: calc(100% / var(--demo-zoom));
+    height: calc(100% / var(--demo-zoom));
+    border: 0;
+    transform: scale(var(--demo-zoom));
+    transform-origin: top left;
+    pointer-events: none;
+  }
+  .zoom__device[data-live] .tablet__demo,
+  .tablet.is-fullscreen .tablet__demo {
+    pointer-events: auto;
+  }
+  .tablet__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--flash);
+    color: var(--ultra);
+    font: 600 13px/1.2 var(--font-sans);
+    letter-spacing: -0.01em;
+    cursor: pointer;
   }
 
 
@@ -1030,6 +1212,8 @@
     }
     .zoom__device {
       width: 100%;
+      transform: none;
+      will-change: auto;
     }
     .tablet {
       cursor: zoom-in;
@@ -1037,6 +1221,13 @@
     .tablet__screen {
       grid-template-columns: minmax(0, 1fr);
       height: auto;
+    }
+    .tablet__screen--live {
+      height: min(70vh, 560px);
+    }
+    .tablet.is-fullscreen .tablet__screen--live {
+      height: calc(100% - 0px);
+      min-height: calc(100vh - 24px - 28px);
     }
     .ui-side {
       flex-direction: row;
@@ -1076,7 +1267,7 @@
    ========================================================================== */
 @layer components {
   .band__inner--wide {
-    max-width: var(--inner-wide);
+    max-width: var(--page);
   }
   .band__head {
     margin-bottom: var(--stack-lg);
@@ -1121,24 +1312,27 @@
     color: var(--ultra);
   }
   .tabs button[aria-selected="true"] {
-    background: var(--ultra);
-    border-color: var(--ultra);
-    color: var(--silver);
+    background: var(--flash);
+    border-color: var(--flash);
+    color: var(--ultra);
   }
 
-  /* Layout-Pattern 50/50 */
+  /* Layout-Pattern 50/50: eine Karte, Farbfläche links, Produktfläche rechts */
   .split {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 24px;
-    align-items: stretch;
+    gap: 0;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--silver-card);
+    border: 1px solid rgb(0 33 30 / 0.1);
   }
   .split__pane {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: clamp(28px, 4vw, 48px);
-    border-radius: var(--radius-card);
+    border-radius: 0;
     background: var(--ultra);
     color: var(--silver);
   }
@@ -1187,16 +1381,30 @@
     background: currentColor;
     opacity: 0.7;
   }
+  .split__pane[data-tone="lilac"] .feature-list li::before,
+  .split__pane:not([data-tone]) .feature-list li::before,
+  .split__pane[data-tone="ultra"] .feature-list li::before {
+    background: var(--flash);
+    opacity: 1;
+  }
   .split__visual {
     display: flex;
+    min-height: 0;
+    background: var(--silver);
   }
   .split__img {
     width: 100%;
     height: 100%;
     min-height: 280px;
     object-fit: cover;
-    border-radius: var(--radius-card);
-    border: 1px solid var(--silver-base);
+    border-radius: 0;
+    border: 0;
+  }
+  .split__visual .ui-mock {
+    flex: 1;
+    border: 0;
+    border-radius: 0;
+    background: var(--silver);
   }
 
 
@@ -1274,7 +1482,7 @@
   .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 24px;
   }
   .card {
     padding: 32px;
@@ -1367,7 +1575,7 @@
     border-radius: var(--radius-card);
   }
 
-  /* Abschluss-CTA: Keyvisual mit zentrierter Bildmarke, Text darüber */
+  /* Abschluss-CTA: Keyvisual mit zentrierter Bildmarke, Text im Glaspanel */
   .cta-band {
     position: relative;
     overflow: hidden;
@@ -1391,19 +1599,63 @@
       rgb(0 33 30 / 0.72) 70%
     );
   }
-  .cta-band .band__title,
-  .cta-band .band__lede {
-    color: var(--silver);
-  }
-  .cta-band .band__lede {
-    color: color-mix(in srgb, var(--silver) 88%, transparent);
-  }
   .cta-band__inner {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .cta-band__panel {
+    --mx: 50%;
+    --my: 50%;
+    position: relative;
+    overflow: hidden;
+    width: min(100%, 40rem);
+    padding: clamp(32px, 5vw, 48px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(0 33 30 / 0.55);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgb(159 245 93 / 0.22);
+    border-radius: var(--radius-panel);
+  }
+  .cta-band__panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.4s ease;
+    background: linear-gradient(
+      125deg,
+      transparent 28%,
+      rgb(159 245 93 / 0.22) 44%,
+      rgb(175 197 250 / 0.16) 52%,
+      rgb(159 245 93 / 0.14) 60%,
+      transparent 74%
+    );
+    background-size: 220% 220%;
+    background-position: var(--mx) var(--my);
+    mix-blend-mode: soft-light;
+  }
+  .cta-band__panel:hover::before,
+  .cta-band__panel:focus-within::before {
+    opacity: 1;
+  }
+  .cta-band__panel > * {
+    position: relative;
+    z-index: 1;
+  }
+  .cta-band .band__title,
+  .cta-band .band__lede {
+    color: var(--silver);
+  }
+  .cta-band .band__lede {
+    color: color-mix(in srgb, var(--silver) 88%, transparent);
   }
   .cta-band__actions {
     display: flex;
@@ -1417,7 +1669,7 @@
   .faq {
     display: grid;
     gap: 12px;
-    max-width: 820px;
+    max-width: var(--page);
   }
   .faq details {
     padding: 16px 24px;
@@ -1462,6 +1714,13 @@
   @media (max-width: 1000px) {
     .split {
       grid-template-columns: minmax(0, 1fr);
+    }
+    .split__pane {
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
+    }
+    .split__visual .ui-mock,
+    .split__img {
+      border-radius: 0 0 var(--radius-card) var(--radius-card);
     }
     .cases__tabs {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1525,7 +1784,7 @@
   .slab__claim {
     max-width: 16ch;
     font-size: clamp(32px, 4.8vw, 56px);
-    font-weight: 600;
+    font-weight: 700;
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-display);
     text-wrap: balance;
@@ -1540,7 +1799,7 @@
   .euro__facts {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--stack-sm);
+    gap: 24px;
     margin-top: var(--stack-lg);
   }
   .euro__facts strong {

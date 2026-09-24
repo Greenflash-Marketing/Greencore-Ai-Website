@@ -8,6 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { navItems, login } from "@/config/site";
 import { LocaleSwitcher } from "./locale-switcher";
+import { PointerGlow } from "@/components/home/pointer-glow";
 
 /**
  * Schwebende, eingerückte Navigation (Brand-Bundle: ~20px Abstand, Radius 14).
@@ -173,6 +174,7 @@ export function SiteNav() {
           <span aria-hidden="true">{menuOpen ? "×" : "≡"}</span>
         </button>
       </nav>
+      <PointerGlow selector=".nav" />
     </div>
   );
 }

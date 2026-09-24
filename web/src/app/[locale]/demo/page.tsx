@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getDemoPage } from "@/lib/sanity/pages";
+import { Reveal } from "@/components/motion/reveal";
+import { stagger } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page/page-header";
 import { MediaDummy } from "@/components/page/media-dummy";
 
@@ -27,17 +29,17 @@ export default async function Page(props: PageProps<"/[locale]/demo">) {
       {demo.steps && demo.steps.length > 0 && (
         <section className="band band--silver-card" data-surface="silver">
           <div className="band__inner band__inner--wide">
-            <div className="band__head">
+            <Reveal className="band__head">
               <span className="kicker">{t("stepsKicker")}</span>
               <h2 className="band__title">{t("stepsHeadline")}</h2>
-            </div>
+            </Reveal>
             <ol className="steps">
               {demo.steps.map((step, i) => (
-                <li key={i} className="card">
+                <Reveal key={i} as="li" className="card" delay={stagger(i)}>
                   <span className="steps__idx">{String(i + 1).padStart(2, "0")}</span>
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
-                </li>
+                </Reveal>
               ))}
             </ol>
           </div>
@@ -46,13 +48,15 @@ export default async function Page(props: PageProps<"/[locale]/demo">) {
 
       <section className="band band--silver" id="anfrage" data-surface="silver">
         <div className="band__inner">
-          <div className="band__head">
+          <Reveal className="band__head">
             <span className="kicker">{t("formKicker")}</span>
             <h2 className="band__title">{demo.ctaLabel ?? t("formHeadline")}</h2>
             <p className="band__lede">{t("formLede")}</p>
-          </div>
+          </Reveal>
           {/* Attrappe: Das Formular folgt mit der Anbindung an das CRM. */}
-          <MediaDummy label={t("formDummy")} ratio="16 / 7" />
+          <Reveal delay={stagger(1)}>
+            <MediaDummy label={t("formDummy")} ratio="16 / 7" />
+          </Reveal>
         </div>
       </section>
     </>

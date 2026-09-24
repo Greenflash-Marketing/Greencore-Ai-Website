@@ -3,6 +3,8 @@ import { PortableText } from "next-sanity";
 import type { PortableTextBlock } from "next-sanity";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getAboutPage } from "@/lib/sanity/pages";
+import { Reveal } from "@/components/motion/reveal";
+import { stagger } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page/page-header";
 import { PageCta } from "@/components/page/page-cta";
 import { MediaDummy } from "@/components/page/media-dummy";
@@ -34,10 +36,12 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
       {about.visionMissionValueProp ? (
         <section className="band band--dark dark" data-surface="dark">
           <div className="band__inner">
-            <span className="kicker kicker--flash">{t("visionKicker")}</span>
-            <div className="vision prose">
+            <Reveal className="band__head">
+              <span className="kicker kicker--flash">{t("visionKicker")}</span>
+            </Reveal>
+            <Reveal className="vision prose" delay={stagger(1)}>
               <PortableText value={about.visionMissionValueProp as PortableTextBlock[]} />
-            </div>
+            </Reveal>
           </div>
         </section>
       ) : null}
@@ -45,11 +49,11 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
       {about.positioning && about.positioning.length > 0 && (
         <section className="band band--silver" data-surface="silver">
           <div className="band__inner">
-            <div className="band__head">
+            <Reveal className="band__head">
               <span className="kicker">{t("shiftKicker")}</span>
               <h2 className="band__title">{t("shiftHeadline")}</h2>
-            </div>
-            <ol className="shifts">
+            </Reveal>
+            <Reveal as="ol" className="shifts" delay={stagger(1)}>
               {about.positioning.map((s, i) => (
                 <li key={i}>
                   <span className="shifts__from">{s.from}</span>
@@ -57,7 +61,7 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
                   <span className="shifts__to">{s.to}</span>
                 </li>
               ))}
-            </ol>
+            </Reveal>
           </div>
         </section>
       )}
@@ -65,16 +69,16 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
       {about.principles && about.principles.length > 0 && (
         <section className="band band--silver-card" data-surface="silver">
           <div className="band__inner band__inner--wide">
-            <div className="band__head">
+            <Reveal className="band__head">
               <span className="kicker">{t("principlesKicker")}</span>
               <h2 className="band__title">{t("principlesHeadline")}</h2>
-            </div>
+            </Reveal>
             <div className="principles">
               {about.principles.map((p, i) => (
-                <article key={i} className="card">
+                <Reveal key={i} as="article" className="card" delay={stagger(i)}>
                   <h3>{p.title}</h3>
                   <p>{p.text}</p>
-                </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -84,7 +88,7 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
       {about.greenflash ? (
         <section className="band band--silver" data-surface="silver">
           <div className="band__inner band__inner--wide">
-            <div className="split">
+            <Reveal className="split">
               <div className="split__pane" data-tone="ultra">
                 <span className="kicker kicker--flash">{t("greenflashKicker")}</span>
                 <h2>{t("greenflashHeadline")}</h2>
@@ -95,7 +99,7 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
               <div className="split__visual">
                 <MediaDummy label={t("teamDummy")} ratio="4 / 3" />
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
       ) : null}

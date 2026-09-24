@@ -1,5 +1,6 @@
 import {defineType, defineField, defineArrayMember} from 'sanity'
 import {CogIcon} from '@sanity/icons/Cog'
+import {ImagesIcon} from '@sanity/icons/Images'
 import {LinkIcon} from '@sanity/icons/Link'
 
 // Singleton – in der Studio-Struktur (structure.ts) auf ein Dokument beschränkt
@@ -18,6 +19,40 @@ export const siteSettings = defineType({
       type: 'localeString',
     }),
     defineField({name: 'greenflashLink', title: 'Link zu Greenflash', type: 'url'}),
+    defineField({
+      name: 'taggedLogos',
+      title: 'Getaggte Logos (Inline-Zyklus)',
+      description:
+        'Logos für Textstellen wie „Funktioniert mit: {hersteller}“. Tags ohne geschweifte Klammern eintragen.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'taggedLogo',
+          type: 'object',
+          icon: ImagesIcon,
+          fields: [
+            defineField({name: 'name', title: 'Name (Alt-Text)', type: 'string'}),
+            defineField({name: 'logo', title: 'Logo (PNG)', type: 'image'}),
+            defineField({
+              name: 'tags',
+              title: 'Tags',
+              description: 'z. B. „hersteller“ – ein Logo kann mehrere Tags tragen.',
+              type: 'array',
+              of: [{type: 'string'}],
+              options: {layout: 'tags'},
+            }),
+          ],
+          preview: {
+            select: {title: 'name', tags: 'tags', media: 'logo'},
+            prepare: ({title, tags, media}) => ({
+              title: title || 'Logo',
+              subtitle: Array.isArray(tags) ? tags.join(', ') : undefined,
+              media,
+            }),
+          },
+        }),
+      ],
+    }),
     defineField({
       name: 'halobar',
       title: 'Halobar (Neuigkeiten-Leiste über der Navigation)',

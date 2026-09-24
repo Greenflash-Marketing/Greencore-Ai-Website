@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 
 /**
- * Karten-Effekt aus Entwurf A: ein weicher Lichtschein folgt dem Mauszeiger
- * über der Karte (--mx/--my). Läuft nur auf Zeigergeräten und pausiert bei
- * reduzierter Bewegung. Ein Listener am Dokument statt einer pro Karte.
+ * Folien-Schimmer: ein diagonaler Streifen folgt dem Mauszeiger (--mx/--my).
+ * Läuft nur auf Zeigergeräten und pausiert bei reduzierter Bewegung.
+ * Ein Listener am Dokument statt einer pro Karte.
  */
 export function PointerGlow({ selector }: { selector: string }) {
   useEffect(() => {

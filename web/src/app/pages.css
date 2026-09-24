@@ -7,7 +7,7 @@
     padding-top: clamp(96px, 12vw, 150px);
   }
   .page-header__title {
-    max-width: 18ch;
+    max-width: 16ch;
     font-size: clamp(38px, 5.2vw, 64px);
     font-weight: 700;
     line-height: var(--leading-display);
@@ -15,7 +15,7 @@
     text-wrap: balance;
   }
   .page-header__lede {
-    max-width: 56ch;
+    max-width: 42ch;
     margin-top: 24px;
     font-size: clamp(17px, 1.8vw, 20px);
     line-height: 1.5;
@@ -129,7 +129,7 @@
   .post-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--stack-sm);
+    gap: 24px;
   }
   .post-card {
     display: flex;
@@ -246,7 +246,7 @@
   .principles {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--stack-sm);
+    gap: 24px;
   }
   .principles h3 {
     margin-bottom: 8px;
@@ -262,7 +262,7 @@
   .steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--stack-sm);
+    gap: 24px;
   }
   .steps__idx {
     display: block;

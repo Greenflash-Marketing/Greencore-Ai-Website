@@ -7,5 +7,5 @@ export default createMiddleware(routing);
 
 export const config = {
   // Statische Dateien, Bilder und API-Routen von der Sprachweiche ausnehmen
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|_vercel|software-demo|.*\\..*).*)"],
 };

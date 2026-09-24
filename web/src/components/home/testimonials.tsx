@@ -1,5 +1,7 @@
 import Image from "next/image";
 import type { BandHead as BandHeadData, Testimonial } from "@/lib/sanity/home";
+import { Reveal } from "@/components/motion/reveal";
+import { stagger } from "@/components/motion/stagger";
 import { BandHead } from "./band-head";
 
 /** Porträt-Platzhalter, solange kein Foto in Sanity liegt. */
@@ -22,7 +24,7 @@ export function Testimonials({ band, items }: { band?: BandHeadData; items: Test
         <BandHead {...band} />
         <div className="grid-2">
           {items.map((item, i) => (
-            <figure key={i} className="card">
+            <Reveal key={i} as="figure" className="card" delay={stagger(i)}>
               {item.logo && (
                 <div className="quote__logo">
                   <Image src={item.logo} alt={item.personRole ?? ""} width={120} height={26} unoptimized />
@@ -42,7 +44,7 @@ export function Testimonials({ band, items }: { band?: BandHeadData; items: Test
                   {item.personRole && <div className="quote__role">{item.personRole}</div>}
                 </div>
               </figcaption>
-            </figure>
+            </Reveal>
           ))}
         </div>
       </div>
