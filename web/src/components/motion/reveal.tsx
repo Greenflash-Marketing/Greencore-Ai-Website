@@ -1,7 +1,7 @@
 "use client";
 
 import * as m from "motion/react-m";
-import { useSyncExternalStore, type ComponentPropsWithoutRef } from "react";
+import { useSyncExternalStore, type HTMLAttributes } from "react";
 
 type RevealTag = "div" | "p" | "figure" | "article" | "li" | "ol" | "ul";
 
@@ -12,7 +12,12 @@ type RevealProps = {
   delay?: number;
   /** Element, das die Klasse traegt – kein zusaetzlicher Wrapper. */
   as?: RevealTag;
-} & Omit<ComponentPropsWithoutRef<"div">, "children" | "className">;
+} & Omit<
+  // Nicht an <div> binden: `as` kann auch li/ul/figure sein. Die Drag-/Animations-
+  // Handler von React kollidieren mit den gleichnamigen Motion-Props.
+  HTMLAttributes<HTMLElement>,
+  "children" | "className" | "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"
+>;
 
 const MotionTag = {
   div: m.div,

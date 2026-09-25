@@ -16,7 +16,7 @@ const DEMO_SRC = "/software-demo/index.html#/";
  * transform: scale verkleinert/vergrößert, damit die Demo nicht umbricht.
  *
  * Mobil / reduzierte Bewegung: kein Anheften; Tippen öffnet das Vollbild.
- * Das FACE-Demo läuft im iframe und wird erst geladen, wenn die Spur nah ist.
+ * Die Demo läuft im iframe und wird erst geladen, wenn die Spur nah ist.
  */
 export function SoftwareZoom({ intro }: { intro?: SoftwareInsights }) {
   const track = useRef<HTMLDivElement>(null);
