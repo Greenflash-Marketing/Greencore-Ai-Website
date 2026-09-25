@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Fertiges Demo-Bundle (Fremdcode, minifiziert) nicht prüfen
+    "public/software-demo/**",
   ]),
 ]);
 

@@ -27,7 +27,7 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
   ]);
   if (!home) return null;
 
-  // Sanity-getaggte Logos haben Vorrang; sonst lokale Smart1-SVGs.
+  // Sanity-getaggte Logos haben Vorrang; sonst die lokalen SVGs.
   const hasTagged = taggedLogos.some((logo) => logo.tags.includes("hersteller"));
   const cycleLogos = hasTagged ? taggedLogos : herstellerLogos;
 
