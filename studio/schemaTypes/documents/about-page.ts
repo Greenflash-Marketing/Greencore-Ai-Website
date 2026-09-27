@@ -11,6 +11,17 @@ export const aboutPage = defineType({
     defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
     defineField({name: 'lede', title: 'Einleitung', type: 'localeText'}),
     defineField({
+      name: 'intro',
+      title: 'Abschnitt "Das ist Greencore AI"',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'body', title: 'Copy', type: 'localeBlockContent'}),
+      ],
+    }),
+    defineField({
       name: 'positioning',
       title: 'Positionierung: vom passiven Verbraucher zum aktiven Marktakteur',
       type: 'array',

@@ -22,6 +22,17 @@
     color: var(--silver-dark);
   }
 
+  /* Demo-Formular im Seitenkopf */
+  .demo-form {
+    max-width: 620px;
+    margin-top: var(--stack-lg);
+  }
+  .demo-form__note {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--silver-dark);
+  }
+
   /* Attrappe: klar als Platzhalter erkennbar */
   .media-dummy {
     display: grid;

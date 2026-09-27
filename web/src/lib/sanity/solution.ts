@@ -11,6 +11,8 @@ export type SolutionPage = {
   body?: unknown;
   features?: string[];
   stats?: StatTile[];
+  statsBand?: { kicker?: string; headline?: string; lede?: string };
+  explainerKicker?: string;
   useCases?: ModuleUseCase[];
   image?: string;
 };
@@ -22,6 +24,8 @@ const query = `*[_type == "solutionModule" && moduleKey == $key][0]{
   "body": coalesce(body[$locale], body.de),
   "features": subFeatures[]{"t": coalesce(title[$locale], title.de)}.t,
   "stats": stats[]{ value, unit, ${t("label")} },
+  "statsBand": statsBand{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },
+  ${t("explainerKicker")},
   "useCases": useCases[]{ ${t("title")}, ${t("description")} },
   "image": softwareShowcase[0].asset->url
 }`;

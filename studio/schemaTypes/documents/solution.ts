@@ -86,6 +86,22 @@ export const solutionModule = defineType({
       type: 'localeText',
     }),
     defineField({
+      name: 'statsBand',
+      title: 'Kennzahlen-Abschnitt: Kopfzeile',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'lede', title: 'Copy', type: 'localeText'}),
+      ],
+    }),
+    defineField({
+      name: 'explainerKicker',
+      title: 'Kicker über dem Erklär-Abschnitt ("So funktioniert es")',
+      type: 'localeString',
+    }),
+    defineField({
       name: 'stats',
       title: 'Kennzahlen (Kundennutzen)',
       type: 'array',

@@ -33,6 +33,20 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
     <>
       <PageHeader kicker={about.kicker} headline={about.headline} lede={about.lede} />
 
+      {about.intro?.body ? (
+        <section className="band band--silver" data-surface="silver">
+          <div className="band__inner">
+            <Reveal className="band__head">
+              {about.intro.kicker && <span className="kicker">{about.intro.kicker}</span>}
+              {about.intro.headline && <h2 className="band__title">{about.intro.headline}</h2>}
+            </Reveal>
+            <Reveal className="prose" delay={stagger(1)}>
+              <PortableText value={about.intro.body as PortableTextBlock[]} />
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
       {about.visionMissionValueProp ? (
         <section className="band band--dark dark" data-surface="dark">
           <div className="band__inner">

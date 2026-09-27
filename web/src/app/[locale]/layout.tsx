@@ -9,6 +9,7 @@ import { SiteNav } from "@/components/layout/site-nav";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Halobar } from "@/components/layout/halobar";
 import { halobar } from "@/config/site";
+import { JsonLd, organizationJsonLd } from "@/components/seo/json-ld";
 import "../globals.css";
 
 // Laut Brand-Bundle ausschliesslich DM Sans + DM Mono.
@@ -56,6 +57,7 @@ export default async function LocaleLayout(props: LayoutProps<"/[locale]">) {
       <body>
         <NextIntlClientProvider>
           <MotionProvider>
+            <JsonLd data={organizationJsonLd(locale)} />
             <div className="page">
               {halobar.enabled && <Halobar href={halobar.href} />}
               <SiteNav />

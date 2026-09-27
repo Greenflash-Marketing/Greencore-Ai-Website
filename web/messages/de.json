@@ -92,7 +92,10 @@
     "presseHeadline": "Greencore AI in den Medien",
     "presseLede": "Berichte über die Plattform und ihre Ergebnisse. Die Beiträge öffnen sich beim jeweiligen Medium.",
     "presseCta": "Artikel öffnen",
-    "resourcesLede": "Blog und Presse an einer Stelle: eigene Einordnungen und Berichte aus den Medien."
+    "resourcesLede": "Blog und Presse an einer Stelle: eigene Einordnungen und Berichte aus den Medien.",
+    "refGridHeadline": "Alle Referenzen",
+    "blogGridHeadline": "Alle Beiträge",
+    "presseGridHeadline": "Alle Beiträge"
   },
   "About": {
     "visionKicker": "Vision, Mission, Anspruch",
@@ -110,7 +113,8 @@
     "formKicker": "Anfrage",
     "formHeadline": "Demo anfragen",
     "formLede": "Das Formular wird an das CRM angebunden. Bis dahin steht hier eine Attrappe.",
-    "formDummy": "Attrappe · Formular folgt"
+    "formDummy": "Attrappe · Formular folgt",
+    "formNoteFallback": "Den Lastgang können Sie auch nachreichen."
   },
   "Home": {
     "worksWith": "Funktioniert mit:"

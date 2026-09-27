@@ -26,12 +26,13 @@ export async function SolutionPage({ moduleKey, locale }: { moduleKey: string; l
     <>
       <PageHeader kicker={data.kicker} headline={data.title} lede={data.lede} />
 
-      <StatRow tiles={data.stats ?? []} />
+      <StatRow tiles={data.stats ?? []} band={data.statsBand} />
 
       <section className="band band--silver" data-surface="silver">
         <div className="band__inner band__inner--wide">
           <Reveal className="split">
             <div className="split__pane" data-tone="ultra">
+              {data.explainerKicker && <span className="kicker">{data.explainerKicker}</span>}
               {data.shortDescription && <h2>{data.shortDescription}</h2>}
               {data.body ? <PortableText value={data.body as PortableTextBlock[]} /> : null}
               {data.features && data.features.length > 0 && (
