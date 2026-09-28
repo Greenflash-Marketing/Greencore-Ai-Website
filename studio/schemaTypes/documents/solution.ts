@@ -48,8 +48,30 @@ export const solutionModule = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({name: 'kicker', title: 'Kicker (Section-Eyebrow)', type: 'localeString'}),
+    defineField({
+      name: 'headline',
+      title: 'H1 der Unterseite (Nutzen; ohne Angabe wird der Titel verwendet)',
+      type: 'localeString',
+    }),
     defineField({name: 'shortDescription', title: 'Kurzbeschreibung (Tab/Teaser)', type: 'localeText'}),
     defineField({name: 'body', title: 'Inhalt', type: 'localeBlockContent'}),
+    defineField({
+      name: 'explainerSteps',
+      title: 'Erklär-Abschnitt: Schritte (ersetzt den Fließtext, wenn gefüllt)',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          name: 'explainerStep',
+          type: 'object',
+          fields: [
+            defineField({name: 'title', title: 'Titel', type: 'localeString'}),
+            defineField({name: 'text', title: 'Text', type: 'localeText'}),
+          ],
+          preview: {select: {title: 'title.de', subtitle: 'text.de'}},
+        }),
+      ],
+    }),
+
     defineField({
       name: 'subFeatures',
       title: 'Teilfunktionen (z. B. bei Operate: Eigenverbrauchsoptimierung, Lastspitzenkappung, ...)',

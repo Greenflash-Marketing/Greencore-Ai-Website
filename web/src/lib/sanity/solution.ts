@@ -5,10 +5,12 @@ export type ModuleUseCase = { title?: string; description?: string };
 
 export type SolutionPage = {
   title?: string;
+  headline?: string;
   kicker?: string;
   lede?: string;
   shortDescription?: string;
   body?: unknown;
+  explainerSteps?: { title?: string; text?: string }[];
   features?: string[];
   stats?: StatTile[];
   statsBand?: { kicker?: string; headline?: string; lede?: string };
@@ -20,8 +22,9 @@ export type SolutionPage = {
 const t = (field: string) => `"${field}": coalesce(${field}[$locale], ${field}.de)`;
 
 const query = `*[_type == "solutionModule" && moduleKey == $key][0]{
-  ${t("title")}, ${t("kicker")}, ${t("lede")}, ${t("shortDescription")},
+  ${t("title")}, ${t("headline")}, ${t("kicker")}, ${t("lede")}, ${t("shortDescription")},
   "body": coalesce(body[$locale], body.de),
+  "explainerSteps": explainerSteps[]{ ${t("title")}, ${t("text")} },
   "features": subFeatures[]{"t": coalesce(title[$locale], title.de)}.t,
   "stats": stats[]{ value, unit, ${t("label")} },
   "statsBand": statsBand{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },

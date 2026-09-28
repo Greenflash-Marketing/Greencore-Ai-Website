@@ -117,6 +117,10 @@
     "formNoteFallback": "Den Lastgang können Sie auch nachreichen."
   },
   "Home": {
-    "worksWith": "Funktioniert mit:"
+    "worksWith": "Funktioniert mit:",
+    "catPv": "PV und Wechselrichter",
+    "catSpeicher": "Batteriespeicher",
+    "catLadeinfrastruktur": "Ladeinfrastruktur",
+    "catMesstechnik": "Mess- und Zählertechnik"
   }
 }

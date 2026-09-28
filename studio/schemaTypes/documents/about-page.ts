@@ -18,7 +18,28 @@ export const aboutPage = defineType({
       fields: [
         defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
         defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
-        defineField({name: 'body', title: 'Copy', type: 'localeBlockContent'}),
+        defineField({name: 'lead', title: 'Einstiegssatz (groß gesetzt)', type: 'localeText'}),
+        defineField({
+          name: 'points',
+          title: 'Kacheln',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              name: 'aboutPoint',
+              type: 'object',
+              fields: [
+                defineField({name: 'title', title: 'Titel', type: 'localeString'}),
+                defineField({name: 'text', title: 'Text', type: 'localeText'}),
+              ],
+              preview: {select: {title: 'title.de', subtitle: 'text.de'}},
+            }),
+          ],
+        }),
+        defineField({
+          name: 'body',
+          title: 'Fließtext (Rückfallebene, wenn keine Kacheln gesetzt sind)',
+          type: 'localeBlockContent',
+        }),
       ],
     }),
     defineField({

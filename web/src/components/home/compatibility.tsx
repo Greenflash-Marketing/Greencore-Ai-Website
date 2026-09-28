@@ -3,7 +3,7 @@ import type { Compatibility as CompatibilityData } from "@/lib/sanity/home";
 import type { TaggedLogo } from "@/lib/sanity/logos";
 import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
-import { LogoCycle } from "@/components/logo-cycle";
+import { LogoWall, type LogoCategory } from "@/components/logo-wall";
 import { BandHead } from "./band-head";
 
 /**
@@ -18,8 +18,13 @@ export function Compatibility({
   lede,
   media,
   worksWith,
+  categories = [],
   logos = [],
-}: CompatibilityData & { worksWith: string; logos?: TaggedLogo[] }) {
+}: CompatibilityData & {
+  worksWith: string;
+  categories?: LogoCategory[];
+  logos?: TaggedLogo[];
+}) {
   return (
     <section className="band band--silver-card" id="kompatibilitaet" data-surface="silver">
       <div className="band__inner">
@@ -30,7 +35,8 @@ export function Compatibility({
           </Reveal>
         )}
         <Reveal delay={stagger(lede ? 2 : 1)}>
-          <LogoCycle text={worksWith} logos={logos} />
+          <p className="logowall__intro">{worksWith}</p>
+          <LogoWall categories={categories} logos={logos} />
         </Reveal>
         {media ? (
           <Reveal delay={stagger(3)}>

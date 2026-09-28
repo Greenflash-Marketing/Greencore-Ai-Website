@@ -8,7 +8,13 @@ export type AboutPage = {
   kicker?: string;
   headline?: string;
   lede?: string;
-  intro?: { kicker?: string; headline?: string; body?: unknown };
+  intro?: {
+    kicker?: string;
+    headline?: string;
+    lead?: string;
+    points?: { title?: string; text?: string }[];
+    body?: unknown;
+  };
   visionMissionValueProp?: unknown;
   positioning?: { from?: string; to?: string }[];
   principles?: { title?: string; text?: string }[];
@@ -31,7 +37,8 @@ export function getAboutPage(locale: string) {
   return sanityClient.fetch<AboutPage | null>(
     `*[_id == "aboutPage"][0]{
       ${t("kicker")}, ${t("headline")}, ${t("lede")},
-      "intro": intro{ ${t("kicker")}, ${t("headline")},
+      "intro": intro{ ${t("kicker")}, ${t("headline")}, ${t("lead")},
+        "points": points[]{ ${t("title")}, ${t("text")} },
         "body": coalesce(body[$locale], body.de) },
       "visionMissionValueProp": coalesce(visionMissionValueProp[$locale], visionMissionValueProp.de),
       "positioning": positioning[]{ ${t("from")}, ${t("to")} },

@@ -43,7 +43,13 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
       <SolutionTabs band={home.solutionsBand} modules={home.solutions ?? []} />
       <Compatibility
         {...(home.compatibility ?? {})}
-        worksWith={`${t("worksWith")} {hersteller}`}
+        worksWith={t("worksWith")}
+        categories={[
+          { tag: "pv", label: t("catPv") },
+          { tag: "speicher", label: t("catSpeicher") },
+          { tag: "ladeinfrastruktur", label: t("catLadeinfrastruktur") },
+          { tag: "messtechnik", label: t("catMesstechnik") },
+        ]}
         logos={cycleLogos}
       />
       {home.europeBand && <EuropeBand {...home.europeBand} />}

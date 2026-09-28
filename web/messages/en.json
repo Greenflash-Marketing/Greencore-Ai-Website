@@ -117,6 +117,10 @@
     "formNoteFallback": "You can send your load profile later."
   },
   "Home": {
-    "worksWith": "Works with:"
+    "worksWith": "Works with:",
+    "catPv": "PV and inverters",
+    "catSpeicher": "Battery storage",
+    "catLadeinfrastruktur": "Charging infrastructure",
+    "catMesstechnik": "Metering"
   }
 }
