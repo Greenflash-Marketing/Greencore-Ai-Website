@@ -6,6 +6,63 @@
   .page-header {
     padding-top: clamp(96px, 12vw, 150px);
   }
+  /* Text links, Bild oder Software-Ansicht rechts */
+  .page-header__split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+  }
+  .page-header__media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-panel);
+  }
+
+  /* Vollflächiges Motiv mit Glasfläche */
+  .page-header--cover {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-bottom: clamp(72px, 9vw, 110px);
+    background: var(--ultra);
+  }
+  .page-header__bg {
+    object-fit: cover;
+    opacity: 0.55;
+    z-index: -2;
+  }
+  .page-header--cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(100deg, color-mix(in srgb, var(--ultra) 88%, transparent) 30%, transparent 85%);
+  }
+  .page-header__glass {
+    max-width: 62ch;
+    padding: clamp(26px, 3vw, 40px);
+    border: 1px solid color-mix(in srgb, var(--silver) 20%, transparent);
+    border-radius: var(--radius-panel);
+    background: color-mix(in srgb, var(--ultra) 55%, transparent);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  .page-header--cover .page-header__title {
+    color: var(--silver);
+  }
+  .page-header--cover .page-header__lede {
+    color: color-mix(in srgb, var(--silver) 82%, transparent);
+  }
+  .page-header--cover .kicker {
+    color: var(--flash);
+  }
+
+  @media (max-width: 900px) {
+    .page-header__split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
   .page-header__title {
     max-width: 16ch;
     font-size: clamp(38px, 5.2vw, 64px);
@@ -299,8 +356,15 @@
     letter-spacing: 0.05em;
   }
   .demo-mock {
-    margin-top: var(--stack-lg);
     max-width: 760px;
+  }
+  .demo-split [data-order="2"] {
+    order: 2;
+  }
+  @media (max-width: 900px) {
+    .demo-split [data-order="2"] {
+      order: 0;
+    }
   }
   @media (max-width: 620px) {
     .demo-form__grid {
@@ -372,11 +436,14 @@
     letter-spacing: 0.08em;
     color: var(--dark-flash);
   }
+  /* Text oben, Grafik darunter über die volle Breite der Bühne –
+     nebeneinander wird die Zeichnung zu schmal. */
   .usecases__panel {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(24px, 3vw, 40px);
-    align-items: center;
+    gap: var(--stack-md);
+  }
+  .usecases__visual {
+    max-width: 560px;
   }
   .usecases__panel h3 {
     max-width: 20ch;

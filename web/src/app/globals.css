@@ -823,6 +823,64 @@
     opacity: 0.9;
   }
 
+  /* Referenzlogos unter den Kennzahlen: Beschriftung links, Logos laufen rechts */
+  .logoslider {
+    display: grid;
+    grid-template-columns: minmax(0, 190px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: center;
+    margin-top: var(--stack-lg);
+    padding-top: var(--stack-md);
+    border-top: 1px solid color-mix(in srgb, var(--silver) 22%, transparent);
+  }
+  .logoslider__label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--silver) 72%, transparent);
+  }
+  .logoslider__rail {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  }
+  .logoslider__track {
+    display: flex;
+    width: max-content;
+    animation: logoslider-run 38s linear infinite;
+  }
+  .logoslider__rail:hover .logoslider__track {
+    animation-play-state: paused;
+  }
+  .logoslider__run {
+    display: flex;
+    align-items: center;
+    gap: 52px;
+    padding-right: 52px;
+  }
+  .logoslider img {
+    height: 26px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.62;
+  }
+  @keyframes logoslider-run {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logoslider__track { animation: none; }
+    .logoslider__rail { overflow-x: auto; }
+  }
+  @media (max-width: 700px) {
+    .logoslider {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+  }
+
   .logowall__intro {
     margin-top: var(--stack-md);
     font-size: 18px;
@@ -1077,18 +1135,21 @@
   .zoom__intro {
     max-width: var(--page);
     margin: 0 auto;
-    padding: var(--band-pad) var(--band-side) var(--stack-sm);
+    /* Kein Polster nach unten: Die Bühne bringt genug Luft mit. */
+    padding: var(--band-pad) var(--band-side) 0;
   }
   /* Die Spur ist so hoch, dass Hinein- und Herauszoomen Platz haben; die
      Bühne bleibt per sticky angeheftet. */
   .zoom__track {
     position: relative;
-    height: 260vh;
+    height: 200vh;
   }
   .zoom__stage {
     position: sticky;
     top: 0;
-    height: 100vh;
+    /* Etwas flacher als der volle Bildschirm: rueckt das Geraet naeher an
+       den Text und macht den Abschnitt insgesamt kompakter. */
+    height: 88vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1409,6 +1470,83 @@
     background: var(--flash);
     opacity: 1;
   }
+  /* Schaltfläche in der Farbfläche: auf jedem Ton lesbar, nicht zu groß */
+  /* Vergleichskarten: getrennte Systeme gegen eine gemeinsame Ebene */
+  .cd__box {
+    fill: none;
+    stroke: var(--silver-base);
+    stroke-width: 1.2;
+    stroke-dasharray: 4 3;
+  }
+  .cd__box--on {
+    stroke: var(--dark-flash);
+    stroke-dasharray: none;
+  }
+  .cd__spark {
+    fill: none;
+    stroke: var(--silver-dark);
+    stroke-width: 1.4;
+    opacity: 0.5;
+  }
+  .cd__spark--on {
+    stroke: var(--dark-flash);
+    opacity: 0.9;
+  }
+  .cd__label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    fill: var(--silver-dark);
+  }
+  .cd__note {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    fill: var(--silver-dark);
+    opacity: 0.75;
+  }
+  .cd__drop,
+  .cd__out {
+    stroke: var(--dark-flash);
+    stroke-width: 1.2;
+  }
+  .cd__bar {
+    fill: var(--dark);
+  }
+  .cd__bartext {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    fill: var(--flash);
+  }
+
+  .split__cta {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 28px;
+    padding: 9px 18px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    border-radius: var(--radius-control);
+    background: var(--flash);
+    color: var(--ultra);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .split__cta:hover {
+    background: var(--soft);
+  }
+  .split__pane[data-tone="flash"] .split__cta {
+    background: var(--ultra);
+    color: var(--flash);
+  }
+  .split__pane[data-tone="flash"] .split__cta:hover {
+    background: var(--dark);
+  }
+  .split__pane[data-tone="lilac"] .split__cta {
+    background: var(--silver);
+    color: var(--ultra);
+  }
+
   .split__visual {
     display: flex;
     min-height: 0;

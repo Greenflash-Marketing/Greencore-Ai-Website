@@ -1,10 +1,8 @@
-import Image from "next/image";
 import type { Compatibility as CompatibilityData } from "@/lib/sanity/home";
 import type { TaggedLogo } from "@/lib/sanity/logos";
 import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import { LogoWall, type LogoCategory } from "@/components/logo-wall";
-import { CompatDiagram } from "@/components/figures/compat-diagram";
 import { BandHead } from "./band-head";
 
 /**
@@ -17,7 +15,6 @@ export function Compatibility({
   kicker,
   headline,
   lede,
-  media,
   worksWith,
   categories = [],
   logos = [],
@@ -39,15 +36,6 @@ export function Compatibility({
           <p className="logowall__intro">{worksWith}</p>
           <LogoWall categories={categories} logos={logos} />
         </Reveal>
-        {media ? (
-          <Reveal delay={stagger(3)}>
-            <Image src={media} alt="" width={1080} height={320} className="compat__media" />
-          </Reveal>
-        ) : (
-          <Reveal delay={stagger(3)}>
-            <CompatDiagram />
-          </Reveal>
-        )}
       </div>
     </section>
   );

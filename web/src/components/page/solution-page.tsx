@@ -3,6 +3,7 @@ import type { PortableTextBlock } from "next-sanity";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { getSolution } from "@/lib/sanity/solution";
+import { getCustomerLogos } from "@/lib/sanity/home";
 import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import { PageHeader } from "./page-header";
@@ -10,6 +11,7 @@ import { StatRow } from "./stat-row";
 import { UseCaseList } from "./use-case-list";
 import { MediaDummy } from "./media-dummy";
 import { PageCta } from "./page-cta";
+import { MockVisual, type MockKind } from "@/components/home/mock-visual";
 
 /**
  * Gemeinsamer Aufbau der drei Plattform-Seiten: Kopf, Kennzahlen,
@@ -17,19 +19,36 @@ import { PageCta } from "./page-cta";
  * aus Sanity, die Struktur bleibt gleich – damit sind die Seiten konsistent.
  */
 export async function SolutionPage({ moduleKey, locale }: { moduleKey: string; locale: string }) {
-  const [data, t] = await Promise.all([
+  const [data, t, customers] = await Promise.all([
     getSolution(moduleKey, locale),
     getTranslations("Solution"),
+    getCustomerLogos(locale),
   ]);
   if (!data) return null;
 
   const hasSteps = Boolean(data.explainerSteps && data.explainerSteps.length > 0);
+  // Jede Unterseite zeigt im Kopf die Ansicht, um die es auf ihr geht.
+  const headerMock: Record<string, MockKind> = {
+    plan: "bars",
+    operate: "peak",
+    flex: "spot",
+  };
 
   return (
     <>
-      <PageHeader kicker={data.kicker} headline={data.headline ?? data.title} lede={data.lede} />
+      <PageHeader
+        kicker={data.kicker}
+        headline={data.headline ?? data.title}
+        lede={data.lede}
+        media={<MockVisual kind={headerMock[moduleKey] ?? "peak"} />}
+      />
 
-      <StatRow tiles={data.stats ?? []} band={data.statsBand} />
+      <StatRow
+        tiles={data.stats ?? []}
+        band={data.statsBand}
+        logos={customers?.logos ?? []}
+        logosLabel={customers?.label}
+      />
 
       {/*
         Erklaer-Abschnitt. Mit Schritten laeuft die Kette ueber die volle
@@ -53,13 +72,6 @@ export async function SolutionPage({ moduleKey, locale }: { moduleKey: string; l
                   </li>
                 ))}
               </Reveal>
-              {data.features && data.features.length > 0 && (
-                <Reveal as="ul" className="feature-list" delay={stagger(2)}>
-                  {data.features.map((f) => (
-                    <li key={f}>{f}</li>
-                  ))}
-                </Reveal>
-              )}
             </>
           ) : (
             <Reveal className="split">

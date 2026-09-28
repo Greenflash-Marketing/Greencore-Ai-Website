@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page/page-header";
 import { PageCta } from "@/components/page/page-cta";
-import { ChainDiagram } from "@/components/figures/chain-diagram";
+import Image from "next/image";
 
 export const revalidate = 60;
 
@@ -31,7 +31,12 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
 
   return (
     <>
-      <PageHeader kicker={about.kicker} headline={about.headline} lede={about.lede} />
+      <PageHeader
+        kicker={about.kicker}
+        headline={about.headline}
+        lede={about.lede}
+        background="/keyvisual-europa.webp"
+      />
 
       {/*
         "Das ist Greencore AI": ein grosser Einstiegssatz, darunter vier
@@ -132,7 +137,13 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
                 </div>
               </div>
               <div className="split__visual">
-                <ChainDiagram />
+                <Image
+                  src="/fotos/top100.jpg"
+                  alt="Das Team von Greenflash"
+                  width={1200}
+                  height={800}
+                  className="split__img"
+                />
               </div>
             </Reveal>
           </div>

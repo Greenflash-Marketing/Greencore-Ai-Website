@@ -161,3 +161,19 @@ const homeQuery = `*[_id == "homePage"][0]{
 export function getHomePage(locale: string) {
   return sanityClient.fetch<HomePage | null>(homeQuery, { locale });
 }
+
+/** Kundenlogos und ihre Beschriftung – auch auf den Unterseiten verwendet. */
+export function getCustomerLogos(locale: string) {
+  return sanityClient.fetch<{ label?: string; logos?: CustomerLogo[] } | null>(
+    `*[_id == "homePage"][0]{
+      "label": coalesce(hero.logosLabel[$locale], hero.logosLabel.de),
+      "logos": logoSlider[defined(logo.asset)]{
+        name,
+        "url": logo.asset->url,
+        "width": logo.asset->metadata.dimensions.width,
+        "height": logo.asset->metadata.dimensions.height
+      }
+    }`,
+    { locale },
+  );
+}

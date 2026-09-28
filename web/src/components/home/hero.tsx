@@ -1,12 +1,11 @@
-import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { CmsLink } from "@/components/cms-link";
-import type { CustomerLogo, HomeHero } from "@/lib/sanity/home";
+import type { HomeHero } from "@/lib/sanity/home";
 import { HeroHeadline } from "./hero-headline";
 import { AutoplayWindow } from "./autoplay-window";
 
 /** 1 — Header: Silberfläche, Verlaufs-Headline, laufendes Software-Fenster, Kundenlogos. */
-export function Hero({ hero, logos = [] }: { hero: HomeHero; logos?: CustomerLogo[] }) {
+export function Hero({ hero }: { hero: HomeHero }) {
   return (
     <section className="hero band--silver" data-surface="silver">
       <div className="hero__stage">
@@ -33,29 +32,6 @@ export function Hero({ hero, logos = [] }: { hero: HomeHero; logos?: CustomerLog
         </div>
       </div>
 
-      {logos.length > 0 && (
-        <div className="logos">
-          <div className="hero__inner">
-            {hero.logosLabel && <span className="logos__label">{hero.logosLabel}</span>}
-            <div className="logos__track-wrap">
-              <div className="logos__track">
-                {/* zweimal hintereinander für die Endlosschleife; die Kopie ist stumm */}
-                {[...logos, ...logos].map((logo, i) => (
-                  <Image
-                    key={i}
-                    src={logo.url}
-                    alt={i < logos.length ? logo.name : ""}
-                    aria-hidden={i >= logos.length || undefined}
-                    width={Math.round((26 * logo.width) / logo.height)}
-                    height={26}
-                    unoptimized
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

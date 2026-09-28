@@ -37,8 +37,13 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
   return (
     <>
       {faqSchema && <JsonLd data={faqSchema} />}
-      {home.hero && <Hero hero={home.hero} logos={home.logos ?? []} />}
-      <StatsBand band={home.statsBand} tiles={home.statTiles ?? []} />
+      {home.hero && <Hero hero={home.hero} />}
+      <StatsBand
+        band={home.statsBand}
+        tiles={home.statTiles ?? []}
+        logos={home.logos ?? []}
+        logosLabel={home.hero?.logosLabel}
+      />
       <SoftwareZoom intro={home.softwareInsights} />
       <SolutionTabs band={home.solutionsBand} modules={home.solutions ?? []} />
       <Compatibility

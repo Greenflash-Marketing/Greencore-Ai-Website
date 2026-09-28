@@ -26,7 +26,7 @@ export default async function Page(props: PageProps<"/[locale]/ressourcen/blog">
 
   return (
     <>
-      <PageHeader kicker={t("blogKicker")} headline={t("blogHeadline")} lede={t("blogLede")} />
+      <PageHeader kicker={t("blogKicker")} headline={t("blogHeadline")} lede={t("blogLede")} background="/keyvisual-blog.svg" />
       <section className="band band--silver-card" data-surface="silver">
         <div className="band__inner band__inner--wide">
           <Reveal className="band__head">

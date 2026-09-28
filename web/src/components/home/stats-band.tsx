@@ -1,11 +1,22 @@
-import type { StatTile, StatsBand as StatsBandData } from "@/lib/sanity/home";
+import type { CustomerLogo, StatTile, StatsBand as StatsBandData } from "@/lib/sanity/home";
+import { LogoSlider } from "@/components/logo-slider";
 import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import { CountUp } from "./count-up";
 import { PointerGlow } from "./pointer-glow";
 
 /** Dunkelgrünes Band direkt nach dem Header: die Kennzahlen in Glaskacheln. */
-export function StatsBand({ band, tiles }: { band?: StatsBandData; tiles: StatTile[] }) {
+export function StatsBand({
+  band,
+  tiles,
+  logos = [],
+  logosLabel,
+}: {
+  band?: StatsBandData;
+  tiles: StatTile[];
+  logos?: CustomerLogo[];
+  logosLabel?: string;
+}) {
   if (!tiles.length) return null;
   return (
     <section className="band band--dark dark" data-surface="dark">
@@ -33,6 +44,9 @@ export function StatsBand({ band, tiles }: { band?: StatsBandData; tiles: StatTi
             </Reveal>
           ))}
         </div>
+        <Reveal delay={stagger(tiles.length)}>
+          <LogoSlider label={logosLabel} logos={logos} />
+        </Reveal>
       </div>
     </section>
   );

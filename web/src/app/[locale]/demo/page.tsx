@@ -29,17 +29,20 @@ export default async function Page(props: PageProps<"/[locale]/demo">) {
 
   return (
     <>
-      <PageHeader kicker={demo.kicker} headline={demo.headline} lede={demo.intro}>
-        <Reveal delay={stagger(1)}>
+      <PageHeader
+        kicker={demo.kicker}
+        headline={demo.headline}
+        lede={demo.intro}
+        media={
           <DemoForm
             note={demo.formNote ?? t("formNoteFallback")}
             submitLabel={demo.ctaLabel ?? t("formHeadline")}
             pendingNote={t("formPending")}
           />
-        </Reveal>
-      </PageHeader>
+        }
+      />
 
-      <TextSection section={demo.demoSection} surface="silver-card" media />
+      <TextSection section={demo.demoSection} surface="silver-card" media="left" />
 
       {demo.steps && demo.steps.length > 0 && (
         <section className="band band--silver" data-surface="silver">
@@ -62,7 +65,7 @@ export default async function Page(props: PageProps<"/[locale]/demo">) {
       )}
 
       <TextSection section={demo.overview} surface="silver-card" />
-      <TextSection section={demo.urgency} surface="dark" />
+      <TextSection section={demo.urgency} surface="dark" media="right" />
     </>
   );
 }
@@ -75,29 +78,27 @@ function TextSection({
 }: {
   section?: Section;
   surface: "silver" | "silver-card" | "dark";
-  media?: boolean;
+  media?: "left" | "right";
 }) {
   if (!section?.headline && !section?.body) return null;
   const dark = surface === "dark";
   return (
     <section className={`band band--${surface}${dark ? " dark" : ""}`} data-surface={dark ? "dark" : "silver"}>
-      <div className="band__inner">
-        <Reveal className="band__head">
-          {section.kicker && (
-            <span className={dark ? "kicker kicker--flash" : "kicker"}>{section.kicker}</span>
+      <div className={media ? "band__inner band__inner--wide" : "band__inner"}>
+        <Reveal className={media ? "page-header__split demo-split" : undefined}>
+          <div data-order={media === "left" ? "2" : undefined}>
+            {section.kicker && (
+              <span className={dark ? "kicker kicker--flash" : "kicker"}>{section.kicker}</span>
+            )}
+            {section.headline && <h2 className="band__title">{section.headline}</h2>}
+            {section.body && <p className="band__lede">{section.body}</p>}
+          </div>
+          {media && (
+            <div className="demo-mock">
+              <MockVisual kind={media === "left" ? "selfUse" : "storage"} />
+            </div>
           )}
-          {section.headline && <h2 className="band__title">{section.headline}</h2>}
         </Reveal>
-        {section.body && (
-          <Reveal as="p" className="band__lede" delay={stagger(1)}>
-            {section.body}
-          </Reveal>
-        )}
-        {media && (
-          <Reveal className="demo-mock" delay={stagger(2)}>
-            <MockVisual kind="peak" />
-          </Reveal>
-        )}
       </div>
     </section>
   );

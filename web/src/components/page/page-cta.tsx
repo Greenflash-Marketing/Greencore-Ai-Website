@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
+import { PointerGlow } from "@/components/home/pointer-glow";
 
 /** Abschluss jeder Unterseite – dasselbe Keyvisual wie auf der Startseite. */
 export function PageCta({ headline, lede, label }: { headline: string; lede?: string; label: string }) {
@@ -16,7 +17,7 @@ export function PageCta({ headline, lede, label }: { headline: string; lede?: st
         className="cta-band__visual"
       />
       <div className="band__inner cta-band__inner">
-        <Reveal>
+        <Reveal className="cta-band__panel">
           <h2 className="band__title">{headline}</h2>
           {lede && <p className="band__lede">{lede}</p>}
           <div className="cta-band__actions">
@@ -25,6 +26,7 @@ export function PageCta({ headline, lede, label }: { headline: string; lede?: st
             </Link>
           </div>
         </Reveal>
+        <PointerGlow selector=".cta-band__panel" />
       </div>
     </section>
   );

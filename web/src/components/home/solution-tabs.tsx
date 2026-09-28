@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import type { BandHead as BandHeadData, SolutionModule } from "@/lib/sanity/home";
 import { Link } from "@/i18n/navigation";
-import { buttonVariants } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 import { BandHead } from "./band-head";
 import { SplitPane } from "./split-pane";
@@ -61,7 +60,7 @@ export function SolutionTabs({ band, modules }: { band?: BandHeadData; modules: 
             )}
             {current.moduleKey && current.moduleKey in HREFS && (
               <Link
-                className={buttonVariants({ variant: "outline" })}
+                className="split__cta"
                 href={HREFS[current.moduleKey as keyof typeof HREFS]}
               >
                 {t("moduleCta", { title: current.title ?? "" })}
