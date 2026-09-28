@@ -830,8 +830,6 @@
     gap: 28px;
     align-items: center;
     margin-top: var(--stack-lg);
-    padding-top: var(--stack-md);
-    border-top: 1px solid color-mix(in srgb, var(--silver) 22%, transparent);
   }
   .logoslider__label {
     font-family: var(--font-mono);
@@ -1142,14 +1140,15 @@
      Bühne bleibt per sticky angeheftet. */
   .zoom__track {
     position: relative;
-    height: 200vh;
+    height: 260vh;
+    /* Zieht die Buehne unter den Einleitungstext, ohne die Zoom-Rechnung zu
+       veraendern – das Geraet bleibt im Bildschirm zentriert. */
+    margin-top: clamp(-160px, -9vh, -60px);
   }
   .zoom__stage {
     position: sticky;
     top: 0;
-    /* Etwas flacher als der volle Bildschirm: rueckt das Geraet naeher an
-       den Text und macht den Abschnitt insgesamt kompakter. */
-    height: 88vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1977,9 +1976,9 @@
   .card__diagram {
     display: block;
     width: 100%;
-    max-width: 200px;
+    max-width: 360px;
     height: auto;
-    margin-bottom: var(--stack-sm);
+    margin-bottom: var(--stack-md);
   }
 
   .compare {
@@ -2063,6 +2062,15 @@
     color: var(--ultra);
   }
   .nav__submenu a:hover {
+    color: var(--dark-flash);
+  }
+  /* Das Menue selbst bleibt silbern, auch wenn die Leiste auf dunklem Grund
+     steht – sonst stuende heller Text auf heller Flaeche. */
+  .nav.is-on-dark .nav__submenu a {
+    color: var(--ultra);
+  }
+  .nav.is-on-dark .nav__submenu a:hover,
+  .nav.is-on-dark .nav__submenu a[aria-current="page"] {
     color: var(--dark-flash);
   }
 

@@ -99,7 +99,7 @@ export async function SolutionPage({ moduleKey, locale }: { moduleKey: string; l
         </div>
       </section>
 
-      <UseCaseList kicker={t("useCasesKicker")} headline={t("useCasesHeadline")} items={data.useCases ?? []} />
+      <UseCaseList kicker={t("useCasesKicker")} headline={data.useCasesHeadline ?? t("useCasesHeadline")} items={data.useCases ?? []} />
 
       <PageCta headline={t("ctaHeadline")} lede={t("ctaLede")} label={t("ctaLabel")} />
     </>

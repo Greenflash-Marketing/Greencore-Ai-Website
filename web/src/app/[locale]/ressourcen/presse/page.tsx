@@ -26,8 +26,13 @@ export default async function Page(props: PageProps<"/[locale]/ressourcen/presse
 
   return (
     <>
-      <PageHeader kicker={t("presseKicker")} headline={t("presseHeadline")} lede={t("presseLede")} background="/keyvisual-presse.svg" />
-      <section className="band band--silver-card" data-surface="silver">
+      <PageHeader kicker={t("presseKicker")} headline={t("presseHeadline")} lede={t("presseLede")} background="/keyvisual-presse.svg"
+      >
+        <a className="page-header__cta" href="#uebersicht">
+          {t("presseGridHeadline")}
+        </a>
+      </PageHeader>
+      <section id="uebersicht" className="band band--silver-card" data-surface="silver">
         <div className="band__inner band__inner--wide">
           <Reveal className="band__head">
             <h2 className="band__title">{t("presseGridHeadline")}</h2>

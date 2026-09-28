@@ -16,6 +16,7 @@ export type SolutionPage = {
   statsBand?: { kicker?: string; headline?: string; lede?: string };
   explainerKicker?: string;
   useCases?: ModuleUseCase[];
+  useCasesHeadline?: string;
   image?: string;
 };
 
@@ -30,6 +31,7 @@ const query = `*[_type == "solutionModule" && moduleKey == $key][0]{
   "statsBand": statsBand{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },
   ${t("explainerKicker")},
   "useCases": useCases[]{ ${t("title")}, ${t("description")}, figure },
+  ${t("useCasesHeadline")},
   "image": softwareShowcase[0].asset->url
 }`;
 

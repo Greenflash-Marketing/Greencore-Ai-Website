@@ -26,8 +26,13 @@ export default async function Page(props: PageProps<"/[locale]/referenzen">) {
 
   return (
     <>
-      <PageHeader kicker={t("refKicker")} headline={t("refHeadline")} lede={t("refLede")} background="/keyvisual-cta.svg" />
-      <section className="band band--silver-card" data-surface="silver">
+      <PageHeader kicker={t("refKicker")} headline={t("refHeadline")} lede={t("refLede")} background="/keyvisual-cta.svg"
+      >
+        <a className="page-header__cta" href="#uebersicht">
+          {t("refGridHeadline")}
+        </a>
+      </PageHeader>
+      <section id="uebersicht" className="band band--silver-card" data-surface="silver">
         <div className="band__inner band__inner--wide">
           <Reveal className="band__head">
             <h2 className="band__title">{t("refGridHeadline")}</h2>

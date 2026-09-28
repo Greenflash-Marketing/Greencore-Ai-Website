@@ -146,6 +146,11 @@ export const solutionModule = defineType({
       ],
     }),
     defineField({
+      name: 'useCasesHeadline',
+      title: 'Überschrift über den Anwendungsfällen',
+      type: 'localeString',
+    }),
+    defineField({
       name: 'useCases',
       title: 'Anwendungsfälle dieses Moduls',
       type: 'array',

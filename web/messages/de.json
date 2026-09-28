@@ -69,7 +69,7 @@
     "useCasesHeadline": "Wo das Modul täglich wirkt",
     "screenshotDummy": "Attrappe · Software-Einblick folgt",
     "ctaHeadline": "Sehen Sie Ihr eigenes Potenzial",
-    "ctaLede": "Laden Sie Ihren Lastgang hoch — Sie erhalten eine Demo mit Ihren eigenen Zahlen.",
+    "ctaLede": "Laden Sie Ihren Lastgang hoch. Sie erhalten eine Demo mit Ihren eigenen Zahlen.",
     "ctaLabel": "Demo anfragen",
     "overviewLede": "Drei Module, eine Plattform: von der Simulation vor der Investition über die Steuerung im Betrieb bis zur Vermarktung der Flexibilität.",
     "more": "Mehr erfahren"
@@ -82,11 +82,11 @@
     "detailSoon": "Detailseite folgt",
     "refKicker": "Referenzen",
     "refHeadline": "Ergebnisse aus der Industrie",
-    "refLede": "Projekte energieintensiver Unternehmen mit den Zahlen, die dabei herausgekommen sind — nach Branche filterbar.",
+    "refLede": "Projekte energieintensiver Unternehmen mit den Zahlen, die dabei herausgekommen sind. Nach Branche filterbar.",
     "refCta": "Referenz ansehen",
     "blogKicker": "Blog",
     "blogHeadline": "Einordnung statt Schlagzeilen",
-    "blogLede": "Beiträge zu Produkt, Markt und Regulatorik — geschrieben für Menschen, die Energie verantworten.",
+    "blogLede": "Beiträge zu Produkt, Markt und Regulatorik, geschrieben für Menschen, die Energie verantworten.",
     "blogCta": "Beitrag lesen",
     "presseKicker": "Presse",
     "presseHeadline": "Greencore AI in den Medien",
@@ -123,7 +123,13 @@
     "fUsage": "Jahresverbrauch in GWh",
     "fComponents": "Vorhandene Komponenten",
     "fUpload": "Lastgang (optional)",
-    "formPending": "Die Anbindung an das CRM folgt — das Formular nimmt noch keine Anfragen entgegen."
+    "formPending": "Die Anbindung an das CRM folgt, das Formular nimmt noch keine Anfragen entgegen.",
+    "comp": [
+      "Photovoltaik",
+      "Batteriespeicher",
+      "Ladeinfrastruktur",
+      "Wärme und Kälte"
+    ]
   },
   "Home": {
     "worksWith": "Funktioniert mit:",

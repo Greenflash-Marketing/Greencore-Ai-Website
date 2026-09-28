@@ -2,8 +2,6 @@
 
 import { useTranslations } from "next-intl";
 
-const COMPONENTS = ["Photovoltaik", "Batteriespeicher", "Ladeinfrastruktur", "Wärme und Kälte"];
-
 /**
  * Anfrageformular der Demo-Seite.
  *
@@ -23,6 +21,7 @@ export function DemoForm({
   pendingNote: string;
 }) {
   const t = useTranslations("Demo");
+  const components = t.raw("comp") as string[];
 
   return (
     <form className="demo-form" onSubmit={(event) => event.preventDefault()} aria-describedby="demo-form-hinweis">
@@ -56,7 +55,7 @@ export function DemoForm({
       <fieldset className="demo-form__set" disabled>
         <legend>{t("fComponents")}</legend>
         <div className="demo-form__chips">
-          {COMPONENTS.map((component) => (
+          {components.map((component) => (
             <label key={component} htmlFor={`demo-${component}`}>
               <input id={`demo-${component}`} type="checkbox" name="components" value={component} />
               {component}

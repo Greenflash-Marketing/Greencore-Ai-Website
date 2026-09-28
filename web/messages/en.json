@@ -69,7 +69,7 @@
     "useCasesHeadline": "Where this module works every day",
     "screenshotDummy": "Placeholder · software view to follow",
     "ctaHeadline": "See your own potential",
-    "ctaLede": "Upload your load profile — you get a demo with your own figures.",
+    "ctaLede": "Upload your load profile and get a demo that runs on your own figures.",
     "ctaLabel": "Request a demo",
     "overviewLede": "Three modules, one platform: from simulation before the investment through control in operation to marketing flexibility.",
     "more": "Learn more"
@@ -82,11 +82,11 @@
     "detailSoon": "Detail page to follow",
     "refKicker": "References",
     "refHeadline": "Results from industry",
-    "refLede": "Projects of energy-intensive companies with the figures they produced — filterable by sector.",
+    "refLede": "Projects at energy-intensive companies, with the figures they produced. Filter by sector.",
     "refCta": "View reference",
     "blogKicker": "Blog",
     "blogHeadline": "Context instead of headlines",
-    "blogLede": "Articles on product, market and regulation — written for the people responsible for energy.",
+    "blogLede": "Articles on product, market and regulation, written for the people responsible for energy.",
     "blogCta": "Read article",
     "presseKicker": "Press",
     "presseHeadline": "Greencore AI in the media",
@@ -123,7 +123,13 @@
     "fUsage": "Annual consumption in GWh",
     "fComponents": "Existing components",
     "fUpload": "Load profile (optional)",
-    "formPending": "The CRM connection is still pending — this form does not accept requests yet."
+    "formPending": "The CRM connection is still pending, so this form does not accept requests yet.",
+    "comp": [
+      "Photovoltaics",
+      "Battery storage",
+      "Charging infrastructure",
+      "Heating and cooling"
+    ]
   },
   "Home": {
     "worksWith": "Works with:",
