@@ -92,7 +92,10 @@
     "presseHeadline": "Greencore AI in the media",
     "presseLede": "Coverage of the platform and its results. Articles open at the respective publication.",
     "presseCta": "Open article",
-    "resourcesLede": "Blog and press in one place: our own analysis and coverage from the media."
+    "resourcesLede": "Blog and press in one place: our own analysis and coverage from the media.",
+    "refGridHeadline": "All references",
+    "blogGridHeadline": "All articles",
+    "presseGridHeadline": "All articles"
   },
   "About": {
     "visionKicker": "Vision, mission, ambition",
@@ -110,9 +113,14 @@
     "formKicker": "Request",
     "formHeadline": "Request a demo",
     "formLede": "The form will be connected to the CRM. Until then a placeholder stands here.",
-    "formDummy": "Placeholder · form to follow"
+    "formDummy": "Placeholder · form to follow",
+    "formNoteFallback": "You can send your load profile later."
   },
   "Home": {
-    "worksWith": "Works with:"
+    "worksWith": "Works with:",
+    "catPv": "PV and inverters",
+    "catSpeicher": "Battery storage",
+    "catLadeinfrastruktur": "Charging infrastructure",
+    "catMesstechnik": "Metering"
   }
 }

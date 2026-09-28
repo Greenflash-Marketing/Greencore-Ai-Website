@@ -6,7 +6,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "ABB",
     "url": "/logos/hersteller/abb.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 88.2,
     "height": 35
@@ -15,7 +16,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Alfen",
     "url": "/logos/hersteller/alfen.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 164.95,
     "height": 40
@@ -24,7 +26,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "alpitronic",
     "url": "/logos/hersteller/alpitronic.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 736,
     "height": 243
@@ -33,7 +36,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Bender",
     "url": "/logos/hersteller/bender.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 141.6,
     "height": 31.5
@@ -42,7 +46,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "BYD",
     "url": "/logos/hersteller/byd.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 843.39,
     "height": 510
@@ -51,7 +56,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Carlo Gavazzi",
     "url": "/logos/hersteller/carlo-gavazzi.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 1104.65,
     "height": 1104.95
@@ -60,7 +66,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Delta",
     "url": "/logos/hersteller/delta.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 183.2,
     "height": 49
@@ -69,7 +76,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "E3DC",
     "url": "/logos/hersteller/e3dc.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 107,
     "height": 62
@@ -78,7 +86,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "EVBox",
     "url": "/logos/hersteller/evbox.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 180,
     "height": 40
@@ -87,7 +96,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Finder",
     "url": "/logos/hersteller/finder.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 1451.83,
     "height": 338.66
@@ -96,7 +106,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Fronius",
     "url": "/logos/hersteller/fronius.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 512,
     "height": 512
@@ -105,7 +116,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "FZSoNick",
     "url": "/logos/hersteller/fzsonick.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 274,
     "height": 48
@@ -114,7 +126,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Goodwe",
     "url": "/logos/hersteller/goodwe.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 767.4,
     "height": 114
@@ -123,7 +136,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "GS-Yuasa",
     "url": "/logos/hersteller/gs-yuasa.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 265.63,
     "height": 22.83
@@ -132,7 +146,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Heidelberg",
     "url": "/logos/hersteller/heidelberg.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 336,
     "height": 77.5
@@ -141,7 +156,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Huawei",
     "url": "/logos/hersteller/huawei.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 57.58,
     "height": 9.84
@@ -150,7 +166,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Innogy",
     "url": "/logos/hersteller/innogy.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 60,
     "height": 90
@@ -159,7 +176,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Intilion",
     "url": "/logos/hersteller/intilion.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 297.6,
     "height": 113.4
@@ -168,7 +186,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Janitza",
     "url": "/logos/hersteller/janitza.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 155,
     "height": 56
@@ -177,7 +196,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "KACO",
     "url": "/logos/hersteller/kaco.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 286.49,
     "height": 86.54
@@ -186,7 +206,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Keba",
     "url": "/logos/hersteller/keba.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 1273,
     "height": 322.88
@@ -195,7 +216,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Kostal",
     "url": "/logos/hersteller/kostal.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 699,
     "height": 150
@@ -204,7 +226,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "LG",
     "url": "/logos/hersteller/lg.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 600,
     "height": 275
@@ -213,7 +236,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Lovato electric",
     "url": "/logos/hersteller/lovato-electric.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 192.76,
     "height": 192.76
@@ -222,7 +246,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "M-TEC",
     "url": "/logos/hersteller/m-tec.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "waerme"
     ],
     "width": 244,
     "height": 68
@@ -231,7 +256,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Mennekes",
     "url": "/logos/hersteller/mennekes.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 294.3,
     "height": 39.3
@@ -240,7 +266,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Moon Power",
     "url": "/logos/hersteller/moon-power.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 24,
     "height": 32
@@ -249,7 +276,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "PQ Plus",
     "url": "/logos/hersteller/pq-plus.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 223.65,
     "height": 79.57
@@ -258,7 +286,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Pylontech",
     "url": "/logos/hersteller/pylontech.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 132.94,
     "height": 44.44
@@ -267,7 +296,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Riello",
     "url": "/logos/hersteller/riello.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 70.27,
     "height": 31.37
@@ -276,7 +306,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Rolls Royce",
     "url": "/logos/hersteller/rolls-royce.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 512,
     "height": 512
@@ -285,7 +316,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Schneider Electric",
     "url": "/logos/hersteller/schneider-electric.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 956.69,
     "height": 436.18
@@ -294,7 +326,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Schrack Technik",
     "url": "/logos/hersteller/schrack-technik.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 192.76,
     "height": 192.76
@@ -303,7 +336,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Siemens",
     "url": "/logos/hersteller/siemens.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 1000,
     "height": 159
@@ -312,7 +346,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Socomec",
     "url": "/logos/hersteller/socomec.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 242,
     "height": 41
@@ -321,7 +356,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "SolarEdge",
     "url": "/logos/hersteller/solaredge.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 173.45,
     "height": 36.8
@@ -330,7 +366,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Sungrow",
     "url": "/logos/hersteller/sungrow.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 150,
     "height": 20
@@ -339,7 +376,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "technagon",
     "url": "/logos/hersteller/technagon.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "ladeinfrastruktur"
     ],
     "width": 300,
     "height": 200
@@ -348,7 +386,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Vensys",
     "url": "/logos/hersteller/vensys.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 378,
     "height": 57.5
@@ -357,7 +396,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Victron energy",
     "url": "/logos/hersteller/victron-energy.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "speicher"
     ],
     "width": 24,
     "height": 24
@@ -366,7 +406,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Wattsonic",
     "url": "/logos/hersteller/wattsonic.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "pv"
     ],
     "width": 1440,
     "height": 140
@@ -375,7 +416,8 @@ export const herstellerLogos: TaggedLogo[] = [
     "name": "Weidmüller",
     "url": "/logos/hersteller/weidmueller.svg",
     "tags": [
-      "hersteller"
+      "hersteller",
+      "messtechnik"
     ],
     "width": 192.76,
     "height": 192.76

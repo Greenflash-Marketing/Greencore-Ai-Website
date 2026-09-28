@@ -1,0 +1,30 @@
+# Greencore AI
+
+> Energieplattform für Industrie und Logistik. Greencore AI verbindet Erzeugung, Batteriespeicher, Ladeinfrastruktur und Verbrauch mit dem Strommarkt, prognostiziert Verbrauch, Erzeugung und Preise und steuert das Energiesystem so, dass die Energiekosten sinken.
+
+Greencore AI übernimmt die Aufgaben eines Energiemanagementsystems — Messdaten erfassen, Anlagen überwachen, Lasten steuern — und geht darüber hinaus: Die Plattform prognostiziert den nächsten Zustand des Energiesystems und steuert einschließlich Strombeschaffung darauf zu. Künstliche Intelligenz erstellt dabei die Prognosen; die Steuerung übernimmt ein mathematisches Optimierungsmodell innerhalb fest definierter technischer, betrieblicher und regulatorischer Grenzen.
+
+Zielgruppe: energieintensive Industrie- und Logistikbetriebe in Europa.
+
+## Funktionsbereiche
+
+- [Simulation](https://greencore-ai.com/de/plattform/simulation): Wirtschaftlichkeit, Dimensionierung von Photovoltaik und Batteriespeicher, Szenarienvergleich, Netzanschlussleistung, Amortisation — vor der Investition
+- [Optimierung](https://greencore-ai.com/de/plattform/optimierung): Lastspitzenkappung, Eigenverbrauchsoptimierung, atypische Netznutzung, Speicheroptimierung und Multi-Use, Ladeoptimierung, Reaktion auf negative Strompreise, Wärme und Kälte als Flexibilität
+- [Energiehandel](https://greencore-ai.com/de/plattform/energiehandel): strukturierte Strombeschaffung, Day-Ahead- und Spotmarktoptimierung, Flexibilitätsvermarktung, Intraday-Ausgleich
+
+## Weitere Seiten
+
+- [Startseite](https://greencore-ai.com/de): Gesamtversprechen, Kennzahlen, Kompatibilität, FAQ
+- [Referenzen](https://greencore-ai.com/de/referenzen): Projekte mit dokumentierten Ergebnissen
+- [Über uns](https://greencore-ai.com/de/ueber-uns): Vision, Mission, Grundsätze, Verhältnis zu Greenflash
+- [Blog](https://greencore-ai.com/de/ressourcen/blog)
+- [Presse](https://greencore-ai.com/de/ressourcen/presse)
+- [Demo anfragen](https://greencore-ai.com/de/demo): kostenloser, zeitlich begrenzter Zugang auf Basis des eigenen Lastgangs
+
+## Kennzahlen
+
+- Über 70 Energiesysteme, in denen Greencore AI in unterschiedlichen Ausbaustufen im Einsatz ist
+- Über 200 Messpunkte je Energiesystem, sekündlich ausgelesen; über 50 externe Datenquellen
+- Preisprognose bis zu 72 Stunden; Verbrauchsprognose mit dokumentierter Genauigkeit über 90 Prozent, Erzeugungsprognose 89 bis 95 Prozent im dokumentierten Modellkontext
+- Optimierungsmodell: über 20 Variablen, Horizont über 40 Stunden, ein Durchlauf unter 300 Millisekunden
+- Rund 300 Hersteller und etwa 600 Schnittstellenanbindungen; über 10.000 Systeme im Feld als technologische Erfahrungsbasis

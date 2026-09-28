@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getCollection } from "@/lib/sanity/collections";
+import { Reveal } from "@/components/motion/reveal";
 import { PageHeader } from "@/components/page/page-header";
 import { FilterGrid } from "@/components/page/filter-grid";
 import { PageCta } from "@/components/page/page-cta";
@@ -28,6 +29,9 @@ export default async function Page(props: PageProps<"/[locale]/ressourcen/presse
       <PageHeader kicker={t("presseKicker")} headline={t("presseHeadline")} lede={t("presseLede")} />
       <section className="band band--silver-card" data-surface="silver">
         <div className="band__inner band__inner--wide">
+          <Reveal className="band__head">
+            <h2 className="band__title">{t("presseGridHeadline")}</h2>
+          </Reveal>
           <FilterGrid items={items} ctaLabel={t("presseCta")} />
         </div>
       </section>

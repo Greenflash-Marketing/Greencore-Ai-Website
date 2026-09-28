@@ -10,8 +10,14 @@ export const demoPage = defineType({
   type: 'document',
   icon: RocketIcon,
   fields: [
+    defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
     defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
     defineField({name: 'intro', title: 'Einleitungstext', type: 'localeText'}),
+    defineField({
+      name: 'formNote',
+      title: 'Hinweis unter dem Formular (z. B. zum Lastgang-Upload)',
+      type: 'localeText',
+    }),
     defineField({
       name: 'steps',
       title: 'Ablauf-Schritte (z. B. Lastgang hochladen → individuelle Demo erhalten)',
@@ -27,6 +33,39 @@ export const demoPage = defineType({
           ],
           preview: {select: {title: 'title.de'}},
         }),
+      ],
+    }),
+    defineField({
+      name: 'demoSection',
+      title: 'Abschnitt "Die Demo-Version"',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'body', title: 'Copy', type: 'localeText'}),
+      ],
+    }),
+    defineField({
+      name: 'overview',
+      title: 'Abschnitt "Greencore AI in der Kurzübersicht"',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'body', title: 'Copy', type: 'localeText'}),
+      ],
+    }),
+    defineField({
+      name: 'urgency',
+      title: 'Abschnitt "Warum jetzt handeln"',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name: 'kicker', title: 'Kicker', type: 'localeString'}),
+        defineField({name: 'headline', title: 'Headline', type: 'localeString'}),
+        defineField({name: 'body', title: 'Copy', type: 'localeText'}),
       ],
     }),
     defineField({name: 'ctaLabel', title: 'CTA-Text', type: 'localeString'}),

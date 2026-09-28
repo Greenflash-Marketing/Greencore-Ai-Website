@@ -12,6 +12,7 @@ import { Testimonials } from "@/components/home/testimonials";
 import { WhySection } from "@/components/home/why-section";
 import { FinalCta } from "@/components/home/final-cta";
 import { Faq } from "@/components/home/faq";
+import { JsonLd, faqJsonLd } from "@/components/seo/json-ld";
 
 // Inhalte kommen aus Sanity; Änderungen im Studio sind nach spätestens 60 s live.
 export const revalidate = 60;
@@ -31,15 +32,24 @@ export default async function HomePage(props: PageProps<"/[locale]">) {
   const hasTagged = taggedLogos.some((logo) => logo.tags.includes("hersteller"));
   const cycleLogos = hasTagged ? taggedLogos : herstellerLogos;
 
+  const faqSchema = faqJsonLd(home.faq ?? []);
+
   return (
     <>
+      {faqSchema && <JsonLd data={faqSchema} />}
       {home.hero && <Hero hero={home.hero} logos={home.logos ?? []} />}
       <StatsBand band={home.statsBand} tiles={home.statTiles ?? []} />
       <SoftwareZoom intro={home.softwareInsights} />
       <SolutionTabs band={home.solutionsBand} modules={home.solutions ?? []} />
       <Compatibility
         {...(home.compatibility ?? {})}
-        worksWith={`${t("worksWith")} {hersteller}`}
+        worksWith={t("worksWith")}
+        categories={[
+          { tag: "pv", label: t("catPv") },
+          { tag: "speicher", label: t("catSpeicher") },
+          { tag: "ladeinfrastruktur", label: t("catLadeinfrastruktur") },
+          { tag: "messtechnik", label: t("catMesstechnik") },
+        ]}
         logos={cycleLogos}
       />
       {home.europeBand && <EuropeBand {...home.europeBand} />}

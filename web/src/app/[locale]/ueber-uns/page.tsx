@@ -33,6 +33,41 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
     <>
       <PageHeader kicker={about.kicker} headline={about.headline} lede={about.lede} />
 
+      {/*
+        "Das ist Greencore AI": ein grosser Einstiegssatz, darunter vier
+        Kacheln. Drei lange Absaetze ueber halbe Seitenbreite liest niemand;
+        die Zwischenueberschriften machen den Abschnitt ueberfliegbar.
+      */}
+      {about.intro?.lead || about.intro?.body ? (
+        <section className="band band--silver" data-surface="silver">
+          <div className="band__inner band__inner--wide">
+            <Reveal className="band__head">
+              {about.intro.kicker && <span className="kicker">{about.intro.kicker}</span>}
+              {about.intro.headline && <h2 className="band__title">{about.intro.headline}</h2>}
+            </Reveal>
+            {about.intro.lead && (
+              <Reveal as="p" className="intro__lead" delay={stagger(1)}>
+                {about.intro.lead}
+              </Reveal>
+            )}
+            {about.intro.points && about.intro.points.length > 0 ? (
+              <div className="principles">
+                {about.intro.points.map((point, i) => (
+                  <Reveal key={i} as="article" className="card" delay={stagger(i)}>
+                    <h3>{point.title}</h3>
+                    <p>{point.text}</p>
+                  </Reveal>
+                ))}
+              </div>
+            ) : about.intro.body ? (
+              <Reveal className="prose" delay={stagger(2)}>
+                <PortableText value={about.intro.body as PortableTextBlock[]} />
+              </Reveal>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
+
       {about.visionMissionValueProp ? (
         <section className="band band--dark dark" data-surface="dark">
           <div className="band__inner">
