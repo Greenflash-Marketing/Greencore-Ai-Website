@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { PortableText } from "next-sanity";
-import type { PortableTextBlock } from "next-sanity";
+import { useTranslations } from "next-intl";
 import type { BandHead as BandHeadData, SolutionModule } from "@/lib/sanity/home";
+import { Link } from "@/i18n/navigation";
+import { buttonVariants } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 import { BandHead } from "./band-head";
 import { SplitPane } from "./split-pane";
@@ -11,9 +12,17 @@ import { SplitPane } from "./split-pane";
 const TONES = ["ultra", "flash", "lilac"] as const;
 const MOCKS = ["bars", "peak", "spot"] as const;
 
+// Die Kachel teasert nur an; die Tiefe steht auf der jeweiligen Unterseite.
+const HREFS = {
+  plan: "/plattform/simulation",
+  operate: "/plattform/optimierung",
+  flex: "/plattform/energiehandel",
+} as const;
+
 /** 4 — Lösungen im Tab-Menü: Simulation, Optimierung, Energiehandel. */
 export function SolutionTabs({ band, modules }: { band?: BandHeadData; modules: SolutionModule[] }) {
   const [active, setActive] = useState(0);
+  const t = useTranslations("Home");
   if (!modules.length) return null;
   const current = modules[active];
 
@@ -42,13 +51,21 @@ export function SolutionTabs({ band, modules }: { band?: BandHeadData; modules: 
           <SplitPane tone={TONES[active % TONES.length]} image={current.image} mock={MOCKS[active % MOCKS.length]}>
             {current.kicker && <span className="kicker kicker--flash">{current.kicker}</span>}
             {current.headline && <h3>{current.headline}</h3>}
-            {current.body ? <PortableText value={current.body as PortableTextBlock[]} /> : null}
+            {current.teaser && <p>{current.teaser}</p>}
             {current.features && (
               <ul className="feature-list">
                 {current.features.map((f) => (
                   <li key={f}>{f}</li>
                 ))}
               </ul>
+            )}
+            {current.moduleKey && current.moduleKey in HREFS && (
+              <Link
+                className={buttonVariants({ variant: "outline" })}
+                href={HREFS[current.moduleKey as keyof typeof HREFS]}
+              >
+                {t("moduleCta", { title: current.title ?? "" })}
+              </Link>
             )}
           </SplitPane>
         </div>

@@ -1,7 +1,7 @@
 import { sanityClient } from "./client";
 import type { StatTile } from "./home";
 
-export type ModuleUseCase = { title?: string; description?: string };
+export type ModuleUseCase = { title?: string; description?: string; figure?: string };
 
 export type SolutionPage = {
   title?: string;
@@ -29,7 +29,7 @@ const query = `*[_type == "solutionModule" && moduleKey == $key][0]{
   "stats": stats[]{ value, unit, ${t("label")} },
   "statsBand": statsBand{ ${t("kicker")}, ${t("headline")}, ${t("lede")} },
   ${t("explainerKicker")},
-  "useCases": useCases[]{ ${t("title")}, ${t("description")} },
+  "useCases": useCases[]{ ${t("title")}, ${t("description")}, figure },
   "image": softwareShowcase[0].asset->url
 }`;
 

@@ -9,7 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import type { GridItem } from "@/lib/sanity/collections";
-import { MediaDummy } from "./media-dummy";
+import { PostCover } from "@/components/figures/post-cover";
 
 const isAppPath = (href: string): href is AppPathname => href in routing.pathnames;
 
@@ -52,7 +52,7 @@ export function FilterGrid({ items, ctaLabel }: { items: GridItem[]; ctaLabel: s
               {item.image ? (
                 <Image src={item.image} alt="" width={640} height={360} />
               ) : (
-                <MediaDummy label={t("imageDummy")} ratio="16 / 9" />
+                <PostCover title={item.title ?? ""} tag={item.category} />
               )}
             </div>
             <div className="post-card__body">

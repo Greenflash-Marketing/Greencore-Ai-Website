@@ -4,8 +4,10 @@ import { useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import { MediaDummy } from "./media-dummy";
+import { Figure } from "@/components/figures/figure";
+import { FIGURES, type FigureKey } from "@/components/figures/specs";
 
-type Item = { title?: string; description?: string; image?: string };
+type Item = { title?: string; description?: string; image?: string; figure?: string };
 
 /**
  * Anwendungsfaelle als Registerliste mit fester Buehne.
@@ -63,7 +65,11 @@ export function UseCaseList({
                   <p>{item.description}</p>
                 </div>
                 <div className="usecases__visual">
-                  <MediaDummy label={`Attrappe · ${item.title ?? "Ansicht"}`} ratio="4 / 3" />
+                  {item.figure && item.figure in FIGURES ? (
+                    <Figure name={item.figure as FigureKey} label={item.title} />
+                  ) : (
+                    <MediaDummy label={`Attrappe · ${item.title ?? "Ansicht"}`} ratio="4 / 3" />
+                  )}
                 </div>
               </article>
             ))}

@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page/page-header";
 import { PageCta } from "@/components/page/page-cta";
-import { MediaDummy } from "@/components/page/media-dummy";
+import { ChainDiagram } from "@/components/figures/chain-diagram";
 
 export const revalidate = 60;
 
@@ -132,7 +132,7 @@ export default async function Page(props: PageProps<"/[locale]/ueber-uns">) {
                 </div>
               </div>
               <div className="split__visual">
-                <MediaDummy label={t("teamDummy")} ratio="4 / 3" />
+                <ChainDiagram />
               </div>
             </Reveal>
           </div>

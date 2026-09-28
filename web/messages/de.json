@@ -114,13 +114,23 @@
     "formHeadline": "Demo anfragen",
     "formLede": "Das Formular wird an das CRM angebunden. Bis dahin steht hier eine Attrappe.",
     "formDummy": "Attrappe · Formular folgt",
-    "formNoteFallback": "Den Lastgang können Sie auch nachreichen."
+    "formNoteFallback": "Den Lastgang können Sie auch nachreichen.",
+    "fName": "Name",
+    "fCompany": "Unternehmen",
+    "fRole": "Funktion",
+    "fMail": "E-Mail",
+    "fPhone": "Telefon (optional)",
+    "fUsage": "Jahresverbrauch in GWh",
+    "fComponents": "Vorhandene Komponenten",
+    "fUpload": "Lastgang (optional)",
+    "formPending": "Die Anbindung an das CRM folgt — das Formular nimmt noch keine Anfragen entgegen."
   },
   "Home": {
     "worksWith": "Funktioniert mit:",
     "catPv": "PV und Wechselrichter",
     "catSpeicher": "Batteriespeicher",
     "catLadeinfrastruktur": "Ladeinfrastruktur",
-    "catMesstechnik": "Mess- und Zählertechnik"
+    "catMesstechnik": "Mess- und Zählertechnik",
+    "moduleCta": "{title} ansehen"
   }
 }

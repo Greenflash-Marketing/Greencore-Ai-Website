@@ -114,13 +114,23 @@
     "formHeadline": "Request a demo",
     "formLede": "The form will be connected to the CRM. Until then a placeholder stands here.",
     "formDummy": "Placeholder · form to follow",
-    "formNoteFallback": "You can send your load profile later."
+    "formNoteFallback": "You can send your load profile later.",
+    "fName": "Name",
+    "fCompany": "Company",
+    "fRole": "Role",
+    "fMail": "Email",
+    "fPhone": "Phone (optional)",
+    "fUsage": "Annual consumption in GWh",
+    "fComponents": "Existing components",
+    "fUpload": "Load profile (optional)",
+    "formPending": "The CRM connection is still pending — this form does not accept requests yet."
   },
   "Home": {
     "worksWith": "Works with:",
     "catPv": "PV and inverters",
     "catSpeicher": "Battery storage",
     "catLadeinfrastruktur": "Charging infrastructure",
-    "catMesstechnik": "Metering"
+    "catMesstechnik": "Metering",
+    "moduleCta": "View {title}"
   }
 }

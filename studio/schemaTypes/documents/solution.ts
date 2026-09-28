@@ -54,6 +54,11 @@ export const solutionModule = defineType({
       type: 'localeString',
     }),
     defineField({name: 'shortDescription', title: 'Kurzbeschreibung (Tab/Teaser)', type: 'localeText'}),
+    defineField({
+      name: 'teaser',
+      title: 'Teaser für die Kachel auf der Startseite (kurz halten)',
+      type: 'localeText',
+    }),
     defineField({name: 'body', title: 'Inhalt', type: 'localeBlockContent'}),
     defineField({
       name: 'explainerSteps',
@@ -151,6 +156,12 @@ export const solutionModule = defineType({
           fields: [
             defineField({name: 'title', title: 'Titel', type: 'localeString'}),
             defineField({name: 'description', title: 'Beschreibung', type: 'localeText'}),
+            defineField({
+              name: 'figure',
+              title: 'Diagramm',
+              type: 'string',
+              options: {list: ['payback', 'sizing', 'scenarios', 'capacity', 'retrofit', 'procurement', 'cashflow', 'peak', 'selfuse', 'windows', 'soc', 'charging', 'negative', 'thermal', 'tariff', 'tranches', 'spot', 'flex', 'forecast']},
+            }),
           ],
           preview: {select: {title: 'title.de', subtitle: 'description.de'}},
         }),

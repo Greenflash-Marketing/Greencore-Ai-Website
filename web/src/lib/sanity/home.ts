@@ -31,6 +31,8 @@ export type SolutionModule = {
   title?: string;
   kicker?: string;
   headline?: string;
+  teaser?: string;
+  moduleKey?: string;
   body?: unknown;
   features?: string[];
   image?: string;
@@ -119,9 +121,8 @@ const homeQuery = `*[_id == "homePage"][0]{
   "zoomScreenshot": hero.softwareScreenshotEntry.asset->url,
   "solutionsBand": solutionsBand{ ${t("kicker")}, ${t("headline")} },
   "solutions": solutionTabs[]->{
-    ${t("title")}, ${t("kicker")},
+    ${t("title")}, ${t("kicker")}, ${t("teaser")}, moduleKey,
     "headline": coalesce(shortDescription[$locale], shortDescription.de),
-    "body": coalesce(body[$locale], body.de),
     "features": subFeatures[]{"t": coalesce(title[$locale], title.de)}.t,
     "image": softwareShowcase[0].asset->url
   },

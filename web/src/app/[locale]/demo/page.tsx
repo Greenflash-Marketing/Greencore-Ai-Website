@@ -4,7 +4,8 @@ import { getDemoPage, type Section } from "@/lib/sanity/pages";
 import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page/page-header";
-import { MediaDummy } from "@/components/page/media-dummy";
+import { MockVisual } from "@/components/home/mock-visual";
+import { DemoForm } from "@/components/page/demo-form";
 
 export const revalidate = 60;
 
@@ -29,10 +30,12 @@ export default async function Page(props: PageProps<"/[locale]/demo">) {
   return (
     <>
       <PageHeader kicker={demo.kicker} headline={demo.headline} lede={demo.intro}>
-        {/* Attrappe: Das Formular folgt mit der Anbindung an das CRM. */}
-        <Reveal className="demo-form" delay={stagger(1)}>
-          <MediaDummy label={t("formDummy")} ratio="16 / 9" />
-          <p className="demo-form__note">{demo.formNote ?? t("formNoteFallback")}</p>
+        <Reveal delay={stagger(1)}>
+          <DemoForm
+            note={demo.formNote ?? t("formNoteFallback")}
+            submitLabel={demo.ctaLabel ?? t("formHeadline")}
+            pendingNote={t("formPending")}
+          />
         </Reveal>
       </PageHeader>
 
@@ -91,8 +94,8 @@ function TextSection({
           </Reveal>
         )}
         {media && (
-          <Reveal delay={stagger(2)}>
-            <MediaDummy label="Attrappe · Ansicht aus der Demo" ratio="16 / 9" />
+          <Reveal className="demo-mock" delay={stagger(2)}>
+            <MockVisual kind="peak" />
           </Reveal>
         )}
       </div>

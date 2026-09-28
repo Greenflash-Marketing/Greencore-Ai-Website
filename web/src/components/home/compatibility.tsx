@@ -4,6 +4,7 @@ import type { TaggedLogo } from "@/lib/sanity/logos";
 import { Reveal } from "@/components/motion/reveal";
 import { stagger } from "@/components/motion/stagger";
 import { LogoWall, type LogoCategory } from "@/components/logo-wall";
+import { CompatDiagram } from "@/components/figures/compat-diagram";
 import { BandHead } from "./band-head";
 
 /**
@@ -43,12 +44,8 @@ export function Compatibility({
             <Image src={media} alt="" width={1080} height={320} className="compat__media" />
           </Reveal>
         ) : (
-          <Reveal
-            className="compat__media compat__media--dummy"
-            aria-hidden="true"
-            delay={stagger(3)}
-          >
-            <span>Attrappe · Bild folgt</span>
+          <Reveal delay={stagger(3)}>
+            <CompatDiagram />
           </Reveal>
         )}
       </div>
