@@ -1,6 +1,6 @@
 import type { TaggedLogo } from "@/lib/sanity/logos";
 
-/** Lokale Smart1-Herstellerlogos (SVG) für den {hersteller}-Zyklus, bis Sanity-Uploads greifen. */
+/** Lokale Herstellerlogos (SVG) für den {hersteller}-Zyklus, bis Sanity-Uploads greifen. */
 export const herstellerLogos: TaggedLogo[] = [
   {
     "name": "ABB",

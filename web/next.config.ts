@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // FACE-Demo unter /software-demo (nicht /demo – das ist die Buchungsseite).
+  // Software-Demo unter /software-demo (nicht /demo – das ist die Buchungsseite).
   async rewrites() {
     return [
       { source: "/software-demo", destination: "/software-demo/index.html" },

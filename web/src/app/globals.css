@@ -1103,7 +1103,7 @@
     font-size: 12px;
     line-height: 1.35;
   }
-  /* Live-FACE-Demo: eine Fläche. Inhalt wie Browser-Zoom 85 % (größeres
+  /* Live-Demo: eine Fläche. Inhalt wie Browser-Zoom 85 % (größeres
      Layout, visuell auf die Screen-Fläche skaliert). */
   .tablet__screen--live {
     display: block;
